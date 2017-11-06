@@ -13,13 +13,15 @@ This lab shows how you can deploy an **ASP.Net application to Azure App Service 
 
 1. Use <a href="https://vstsdemogenerator.azurewebsites.net" target="_blank">VSTS Demo Data Generator</a> to provision a project on your VSTS account.
 
-   ![](images/vsts_demo_site.png)
+   <img src="images/vsts_demo_site.png">
 
 2. Select **PartsUnlimited** for the template.
 
-   ![](images/select_template.png)
+   <img src="images/select_template.png">
 
 3. Once the project is provisioned, select the URL to navigate to the project that you provisioned.
+
+   <img src="images/navigate_to_vsts.png">
 
 
 ## Configuring the CI/CD pipeline
@@ -48,7 +50,7 @@ This lab shows how you can deploy an **ASP.Net application to Azure App Service 
 
    <img src="images/build_overview.png">
 
-   While the build is in progress, let's explore the build definition. Below is the table which gives you the glimpse of the tasks that is being used in the current build definition.
+   While the build is in progress, let's explore the build definition. The tasks that is used in the build definition are listed in the table below.
 
    <table width="100%">
    <thead>
@@ -98,7 +100,7 @@ We have a release pipeline configured to deploy the application. It is associate
 
    <img src="images/release_pipeline_overview.png">
 
-4. Go to the **Dev** environment, you can see we have 2 tasks being used. Below is the table which gives you the glimpse of the tasks that is being used in the current release definition.
+4. Go to the **Dev** environment, you can see we have 2 tasks being used. The tasks that is used in the release definition are listed in the table below.
 
    <table width="100%">
    <thead>
@@ -118,7 +120,7 @@ We have a release pipeline configured to deploy the application. It is associate
    <tr>
    </table>
 
-We are using **Infrastructure as a Code** in the release pipeline with an ARM template to provision the required infrastructure **(Web App and SQL database)** on Azure.
+We are using **Infrastructure as a Code** in the release pipeline with an ARM template to provision the required infrastructure **(Web App, SQL Server, SQL database, Application Insights)** on Azure.
 
 5. You can see in progress release as shown below.
 
