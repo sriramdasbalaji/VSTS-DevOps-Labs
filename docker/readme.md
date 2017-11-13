@@ -22,7 +22,7 @@ Web App for Containers lets you bring your own Docker formatted container images
 1. Click on **Deploy to Azure** to spin up **Azure Container Registry** and **Azure Web App (Linux)**.
 
    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoft%2FVSTS-DevOps-Labs%2Fdocker%2Fdocker%2Ftemplates%2Fazuredeploy.json" target="_blank">
-   
+
     <img src="http://azuredeploy.net/deploybutton.png"/>
     </a> 
 
@@ -113,7 +113,7 @@ We have an **ASP.NETCORE code** provisioned by the demo generator system. We wil
 
 7. Click on **Tasks**.
 
-   <img src="images/tasksrd.png">
+   <img src="images/release_tasks.png">
 
 8. Click on **Deploy Azure App Service** task, and select newly added endpoint components from the dropdown under **Azure subscription** and **Azure Service name**. Manually update **Registry or Namespace** with **Azure Container Registry Login Server** as shown below and click on **Save**.
 
