@@ -30,7 +30,7 @@
 
       "metadata": {
 
-        "description": "Enable admin user that have push / pull permission to the registry."
+        "description": "Enable admin user that have push/pull permission to the registry."
 
       }
 
@@ -54,7 +54,7 @@
 
       "metadata": {
 
-        "description": "Type of the storage account that will store container registry datas."
+        "description": "Type of the storage account that will store container registry data."
 
       }
 
@@ -89,7 +89,7 @@
 
       "location": "[resourceGroup().location]",
 
-      "comments": "This storage account is used by Container Registry for storing its datas.",
+      "comments": "This storage account is used by Container Registry for storing its data.",
 
       "dependsOn": [],
 

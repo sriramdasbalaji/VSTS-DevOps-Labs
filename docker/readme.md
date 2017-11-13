@@ -21,7 +21,10 @@ Web App for Containers lets you bring your own Docker formatted container images
 
 1. Click on **Deploy to Azure** to spin up **Azure Container Registry** and **Azure Web App (Linux)**.
 
-   <img src="images/deploytoazure.png">
+   <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoft%2FVSTS-DevOps-Labs%2Fdocker%2Fdocker%2Ftemplates%2Fazuredeploy.json" target="_blank">
+   
+    <img src="http://azuredeploy.net/deploybutton.png"/>
+    </a> 
 
    <br/>
 
