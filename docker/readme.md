@@ -165,7 +165,7 @@ We have an **ASP.NETCORE code** provisioned by the demo generator system. We wil
 
 ## Summary
 
-With Visual Studio Team Services and Azure, we can have DevOps for dockerized applications where images will be deployed to **ACS DC/OS**, **Kubernetes** or **Docker Swarm**.
+With Visual Studio Team Services and Azure, we can have DevOps for dockerized applications where images will be deployed to Azure Web App. Similarly deployments could be made to **ACS DC/OS**, **Kubernetes**, **Docker Swarm** or **Azure Container Instances**.
 
 ## Feedback
 
