@@ -125,7 +125,7 @@ We have a release pipeline configured to deploy the application. It is associate
 
    <img src="images/release_logs.png">
 
-7. Login to [Azure Portal](https://portal.azure.com) and search a **Resource Group** with the name **PHP** that would have got created. It would be associated with resource like **WebApp,Host Plan** as shown below.
+7. Login to [Azure Portal](https://portal.azure.com) and search a **Resource Group** with the name **PHP** that should have got created. It should be associated with resource like **WebApp,Host Plan** as shown below.
 
    <img src="images/azure.png">
 
