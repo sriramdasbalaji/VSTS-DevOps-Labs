@@ -44,32 +44,32 @@ Let us create an **Azure Container Registry** for storing the images we create a
 
    <img src="images/postazuredeployment.png">
 
-Description of components created:
+    Description of components created:
 
-   <table width="100%">
-   <thead>
+    <table width="100%">
+     <thead>
       <tr>
          <th width="50%"><b>Azure Component</b></th>
          <th><b>Description</b></th>
       </tr>
-   </thead>
-   <tr>
+    </thead>
+    <tr>
       <td><a href="http://bit.ly/2mwVYUz"><b>Container Registry</b></a></td>
       <td>Used to store images privately</td>
-   </tr>
-   <tr>
+    </tr>
+    <tr>
       <td><a href="http://bit.ly/2iYiCQx"><b>Storage Account</b></a> </td>
       <td>Storage account associated with container registry</td>
-   </tr>
-   <tr>
+    </tr>
+    <tr>
       <td><a href="http://bit.ly/2ALhdES"><b>App Service</b></a> </td>
-      <td>Password </td>
-   </tr>
-   <tr>
+      <td>Images are deployed to containers in web app</td>
+    </tr>
+    <tr>
       <td><a href="http://bit.ly/2AINQ5x"><b>App Service Plan</b></a> </td>
-      <td>Enter email id associated with your account</td>
-   </tr>
-   </table>
+      <td>Resource where App service resides</td>
+    </tr>
+    </table>
 
 
 4. Click on **Access keys** under **Settings** node. Note down the **Login server**,  **Username** and **Password**. We will need these in Exercise 1.
@@ -101,31 +101,31 @@ We have an **ASP.NETCORE code** provisioned by the demo generator system. We wil
 
    <img src="images/acrendpoint.png">
 
-   Select **Others** for **Registry Type**. Map the details to **Docker Registry** from **ACR** (in azure portal) by passing the parameters as shown below:
+   Select **Others** for **Registry Type**. Map the details to **Docker Registry Connection** from **ACR** (in azure portal) by passing the parameters as shown below:
 
-  <table width="100%">
-   <thead>
+    <table width="100%">
+     <thead>
       <tr>
-         <th width="50%"><b>Docker Registry</b></th>
+         <th width="50%"><b>Docker Registry Connection</b></th>
          <th><b>Azure Container Registry</b></th>
       </tr>
    </thead>
-   <tr>
-      <td>Docker Registry (starts with https://)</a></td>
+    <tr>
+      <td><b>Docker Registry</b> (starts with https://)</a></td>
       <td>Login server</td>
-   </tr>
-   <tr>
-      <td>Docker ID</a> </td>
+    </tr>
+    <tr>
+      <td><b>Docker ID</b></a> </td>
       <td>Username</td>
-   </tr>
-   <tr>
-      <td>Password</a> </td>
+     </tr>
+     <tr>
+      <td><b>Password</b></a> </td>
       <td>Password </td>
-   </tr>
-   <tr>
-      <td>Email</a> </td>
+     </tr>
+     <tr>
+      <td><b>Email</b></a> </td>
       <td>Enter email id associated with your account</td>
-   </tr>
+     </tr>
    </table>
 
 
