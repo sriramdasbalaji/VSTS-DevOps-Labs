@@ -2,7 +2,7 @@
 
 ## Overview
 
-This lab shows how you can build custom images of <a href="http://dockr.ly/2zLiDPy">**Dockerized ASP.NETCORE**</a> application, and push those images to <a href="http://dockr.ly/2AJLgge"> **Private Repository** </a> (<a href="http://bit.ly/2jssVQy"> Azure Container Registry </a>), and then pull these images to deploy to containers in **Azure Web App** (Linux) using VSTS. Since we are using an **ASP.NETCORE** application it could be deployed to either **Windows** or **Linux** Containers.
+This lab shows how you can build custom images of <a href="http://dockr.ly/2zLiDPy">**Dockerized ASP.NETCORE**</a> application, and push those images to <a href="http://dockr.ly/2AJLgge"> **Private Repository** </a> (<a href="http://bit.ly/2jssVQy"> Azure Container Registry </a>), and then pull these images to deploy to containers in **Azure Web App** (Linux) using VSTS.
 
 Web App for Containers lets you bring your own Docker formatted container images and easily deploy and run them at scale with Azure. Combination of Team Services and Azure integration with Docker will enable you to:
 
