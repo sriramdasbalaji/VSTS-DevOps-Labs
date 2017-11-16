@@ -2,15 +2,15 @@
 
 ## Overview
 
-This lab shows how you can build custom images of <a href="http://dockr.ly/2zLiDPy">**Dockerized ASP.NETCORE**</a> application, push those images to <a href="http://dockr.ly/2AJLgge"> **Private Repository** </a> (<a href="http://bit.ly/2jssVQy"> Azure Container Registry </a>), and then pull these images to deploy to containers in **Azure Web App** (Linux) using Visual Studio Team Services.
+This lab shows how to build custom images of <a href="http://dockr.ly/2zLiDPy">**Dockerized ASP.NETCORE**</a> application, push those images to <a href="http://dockr.ly/2AJLgge"> **Private Repository** </a> (<a href="http://bit.ly/2jssVQy"> Azure Container Registry </a>), and pull these images to deploy to containers in **Azure Web App** (Linux) using Visual Studio Team Services.
 
-Web App for Containers lets you bring your own <a href="http://dockr.ly/2imRbR4">Docker</a> formatted container images, easily deploy and run them at scale with Azure. Combination of Team Services and Azure integration with Docker will enable you to:
+Web App for containers lets you bring your own <a href="http://dockr.ly/2imRbR4">Docker</a> formatted container images, easily deploy and run them at scale with Azure. Combination of Team Services and Azure integration with Docker will enable you to:
 
 1.  <a href="http://dockr.ly/2z2Qsi2"> Build </a> your own custom images using <a href="http://bit.ly/2jqGujv"> VSTS Hosted Linux agent </a>
 2. <a href="http://dockr.ly/2hAZco0"> Push </a> and store images in your private repository
 3. Deploy and  <a href="http://dockr.ly/2AJPaEW"> run </a> images inside containers
 
-Below screenshot helps you understand the VSTS DevOps flow with Docker: 
+Below screenshot helps you understand the VSTS DevOps workflow with Docker: 
 
 <img src="images/vstsdockerdevops.png">
 
@@ -25,9 +25,9 @@ Below screenshot helps you understand the VSTS DevOps flow with Docker:
 
 ## Setting up the Environment
 
-We will create an **Azure Container Registry** to store the images generated during VSTS build. These images contain environment configuration details along with build settings.  An **Azure Web App with Linux OS** is created where these custom built images will be deployed to run inside containers. 
+We will create an **Azure Container Registry** to store the images generated during VSTS build. These images contain environment configuration details with build settings.  An **Azure Web App** (with Linux OS) is created where custom built images will be deployed to run inside containers. 
 
-1. Click on **Deploy to Azure** to spin up **Azure Container Registry** and **Azure Web App (Linux)**.
+1. Click on **Deploy to Azure** to spin up **Azure Container Registry** and **Azure Web App**.
 
    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoft%2FVSTS-DevOps-Labs%2Fdocker%2Fdocker%2Ftemplates%2Fazuredeploy.json" target="_blank">
 
@@ -38,7 +38,7 @@ We will create an **Azure Container Registry** to store the images generated dur
 
    <img src="images/createacr-linuxwebapp.png">
 
-2. It takes **3 to 4 minutes** to provision the environment. 
+2. It takes approximately **3 to 4 minutes** to provision the environment. 
 
    <img src="images/acrdeploymentsucceeded.png">
 
@@ -93,13 +93,13 @@ We will create an **Azure Container Registry** to store the images generated dur
 
 Since the connections are not established during project provisioning, we will manually create the endpoints. 
 
-1. In VSTS, navigate to **Services** by clicking on the gear icon, and click on **+ New Service Endpoint**. Select **Azure Resource Manager** endpoint. Specify **Connection name**, and select your **Subscription** from the dropdown and click **OK**. We use this endpoint to connect **VSTS** and **Azure**.
+1. In VSTS, navigate to **Services** by clicking on the gear icon, and click on **+ New Service Endpoint**. Select **Azure Resource Manager**. Specify **Connection name**, select your **Subscription** from the dropdown and click **OK**. We use this endpoint to connect **VSTS** and **Azure**.
 
    <img src="images/armendpoint.png">
 
    You will be prompted to authorize this connection with Azure credentials. 
 
-   **Note:** Disable pop-up blocker in your browser if you see a blank screen after clicking **OK**, and retry. 
+   **Note:** Disable pop-up blocker in your browser if you see a blank screen after clicking **OK**, and retry the step. 
 
 2. Click **+ New Service Endpoint**, and select **Docker Registry** from the list. We use this endpoint to connect **VSTS** and **Azure Container Registry** (where images would be hosted).
 
@@ -164,19 +164,19 @@ Since the connections are not established during project provisioning, we will m
    </tr>
     <tr>
       <td><a href="http://bit.ly/2zlTspl"><b>Push services</b></a> <img src="images/icon.png"></td>
-      <td>pushes <b>service images</b> specified in a <b>docker-compose.yml</b> file, with multiple tags, to Container Registry</td>
+      <td>pushes <b>service images</b> specified in a <b>docker-compose.yml</b> file, with multiple tags, to container registry</td>
    </tr>
     <tr>
       <td><a href="http://bit.ly/2zlTspl"><b>Lock services</b></a> <img src="images/icon.png"></td>
-      <td>pulls image from default tag <b>latest</b> in Container Registry and verifies if uploaded image is up to date</td>
+      <td>pulls image from default tag <b>latest</b> in container registry and verifies if uploaded image is up to date</td>
    </tr>
    <tr>
       <td><a href="http://bit.ly/2iDhjpO"><b>Copy Files</b></a> <img src="images/copy-files.png"> </td>
-      <td>Used to Copy files from source to destination folder using match patterns </td>
+      <td>used to copy files from source to destination folder using match patterns </td>
    </tr>
    <tr>
       <td><a href="http://bit.ly/2zGD6bn"><b>Publish Build Artifacts</b></a> <img src="images/publish-build-artifacts.png"> </td>
-      <td> Used to share the build artifacts </td>
+      <td> used to share the build artifacts </td>
    </tr>
    </table>
 
@@ -215,7 +215,7 @@ We will update the code to trigger CI-CD by leveraging **Docker** components ins
 
     <img src="images/in_progress_build.png">
 
-4. After build completes, you will see the build summary.
+4. The build will generate and push the image to ACR. After build completes, you will see the build summary. 
     
     <img src="images/build_summary.png">
    
@@ -224,7 +224,7 @@ We will update the code to trigger CI-CD by leveraging **Docker** components ins
 
     <img src="images/release_in_progress.png">
 
-6.  After the release, you will see the summary with logs as shown.
+6.  The release will deploy the image to App Service and you will see the release summary with logs as shown.
 
     <img src="images/release_summary.png">
 
