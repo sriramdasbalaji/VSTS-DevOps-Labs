@@ -1,4 +1,4 @@
-## Docker Deployment for ASP.NETCORE Application with Visual Studio Team Services and Azure
+## Docker Deployment using VSTS and Azure for ASP.NETCORE
 
 ## Overview
 
@@ -17,7 +17,7 @@ Below screenshot helps you understand the VSTS DevOps flow with Docker:
 
 ## Pre-requisites
 
-1.  **Microsoft Azure Account**: You will need a valid and active azure account for the labs.
+1.  **Microsoft Azure Account**: You need a valid and active azure account for the labs.
 
 2. You need a **Visual Studio Team Services Account** and <a href="http://bit.ly/2gBL4r4">Personal Access Token</a>.
 
