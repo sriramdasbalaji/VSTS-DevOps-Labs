@@ -21,6 +21,8 @@ Below screenshot helps you understand the VSTS DevOps workflow with Docker:
 
 2. You need a **Visual Studio Team Services Account** and <a href="http://bit.ly/2gBL4r4">Personal Access Token</a>.
 
+    <img src="images/vstsdemogen.png">
+
 3. You need to install **Docker Integration** extension from <a href="http://bit.ly/2hurgK3">Visual Studio Marketplace</a>.
 
 ## Setting up the Environment
@@ -156,7 +158,7 @@ Since the connections are not established during project provisioning, we will m
    </thead>
    <tr>
       <td><a href="http://bit.ly/2zlTspl"><b>Run services</b></a> <img src="images/icon.png"></td>
-      <td>runs <b>service images</b> specified in a <b>docker-compose.ci.build.yml</b> file  in an isolated environment to enable workloads such as integration testing</td>
+      <td>prepares suitable environment by restoring required packages</td>
    </tr>
    <tr>
       <td><a href="http://bit.ly/2zlTspl"><b>Build services</b></a> <img src="images/icon.png"></td>
@@ -199,7 +201,7 @@ Since the connections are not established during project provisioning, we will m
 
 ## Exercise 3: Code update
 
-We will update the code to trigger CI-CD by leveraging **Docker** components installed in **Hosted VSTS agent** to build and deploy custom images to containers. 
+We will update the code to trigger CI-CD. **Docker Daemon** installed in **Hosted VSTS agent** is used to build and deploy custom images to containers. 
 
 1. Go to **Code** tab, and navigate to the below path to edit the file- 
 
