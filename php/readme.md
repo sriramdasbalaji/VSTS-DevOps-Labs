@@ -4,7 +4,7 @@
 
 This lab shows how to deploy **PHP** application to **Azure App** service using **Visual Studio Team Services**.
 
-**PHP** is a server-side scripting language, and a powerful tool for making dynamic and interactive Web pages.
+**PHP** is a server-side scripting language, and a powerful tool for creating dynamic and interactive Web pages.
 
 ## Pre-requisites
 
@@ -12,9 +12,11 @@ This lab shows how to deploy **PHP** application to **Azure App** service using 
  
  2.  You need a **Visual Studio Team Services Account** and <a href="https://docs.microsoft.com/en-us/vsts/accounts/use-personal-access-tokens-to-authenticate">Personal Access Token</a>
 
+ 3. Your VSTS account  needs to be linked to a valid Azure subscription. Here's how you can <a href="https://docs.microsoft.com/en-us/vsts/billing/set-up-billing-for-your-account-vs#link-an-azure-subscription-to-your-vsts-account-for-billing" target=_blank>link</a>.
+
  ## Setting Up the VSTS Project
 
-1. Use <a href="https://vstsdemogenerator.azurewebsites.net" target="_blank">VSTS Demo Data Generator</a> to provision a PHP project on your VSTS account.
+1. Use <a href="https://vstsdemobuildersite.azurewebsites.net/?name=PHP" target="_blank">VSTS Demo Data Generator</a> to provision the PHP project on your VSTS account.
 
    <img src="images/vstsdemogen.png">
 
@@ -27,7 +29,7 @@ This lab shows how to deploy **PHP** application to **Azure App** service using 
 ## Exercise 1: Endpoint Creation
 Since the connections are not established during project provisioning, we will manually create the endpoints.
 
-In VSTS, navigate to **Services** by clicking the gear icon, and click  **+ New Service Endpoint**. Select **Azure Resource Manager**. Specify connection name, select your subscription from the dropdown and click OK. We use this endpoint to connect VSTS with Azure.
+In the PHP project provisioned VSTS account, navigate to **Services** by clicking the gear icon, and click  **+ New Service Endpoint**. Select **Azure Resource Manager**. Specify connection name, select your subscription from the dropdown and click OK. We use this endpoint to connect VSTS with Azure.
 
    <img src="images/services_endpoint.png">
 
@@ -39,20 +41,21 @@ You will be prompted to authorize this connection with Azure credentials.
 
 ## Excercise 2: Trigger CI with code change
 
-**PHP** is an interpreted language, so we are not compiling the code, instead archiving the files to use in the release task for deployment.
-We will update the code to trigger CI-CD using **Hosted build agent**.
+Since **PHP** is an interpreted language, we cannot compile the code. Instead, we archive the code files for deployment in the release task.
 
-1. Go to **Code** tab and navigate to the below path to edit the file.
+Let us update the code to trigger CI-CD using **Hosted Build agent**.
+
+1. Navigate to **Code** tab within the project and edit **config.php** file under the code root path.
 
    >php/config.php
 
    <img src="images/code1.png">
 
-2. Go to line number **11**, modify **PHP** to **DevOps for PHP using VSTS** and commit the code.
+2. Go to line number **11**, modify the text "**PHP**" to "**DevOps for PHP using VSTS**" and click on **Commit** to commit the change.
 
    <img src="images/code_editing.png">
 
-3. Go to **Builds** tab to see the CI build in-progress.
+3. Go to **Builds** tab to see the CI build triggered already.
 
    <img src="images/build.png">
 
@@ -61,7 +64,7 @@ We will update the code to trigger CI-CD using **Hosted build agent**.
    <img src="images/in_progress_build.png">
 
 
-   Let's explore the build definition. The tasks used in the build definition are listed as shown. 
+   Now, Let's explore the build definition and check the tasks used in the build definition. 
 
    <table width="100%">
    <thead>
@@ -86,13 +89,13 @@ We will update the code to trigger CI-CD using **Hosted build agent**.
 
    <br/>
 
-The build will generate artifact which is used to deploy. After build completes, you will see the build summary.
+The build generates artifact which is used for deployment. After build completes, you will see the build summary.
 
   <img src="images/build_summary.png">
 
 ## Excercise 3: Deploy to Azure
 
-We will use ARM template as an **Infrastructure as a Code**  in the release definition to provision the required resources (App Service) on Azure.
+We will use ARM template as **Infrastructure as Code**  in the release definition to provision the required resources (App Service) on Azure.
  
 1. Go to **Releases** under **Build and Release** tab, Select release definition **PHP** and click **Edit**
 
@@ -107,7 +110,7 @@ We will use ARM template as an **Infrastructure as a Code**  in the release defi
 
    <img src="images/azure_sub.png">
 
-4. Under **Azure App Service Deploy** task, update **Azure subscription** 
+4. Under **Azure App Service Deploy** task, update **Azure subscription** created in **Exercise 1** 
 
    <img src="images/azure_app_service.png">
 
@@ -154,7 +157,7 @@ We will use ARM template as an **Infrastructure as a Code**  in the release defi
 
 ## Summary
   
-With Visual Studio Team Services, we can implement DevOps to any language, any platform. In this lab we have achieved DevOps for PHP application using VSTS and Azure! 
+With Visual Studio Team Services, we can implement DevOps for any language, any platform. In this lab we have achieved DevOps for PHP application using VSTS and Azure. 
 
 ## Feedback 
 
