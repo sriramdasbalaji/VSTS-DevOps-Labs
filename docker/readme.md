@@ -198,6 +198,7 @@ Since the connections are not established during project provisioning, we will m
 
    <img src="images/updatedrd.png">
 
+**Deploy Azure App Service** will pull the latest image from repository specified, and deploys the image to App Service. 
 
 ## Exercise 3: Code update
 
