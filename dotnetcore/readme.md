@@ -38,9 +38,11 @@ In VSTS, navigate to **Services** by clicking the gear icon, and click **+ New S
    **Note**: Disable pop-up blocker in your browser if you see a blank screen after clicking OK, and retry the step.
 
 
-## Configuring the CI/CD pipeline
+## Exercise 2: Configure Release
 
-1. Let's start from code. Navigate to the **Code** hub.
+Now that connections are established, we will manually map the endpoints to release definition.
+
+1. Go to **Releases** under **Build & Release** tab, edit the release definition **MyHealthClinicE2E** and select **Tasks**.
 
    <img src="images/3.png">
 
