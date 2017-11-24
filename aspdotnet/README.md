@@ -13,7 +13,7 @@ ASP.NET is an open source web framework for building modern web apps and service
 
 ## Setting up the VSTS Project
 
-1. Use <a href="https://vstsdemogenerator.azurewebsites.net" target="_blank">VSTS Demo Data Generator</a> to provision a project on your VSTS account.
+1. Use <a href="http://bit.ly/2zPCeOM" target="_blank">VSTS Demo Data Generator</a> to provision a project on your VSTS account.
 
    <img src="images/vsts_demo_site.png">
 
