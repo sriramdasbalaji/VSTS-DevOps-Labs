@@ -159,6 +159,7 @@ We have a release configured to deploy the application. It is associated to the 
    <img src="images/in_progress_release.png">
 
 6. Once the release is complete, you will see the summary.
+
    <img src="images/release_summary.png">
 
    <img src="images/release_logs.png">
