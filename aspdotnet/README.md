@@ -1,6 +1,8 @@
-## Deploy ASP.Net application to Azure App Service using Team Services
+## Deploy ASP.NET application to Azure App Service using VSTS
 
-This lab shows how you can deploy an **ASP.Net application to Azure App Service using an CI/CD pipeline in Visual Studio Team Services**.
+This lab shows how to deploy an <a href="https://www.asp.net/">ASP.NET</a> application to Azure App Service with Visual Studio Team Services.
+
+ASP.NET is an open source web framework for building modern web apps and services. ASP.NET creates websites based on HTML5, CSS, and JavaScript that are simple, fast, and can scale to millions of users.
 
 ## Pre-requisites
 
@@ -9,24 +11,54 @@ This lab shows how you can deploy an **ASP.Net application to Azure App Service 
 2. You need a **Visual Studio Team Services Account** and <a href="http://bit.ly/2gBL4r4">Personal Access Token</a>
 
 
-## Setting up the project
+## Setting up the VSTS Project
 
 1. Use <a href="https://vstsdemogenerator.azurewebsites.net" target="_blank">VSTS Demo Data Generator</a> to provision a project on your VSTS account.
 
    <img src="images/vsts_demo_site.png">
 
-2. Select **PartsUnlimited** for the template.
-
-   <img src="images/select_template.png">
-
-3. Once the project is provisioned, select the URL to navigate to the project that you provisioned.
+2. Once the project is provisioned, select the URL to navigate to the project.
 
    <img src="images/navigate_to_vsts.png">
 
 
-## Configuring the CI/CD pipeline
+## Exercise 1: Endpoint Creation
 
-1. Let's start from code. Navigate to the **Code** hub.
+Since the connections are not established during project provisioning, we will manually create the endpoints.
+
+In VSTS, navigate to **Services** by clicking the gear icon, and click **+ New Service Endpoint**. Select **Azure Resource Manager**. Specify **Connection name**, select your **Subscription** from the dropdown and click **OK**. We use this endpoint to connect **VSTS** with **Azure**.
+
+   <img src="images/endpoint_creation.png">
+
+   You will be prompted to authorize this connection with Azure credentials.
+
+   **Note**: Disable pop-up blocker in your browser if you see a blank screen after clicking OK, and retry the step.
+
+## Exercise 2: Configure Release
+
+Now that connections are established, we will manually map the endpoints to release definition.
+
+1. Go to **Releases** under **Build & Release** tab, edit the release definition **PartsUnlimitedE2E** and select **Tasks**.
+
+   <img src="images/release.png">
+
+   <br/>
+
+   <img src="images/release_2.png">
+
+2. Under **Azure Deployment** task, update **Azure subscription** with the endpoint components from the dropdown and select the desired **location**.
+
+   <img src="images/task1.png">
+
+3. Under **Azure App Service Deploy** task, update **Azure subscription** with the endpoint components from the dropdown.
+
+   <img src="images/task2.png">
+
+## Exercise 2: Update Code
+
+We will update the code to trigger CI-CD.
+
+1. Go to the **Code** hub.
 
    <img src="images/code.png">
 
@@ -65,7 +97,7 @@ This lab shows how you can deploy an **ASP.Net application to Azure App Service 
    </tr>
    <tr>
       <td><a href="http://bit.ly/2xPrMUY"><b>Visual Studio Build</b></a> <img src="images/visual-studio-build.png"> </td>
-      <td>Uses MSBuild arguments to build the solution </td>
+      <td>Uses MSBuild arguments to build and package the solution as a zip file</td>
    </tr>
    <tr>
       <td><a href="http://bit.ly/2xPqJ7f"><b>Visual Studio Test</b></a> <img src="images/vstest.png"> </td>
@@ -73,34 +105,34 @@ This lab shows how you can deploy an **ASP.Net application to Azure App Service 
    </tr>
    <tr>
       <td><a href="http://bit.ly/2grMxTQ"><b>Copy Files</b></a> <img src="images/copy-files.png"> </td>
-      <td>Used to Copy files from source to destination folder using match patterns </td>
+      <td>Copy files from source to destination folder using match patterns </td>
    </tr>
    <tr>
       <td><a href="http://bit.ly/2yBgXde"><b>Publish Build Artifacts</b></a> <img src="images/publish-build-artifacts.png"> </td>
-      <td> Used to share the build artifacts </td>
+      <td>the build artifacts (package) will be published to VSTS which will be consumed in the release process </td>
    </tr>
    </table>
    <br/>
 
    <img src="images/build_in_progress.png">
 
-8. Once the build is completed, you can see the summary which shows **test results, code coverage** etc as shown below.
+8. Once the build is complete, you will see the summary which shows **Test Results, Code Coverage** etc as shown.
 
    <img src="images/build_summary.png">
 
-## Continuous Delivery
+## Exercise 3: Continuous Delivery
 
-We have a release pipeline configured to deploy the application. It is associated to the build and triggered when the build is successful. Let's look at the release pipeline.
+We have a release configured to deploy the application. It is associated to the build and triggered when the build is successful.
 
-1. Navigate to the **Releases** tab under **Build and Release** hub.
+1. Go to **Releases** tab under **Build and Release** hub.
 
-2. Select the **PartsUnlimitedE2E** definition and choose **Edit**.
+2. Select the **PartsUnlimitedE2E** definition and **Edit**.
 
-3. We have three environments **Dev**, **QA** and **Production**.
+3. We have three environments **Dev**, **QA** and **Production** in pipeline.
 
    <img src="images/release_pipeline_overview.png">
 
-4. Go to the **Dev** environment, you can see we have 2 tasks being used. The tasks that is used in the release definition are listed in the table below.
+4. Go to the **Dev** environment, you will see 2 tasks are used as shown.
 
    <table width="100%">
    <thead>
@@ -111,31 +143,38 @@ We have a release pipeline configured to deploy the application. It is associate
    </thead>
    <tr>
       <td><a href="http://bit.ly/2ysg1It"><b>Azure Resource Group Deployment</b></a> <img src="images/arm.png"></td>
-      <td>Creates, Updates an existing resource group using ARM templates  </td>
+      <td>creates a resource group with the name <b>ASPDOTNET</b> which contains <b>App Service, App Service plan, SQL server, SQL database, Application Insights</b></td>
    </tr>
    <tr>
       <td><a href="http://bit.ly/2zkks4L"><b>Azure App Service Deploy</b></a> <img src="images/app-service-deploy.png"> </td>
-      <td>Updates Azure App Service to deploy WebApps </td>
+      <td>deploys the package to azure app service</td>
    </tr>
    <tr>
    </table>
 
-We are using **Infrastructure as a Code** in the release pipeline with an ARM template to provision the required infrastructure **(Web App, SQL Server, SQL database, Application Insights)** on Azure.
+   We are using **Infrastructure as a Code** in the release pipeline with an ARM template to provision the required infrastructure on Azure.
 
-5. You can see in progress release as shown below.
+5. You will see in progress release.
 
    <img src="images/in_progress_release.png">
 
-6. Once the release is completed, you can see the summary which shows **Release Summary, logs etc**.
-
+6. Once the release is complete, you will see the summary.
    <img src="images/release_summary.png">
 
    <img src="images/release_logs.png">
 
-7. Login to [Azure Portal](https://portal.azure.com) and search a **Resource Group** with the name **aspdotnet** that would have got created. It would be associated with few other resources like **SQL server, SQL DB, WebApps** etc as shown below.
+7. Login to [Azure Portal](https://portal.azure.com) and search a **Resource Group** with the name **ASPDOTNET**.
 
    <img src="images/azure_resources.png">
 
-8. Navigate to one of the WebApp from the resource group and you should see the application is deployed successfully with the changes made earlier as shown.
+8. Navigate to one of the WebApp from the resource group and you will see the application deployed successfully with the changes.
 
    <img src="images/partsunlimited_overview.png">
+
+## Summary
+
+With **Visual Studio Team Services** and **Azure**, we can continuously deploy **ASP.NET** applications.
+
+## Feedback
+
+## TBA
