@@ -1,24 +1,36 @@
-## Deploy an .NET Core application to Azure App Service using Team Services
+## Deploy an ASP.NET Core application to Azure App Service using VSTS
 
-This lab shows how you can deploy an **.NET Core application to Azure App Service using an CI/CD pipeline in Visual Studio Team Services**.
+This lab shows how to deploy an ASP.NET Core application to Azure App Service.
+
+<a href="https://docs.microsoft.com/en-us/aspnet/core/">ASP.NET Core</a> is a cross-platform, high-performance, open-source framework for building modern, cloud-based, Internet-connected applications. With ASP.NET Core, you can:
+
+- Build web apps and services, IoT apps, and mobile backends.
+- Use your favorite development tools on Windows, macOS, and Linux.
+- Deploy to the cloud or on-premises
+- Run on .NET Core or .NET Framework.
 
 ## Pre-requisites
 
-1. **Microsoft Azure Account:** You will need a valid and active azure account for the labs
+1. **Microsoft Azure Account:** You need a valid and active azure account for the labs
 
 2. You need a **Visual Studio Team Services Account** and <a href="http://bit.ly/2gBL4r4">Personal Access Token</a>
 
-## Setting up the project
+## Setting up the VSTS Project
 
 1. Use <a href="https://vstsdemogenerator.azurewebsites.net" target="_blank">VSTS Demo Data Generator</a> to provision a project on your VSTS account.
 
    <img src="images/1.png">
 
-2. Select **MyHealthClinic** for the template.
+2. Once the project is provisioned, select the URL to navigate to the project.
 
-   <img src="images/2.png">
+   <img src="images/">
 
-3. Once the project is provisioned, select the URL to navigate to the project that you provisioned.
+## Exercise 1: Endpoint Creation
+
+Since the connections are not established during project provisioning, we will manually create the endpoints.
+
+In VSTS, navigate to **Services** by clicking the gear icon, and click + New Service Endpoint. Select Azure Resource Manager. Specify Connection name, select your Subscription from the dropdown and click OK. We use this endpoint to connect VSTS with Azure.
+
 
 ## Configuring the CI/CD pipeline
 
