@@ -29,7 +29,13 @@ This lab shows how to deploy an ASP.NET Core application to Azure App Service.
 
 Since the connections are not established during project provisioning, we will manually create the endpoints.
 
-In VSTS, navigate to **Services** by clicking the gear icon, and click + New Service Endpoint. Select Azure Resource Manager. Specify Connection name, select your Subscription from the dropdown and click OK. We use this endpoint to connect VSTS with Azure.
+In VSTS, navigate to **Services** by clicking the gear icon, and click **+ New Service Endpoint**. Select **Azure Resource Manager**. Specify **Connection name**, select your **Subscription** from the dropdown and click **OK**. We use this endpoint to connect **VSTS** with **Azure**.
+
+   <img src="images/endpoint_creation.png">
+
+   You will be prompted to authorize this connection with Azure credentials.
+
+   **Note**: Disable pop-up blocker in your browser if you see a blank screen after clicking OK, and retry the step.
 
 
 ## Configuring the CI/CD pipeline
