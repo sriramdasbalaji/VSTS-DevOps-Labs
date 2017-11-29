@@ -19,7 +19,7 @@ This lab shows how to deploy an ASP.NET Core application to Azure App Service wi
 
 1. Use <a href="https://vstsdemogenerator.azurewebsites.net" target="_blank">VSTS Demo Data Generator</a> to provision a project on your VSTS account.
 
-   <img src="images/1.png">
+   <img src="images/vsts_demogen.png">
 
 2. Once the project is provisioned, select the URL to navigate to the project.
 
@@ -84,7 +84,7 @@ We will update the code to trigger CI-CD.
 
 7. The code commit will trigger the CI build. Go to the **Build** tab to see the CI build running in progress.
 
-   <img src="images/6.png">
+   <img src="images/build_in_progress.png">
 
    While the build is in progress, let's explore the build definition. The tasks that is used in the build definition are listed in the table below.
 
@@ -117,7 +117,7 @@ We will update the code to trigger CI-CD.
    </tr>
    <tr>
       <td><img src="images/dotnetcore.png"> <b>Test</b></td>
-      <td>executes unit tests in this project using dotnet command-line tool. There are 6 unit tests. </td>
+      <td>executes unit tests in this project using dotnet command-line tool.</td>
    </tr>
    <tr>
       <td><img src="images/dotnetcore.png"> <b>Publish</b></td>
@@ -125,75 +125,65 @@ We will update the code to trigger CI-CD.
    </tr>
    <tr>
       <td><img src="images/vstest.png"> <b>Publish Test Results</b></td>
-      <td>used to publish test results including the formats for <b>JUnit, NUnit2, VSTest, NUnit3 and xUnit2</b> </td>
+      <td>publishes the generated unit test results. There are 6 unit tests in this project</b> </td>
    </tr>
    <tr>
       <td><img src="images/copyfiles.png"> <b>Copy Files</b></td>
-      <td>Used to Copy files from source to destination folder using match patterns </td>
+      <td>this task will copy the build artifact and arm templates to <b>$(build.artifactstagingdirectory)</b> which will be used in release</td>
    </tr>
    <tr>
       <td><img src="images/publishartifacts.png"> <b>Publish Build Artifacts</b></td>
-      <td> Used to share the build artifacts </td>
+      <td>the package MyHealth.Web.zip will be published to VSTS which will be used to deploy on Azure App Service</td>
    </tr>
    </table>
    <br/>
 
-   <img src="images/7.png">
+   <img src="images/build_in_progress_2.png">
 
-8. Once the build is completed, you can see the summary which shows **test results** etc as shown below.
+8. Once the build completes, you will see the summary which shows **Test Results** as shown below.
 
-   <img src="images/8.png">
+   <img src="images/build_summary.png">
 
-## Continuous Delivery
+## Exercise 3: Continuous Delivery
 
-We have a release pipeline configured to deploy the application. It is associated to the build and triggered when the build is successful. Let's look at the release pipeline.
+We are using **Infrastructure as a Code** in the release pipeline. We have a release configured to deploy the application which is associated to the build and triggered when the build is successful.
 
 1. Navigate to the **Releases** tab under **Build and Release** hub.
 
-2. Select the **MyHealthClinicE2E** definition and choose **Edit**.
+2. Select the **MyHealthClinicE2E** definition, you will see the release in-progress.
 
-3. We have three environments **Dev**, **QA** and **Production**.
+   <img src="images/release.png">
 
-   <img src="images/9.png">
+3. While the release is in-progress, let's explore the tasks used. Click **edit** to see the release pipeline. We have three environments **Dev, QA** and **Production**.
 
-4. Go to the **Dev** environment, you can see we have 2 tasks being used. The tasks that is used in the release definition are listed in the table below..
+   <img src="images/pipeline.png">
 
-   <table width="100%">
-   <thead>
-      <tr>
-         <th width="57%"><b>Tasks</b></th>
-         <th><b>Usage</b></th>
-      </tr>
-   </thead>
-   <tr>
-      <td><a href="http://bit.ly/2ysg1It"><b>Azure Resource Group Deployment</b></a> <img src="images/arm.png"></td>
-      <td>Creates, Updates an existing resource group using ARM templates  </td>
-   </tr>
-   <tr>
-      <td><a href="http://bit.ly/2zkks4L"><b>Azure App Service Deploy</b></a> <img src="images/app-service-deploy.png"> </td>
-      <td>Updates Azure App Service to deploy WebApps </td>
-   </tr>
-   <tr>
-   </table>
+   >Go to the Dev environment, you will see 2 tasks are used. Let us explore the tasks.
 
-We are using **Infrastructure as a Code** in the release pipeline with an ARM template to provision the required infrastructure **(Web App and SQL database)** on Azure.
+   <img src="images/release_tasks.png">
 
-5. You can see in progress release as shown below.
+   >**Azure Resource Group Deployment**: The project used in this lab contains frontend (Azure App Service) and backend (Azure SQL DB) services. We will provision these services as PAAS on Azure using ARM templates. This task will create the above services in a resource group **dotnetcore.**
 
-   <img src="images/10.png">
+   >**Azure App Service Deploy**: The task is used to deploy a Web project to the Azure App Service created above.
 
-6. Once the release is completed, you can see the summary which shows **Release Summary, logs etc**.
+4. Once the release is complete, you will see the summary.
 
-   <img src="images/11.png">
+   <img src="images/release_summary.png">
 
-   <img src="images/12.png">
+   <br/>
 
-7. Login to [Azure Portal](https://portal.azure.com) and search a **Resource Group** with the name **dotnetcore** that would have got created. It would be associated with few other resources like **SQL server, SQL DB, WebApps** etc as shown below.
+   <img src="images/release_logs.png">
 
-   <img src="images/13.png">
+5. Login to [Azure Portal](https://portal.azure.com) and search a **Resource Group** with the name **dotnetcore**.
 
-8. Navigate to one of the WebApp from the resource group and you should see the application is deployed successfully with the changes made earlier as shown.
+   <img src="images/azure_resources.png">
 
-   <img src="images/14.png">
+8. Navigate to one of the WebApp from the resource group and you will see the application is deployed successfully with the changes.
+
+   <img src="images/mhc_web_app.png">
+
+## Summary
+
+With **Visual Studio Team Services** and **Azure**, we can continuously deploy **ASP.NET Core** applications.
 
 
