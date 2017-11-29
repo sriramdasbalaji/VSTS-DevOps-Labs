@@ -54,7 +54,7 @@ Now that connections are established, we will manually map the endpoints to rele
 
    <img src="images/task2.png">
 
-## Exercise 2: Update Code
+## Exercise 3: Update Code
 
 We will update the code to trigger CI-CD.
 
@@ -92,23 +92,23 @@ We will update the code to trigger CI-CD.
       </tr>
    </thead>
    <tr>
-      <td><a href="http://bit.ly/2ilmcHL"><b>Nuget Installer</b></a> <img src="images/nuget.png"></td>
+      <td><img src="images/nuget.png"> <b>Nuget Installer</b></td>
       <td>nuget installer restores all the dependencies like <b>ASP.NET MVC, ASP.NET Web Pages</b> etc. present in this project  </td>
    </tr>
    <tr>
-      <td><a href="http://bit.ly/2xPrMUY"><b>Visual Studio Build</b></a> <img src="images/visual-studio-build.png"> </td>
+      <td><img src="images/visual-studio-build.png"> <b>Visual Studio Build</b></td>
       <td>VisualStudio Build task uses MS build arguments to compile and package the output in a zip file. This project is compiled using Visual Studio 2017</td>
    </tr>
    <tr>
-      <td><a href="http://bit.ly/2xPqJ7f"><b>Visual Studio Test</b></a> <img src="images/vstest.png"> </td>
-      <td>VisualStudio Test task identifies and runs unit tests using Visual Studio Test Runner. The project contains 16 unit tests</td>
+      <td><img src="images/vstest.png"> <b>Visual Studio Test</b></td>
+      <td>VisualStudio Test task identifies and runs unit tests using Visual Studio Test Runner. This project contains 16 unit tests</td>
    </tr>
    <tr>
-      <td><a href="http://bit.ly/2grMxTQ"><b>Copy Files</b></a> <img src="images/copy-files.png"> </td>
+      <td><img src="images/copy-files.png"> <b>Copy Files</b></td>
       <td>this task will copy the build artifact and arm templates to <b>$(build.artifactstagingdirectory)</b> which will be used in release</td>
    </tr>
    <tr>
-      <td><a href="http://bit.ly/2yBgXde"><b>Publish Build Artifacts</b></a> <img src="images/publish-build-artifacts.png"> </td>
+      <td><img src="images/publish-build-artifacts.png"> <b>Publish Build Artifacts</b></td>
       <td>the package PartsUnlimitedWebsite.zip will be published to VSTS which will be used to deploy on Azure App Service </td>
    </tr>
    </table>
@@ -120,7 +120,7 @@ We will update the code to trigger CI-CD.
 
    <img src="images/build_summary.png">
 
-## Exercise 3: Continuous Delivery
+## Exercise 4: Continuous Delivery
 
  We are using **Infrastructure as a Code** in the release pipeline. We have a release configured to deploy the application which is associated to the build and triggered when the build is successful.
 
