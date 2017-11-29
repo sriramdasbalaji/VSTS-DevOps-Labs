@@ -135,6 +135,9 @@ We will update the code to trigger CI-CD.
    <img src="images/edit_release.png">
 
    >Go to the **Dev** environment, you will see 2 tasks are used. Let us explore the tasks.
+
+   <img src="images/tasks.png">
+   
    >- **Azure Resource Group Deployment**: The project used in this lab contains frontend (Azure App Service) and backend (Azure SQL DB) services. We will provision these services as <a href="https://azure.microsoft.com/en-in/overview/what-is-paas/">PAAS on Azure</a> using <a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-create-first-template">ARM</a> templates. This task will create the above services in a resource group **ASPDOTNET**.
 
    >- **Azure App Service Deploy**: The task is used to deploy a Web project to the Azure App Service created above.
