@@ -93,23 +93,23 @@ We will update the code to trigger CI-CD.
    </thead>
    <tr>
       <td><a href="http://bit.ly/2ilmcHL"><b>Nuget Installer</b></a> <img src="images/nuget.png"></td>
-      <td>Restores NuGet Packages/Dependencies for the solution </td>
+      <td>the nuget installer restores all the dependencies like <b>ASP.NET MVC, ASP.NET Web Pages</b> etc present in this project  </td>
    </tr>
    <tr>
       <td><a href="http://bit.ly/2xPrMUY"><b>Visual Studio Build</b></a> <img src="images/visual-studio-build.png"> </td>
-      <td>Uses MSBuild arguments to build and package the solution as a zip file</td>
+      <td>the VisualStudio Build task uses MS build arguments to compile and package the output in a zip file. This project is compiled using Visual Studio 2017</td>
    </tr>
    <tr>
       <td><a href="http://bit.ly/2xPqJ7f"><b>Visual Studio Test</b></a> <img src="images/vstest.png"> </td>
-      <td>Runs Unit Tests by using Visual Studio Test Runner </td>
+      <td>the VisualStudio Test task identifies and runs unit tests using Visual Studio Test Runner. The project contains 16 unit tests</td>
    </tr>
    <tr>
       <td><a href="http://bit.ly/2grMxTQ"><b>Copy Files</b></a> <img src="images/copy-files.png"> </td>
-      <td>Copy files from source to destination folder using match patterns </td>
+      <td>this task will copy the build artifact and arm templates to <b>$(build.artifactstagingdirectory)</b> which will be used in release</td>
    </tr>
    <tr>
       <td><a href="http://bit.ly/2yBgXde"><b>Publish Build Artifacts</b></a> <img src="images/publish-build-artifacts.png"> </td>
-      <td>the build artifacts (package) will be published to VSTS which will be consumed in the release process </td>
+      <td>the package PartsUnlimitedWebsite.zip will be published to VSTS which will be used to deploy on Azure App Service </td>
    </tr>
    </table>
    <br/>
@@ -122,53 +122,34 @@ We will update the code to trigger CI-CD.
 
 ## Exercise 3: Continuous Delivery
 
-We have a release configured to deploy the application. It is associated to the build and triggered when the build is successful.
+ We are using **Infrastructure as a Code** in the release pipeline. We have a release configured to deploy the application which is associated to the build and triggered when the build is successful.
 
 1. Go to **Releases** tab under **Build and Release** hub.
 
-2. Select the **PartsUnlimitedE2E** definition and **Edit**.
+2. Select the **PartsUnlimitedE2E** definition, you will see the release in-progress.
 
-3. We have three environments **Dev**, **QA** and **Production** in pipeline.
+   <img src="images/release_in_progress.png">
 
-   <img src="images/release_pipeline_overview.png">
+3. While the release is in-progress, let's explore the tasks used. Click **edit** to see the release pipeline. We have three environments **Dev**, **QA** and **Production**.
 
-4. Go to the **Dev** environment, you will see 2 tasks are used as shown.
+   <img src="images/edit_release.png">
 
-   <table width="100%">
-   <thead>
-      <tr>
-         <th width="57%"><b>Tasks</b></th>
-         <th><b>Usage</b></th>
-      </tr>
-   </thead>
-   <tr>
-      <td><a href="http://bit.ly/2ysg1It"><b>Azure Resource Group Deployment</b></a> <img src="images/arm.png"></td>
-      <td>creates a resource group with the name <b>ASPDOTNET</b> which contains <b>App Service, App Service plan, SQL server, SQL database, Application Insights</b></td>
-   </tr>
-   <tr>
-      <td><a href="http://bit.ly/2zkks4L"><b>Azure App Service Deploy</b></a> <img src="images/app-service-deploy.png"> </td>
-      <td>deploys the package to azure app service</td>
-   </tr>
-   <tr>
-   </table>
+   >Go to the **Dev** environment, you will see 2 tasks are used. Let us explore the tasks.
+   >- **Azure Resource Group Deployment**: The project used in this lab contains frontend (Azure App Service) and backend (Azure SQL DB) services. We will provision these services as <a href="https://azure.microsoft.com/en-in/overview/what-is-paas/">PAAS on Azure</a> using <a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-create-first-template">ARM</a> templates. This task will create the above services in a resource group **ASPDOTNET**.
 
-   We are using **Infrastructure as a Code** in the release pipeline with an ARM template to provision the required infrastructure on Azure.
+   >- **Azure App Service Deploy**: The task is used to deploy a Web project to the Azure App Service created above.
 
-5. You will see in progress release.
-
-   <img src="images/in_progress_release.png">
-
-6. Once the release is complete, you will see the summary.
+4. Once the release is complete, you will see the summary.
 
    <img src="images/release_summary.png">
 
    <img src="images/release_logs.png">
 
-7. Login to [Azure Portal](https://portal.azure.com) and search a **Resource Group** with the name **ASPDOTNET**.
+5. Login to [Azure Portal](https://portal.azure.com) and search a **Resource Group** with the name **ASPDOTNET**.
 
    <img src="images/azure_resources.png">
 
-8. Navigate to one of the WebApp from the resource group and you will see the application deployed successfully with the changes.
+6. Navigate to one of the WebApp from the resource group and you will see the application deployed successfully with the changes.
 
    <img src="images/partsunlimited_overview.png">
 
@@ -178,4 +159,3 @@ With **Visual Studio Team Services** and **Azure**, we can continuously deploy *
 
 ## Feedback
 
-## TBA
