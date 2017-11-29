@@ -154,7 +154,7 @@ We will use ARM template as an **Infrastructure as a Code**  in the release defi
 
 ## Summary
   
-With Visual Studio Team Services, we can implement DevOps to any language, any platform. In this lab we have achieved DevOps for PHP application using VSTS and Azure! 
+In  this lab, we will setup a Continuous Build and Deployment to Azure App Service for a PHP project using Visual Studio Team Services 
 
 ## Feedback 
 
