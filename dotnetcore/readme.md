@@ -144,7 +144,7 @@ We will update the code to trigger CI-CD.
 
    <img src="images/build_summary.png">
 
-## Exercise 3: Continuous Delivery
+## Exercise 4: Continuous Delivery
 
 We are using **Infrastructure as a Code** in the release pipeline. We have a release configured to deploy the application which is associated to the build and triggered when the build is successful.
 
