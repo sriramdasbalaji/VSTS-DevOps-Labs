@@ -19,7 +19,7 @@ This lab shows how to deploy an ASP.NET Core application to Azure App Service wi
 
 1. Use <a href="https://vstsdemogenerator.azurewebsites.net" target="_blank">VSTS Demo Data Generator</a> to provision a project on your VSTS account.
 
-   <img src="images/vsts_demogen.png">
+   <img src="images/vsts_demoGen.png">
 
 2. Once the project is provisioned, select the URL to navigate to the project.
 
