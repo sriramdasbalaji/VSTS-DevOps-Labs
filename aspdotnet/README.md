@@ -93,15 +93,15 @@ We will update the code to trigger CI-CD.
    </thead>
    <tr>
       <td><a href="http://bit.ly/2ilmcHL"><b>Nuget Installer</b></a> <img src="images/nuget.png"></td>
-      <td>the nuget installer restores all the dependencies like <b>ASP.NET MVC, ASP.NET Web Pages</b> etc present in this project  </td>
+      <td>nuget installer restores all the dependencies like <b>ASP.NET MVC, ASP.NET Web Pages</b> etc. present in this project  </td>
    </tr>
    <tr>
       <td><a href="http://bit.ly/2xPrMUY"><b>Visual Studio Build</b></a> <img src="images/visual-studio-build.png"> </td>
-      <td>the VisualStudio Build task uses MS build arguments to compile and package the output in a zip file. This project is compiled using Visual Studio 2017</td>
+      <td>VisualStudio Build task uses MS build arguments to compile and package the output in a zip file. This project is compiled using Visual Studio 2017</td>
    </tr>
    <tr>
       <td><a href="http://bit.ly/2xPqJ7f"><b>Visual Studio Test</b></a> <img src="images/vstest.png"> </td>
-      <td>the VisualStudio Test task identifies and runs unit tests using Visual Studio Test Runner. The project contains 16 unit tests</td>
+      <td>VisualStudio Test task identifies and runs unit tests using Visual Studio Test Runner. The project contains 16 unit tests</td>
    </tr>
    <tr>
       <td><a href="http://bit.ly/2grMxTQ"><b>Copy Files</b></a> <img src="images/copy-files.png"> </td>
