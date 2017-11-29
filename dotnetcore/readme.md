@@ -1,6 +1,6 @@
 ## Deploy an ASP.NET Core application to Azure App Service using VSTS
 
-This lab shows how to deploy an ASP.NET Core application to Azure App Service.
+This lab shows how to deploy an ASP.NET Core application to Azure App Service with Visual Studio Team Services.
 
 <a href="https://docs.microsoft.com/en-us/aspnet/core/">ASP.NET Core</a> is a cross-platform, high-performance, open-source framework for building modern, cloud-based, Internet-connected applications. With ASP.NET Core, you can:
 
@@ -44,9 +44,29 @@ Now that connections are established, we will manually map the endpoints to rele
 
 1. Go to **Releases** under **Build & Release** tab, edit the release definition **MyHealthClinicE2E** and select **Tasks**.
 
-   <img src="images/3.png">
+   <img src="images/create_release.png">
 
-2. We have an **ASP.NET CORE** app code provisioned by the demo generator system. We will deploy this to Azure app service.
+   <br/>
+
+   <img src="images/release_2.png">
+
+2. Under **Azure Deployment** task, update **Azure subscription** with the endpoint components from the dropdown and select the desired **location**.
+
+   <img src="images/release_3.png">
+
+3. Under **Azure App Service Deploy** task, update **Azure subscription** with the endpoint components from the dropdown.
+
+   <img src="images/release_4.png">
+
+## Exercise 3: Update Code
+
+We will update the code to trigger CI-CD.
+
+1. Go to the **Code** hub.
+
+   <img src="images/code_hub.png">
+
+2. We have an **DOTNETCORE** app code provisioned by the demo generator system. We will deploy this to Azure app service.
 
 3. We have a Continious Integration (CI) build setup to run upon a code commit. Let's make a simple change to the code to trigger the CI build.
 
@@ -54,11 +74,11 @@ Now that connections are established, we will manually map the endpoints to rele
 
    > **MyHealthClinic/src/MyHealth.Web/Views/Home/Index.cshtml**
 
-   <img src="images/4.png">
+   <img src="images/code_edit.png">
 
 5. Edit the code. For this example, let's change **line 33** to change the text from **Login** to **Private Area**.
 
-   <img src="images/5.png">
+   <img src="images/update_code.png">
 
 6. Select **Commit** to save and commit the changes.
 
@@ -76,31 +96,43 @@ Now that connections are established, we will manually map the endpoints to rele
       </tr>
    </thead>
    <tr>
-      <td><a href="http://bit.ly/2xXy75z"><b>dotnet core</b></a> <img src="images/dotnetcore.png"></td>
-      <td>restores, build, test, publish and run NuGet Packages/Dependencies for the solution using dotnet command-line tool </td>
+      <td><img src="images/dotnetcore.png"> <b>Restore</b></td>
+      <td>restores all the nuget dependencies like <b>ASP.NET Core Identity, ASP.NET Core session</b> etc. using dotnet command-line tool </td>
    </tr>
    <tr>
-      <td><a href="http://bit.ly/2xZO6zZ"><b>npm Install</b></a> <img src="images/npm.png"> </td>
-      <td>used to restore javascript packages/dependencies </td>
+      <td><img src="images/npm.png"> <b>npm Install</b> </td>
+      <td>installs npm packages (javascript dependencies) like <b>babelify, browserify</b> etc. for this project</td>
    </tr>
    <tr>
-      <td><a href="http://bit.ly/2yDYzAy"><b>Bower Install</b></a> <img src="images/bower.png"> </td>
-      <td>is a package manager for web </td>
+      <td><img src="images/bower.png"> <b>Bower Install</b></td>
+      <td>is a package manager for web which manage components that contain HTML, CSS, JavaScript, fonts and even image files. Example: jquery, angular, webcomponentsjs etc.</td>
    </tr>
    <tr>
-      <td><a href="http://bit.ly/2zw0ggf"><b>Gulp</b></a> <img src="images/gulp.png"> </td>
-      <td>gulp is a toolkit for automating time-consuming tasks in your development workflow </td>
+      <td><img src="images/gulp.png"> <b>Gulp</b></td>
+      <td>gulp is used to compile sass files, uglify and compress js files </td>
    </tr>
    <tr>
-      <td><a href="http://bit.ly/2l9xkbI"><b>Publish Test Results</b></a> <img src="images/vstest.png"> </td>
+      <td><img src="images/dotnetcore.png"> <b>Build</b></td>
+      <td>builds the project and its dependencies into a set of binaries using dotnet command-line tool </td>
+   </tr>
+   <tr>
+      <td><img src="images/dotnetcore.png"> <b>Test</b></td>
+      <td>executes unit tests in this project using dotnet command-line tool. There are 6 unit tests. </td>
+   </tr>
+   <tr>
+      <td><img src="images/dotnetcore.png"> <b>Publish</b></td>
+      <td>compiles the application, reads through its dependencies specified in the project file, and publishes the resulting set of files to $(build.artifactstagingdirectory)</td>
+   </tr>
+   <tr>
+      <td><img src="images/vstest.png"> <b>Publish Test Results</b></td>
       <td>used to publish test results including the formats for <b>JUnit, NUnit2, VSTest, NUnit3 and xUnit2</b> </td>
    </tr>
    <tr>
-      <td><a href="http://bit.ly/2grMxTQ"><b>Copy Files</b></a> <img src="images/copyfiles.png"> </td>
+      <td><img src="images/copyfiles.png"> <b>Copy Files</b></td>
       <td>Used to Copy files from source to destination folder using match patterns </td>
    </tr>
    <tr>
-      <td><a href="http://bit.ly/2yBgXde"><b>Publish Build Artifacts</b></a> <img src="images/publishartifacts.png"> </td>
+      <td><img src="images/publishartifacts.png"> <b>Publish Build Artifacts</b></td>
       <td> Used to share the build artifacts </td>
    </tr>
    </table>
