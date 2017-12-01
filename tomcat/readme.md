@@ -69,6 +69,7 @@ If you are following this lab from "Working with Jenkins, VSTS and Azure, you ca
 1. We will now create the database and tables. Run the following SQL Query
 
     ```SQL
+    CREATE DATABASE alm;
     use alm;
 
     CREATE TABLE `employees` (  `id` int(11) NOT NULL AUTO_INCREMENT,  `username` varchar(20) DEFAULT NULL, `password` varchar(20) DEFAULT NULL, PRIMARY KEY (`id`)
