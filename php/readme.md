@@ -2,9 +2,11 @@
 
 ## Overview
 
-This lab shows how to deploy **PHP** application to **Azure App** service using **Visual Studio Team Services**.
 
 **PHP** is a server-side scripting language, and a powerful tool for making dynamic and interactive Web pages.
+
+This lab shows how to deploy **PHP** application to **Azure App** service using **Visual Studio Team Services**.
+
 
 ## Pre-requisites
 
@@ -36,10 +38,51 @@ You will be prompted to authorize this connection with Azure credentials.
 
 **Note**: Disable pop-up blocker in your browser if you see a blank screen after clicking OK, and retry the step.
 
+## Excercise 2: Configure Continuous Deployment
 
-## Excercise 2: Trigger CI with code change
+We will use ARM template as **Infrastructure as a Code**  in the release definition to provision the required resources (App Service) on Azure.
+ 
+1. Go to **Releases** under **Build and Release** tab, Select release definition **PHP** and click **Edit**
 
-**PHP** is an interpreted language, so we are not compiling the code, instead archiving the files to use in the release task for deployment.
+   <img src="images/release_def.png">
+ 
+
+2. Go to **Tasks** and select **Azure Deployment** environment
+
+   <img src="images/azuredeployment.png">
+
+3. Under **Azure Resources Deployment** task, update **Azure subscription**
+
+   <img src="images/azure_sub.png">
+
+4. Under **Azure App Service Deploy** task, update **Azure subscription** and click **Save**. 
+
+   <img src="images/azure_app_service.png">
+
+
+
+   <table width="100%">
+   <thead>
+      <tr>
+         <th width="57%"><b>Tasks</b></th>
+         <th><b>Usage</b></th>
+      </tr>
+   </thead>
+   <tr>
+      <td><a href="https://github.com/Microsoft/vsts-tasks/blob/master/Tasks/AzureResourceGroupDeployment/README.md"><b>Azure Resource Group Deployment</b></a>></td>
+      <td>creates an resource group with App Service  </td>
+   </tr>
+   <tr>
+      <td><a href="https://github.com/Microsoft/vsts-tasks/blob/master/Tasks/AzureRmWebAppDeployment/README.md"><b>Azure App Service Deploy</b></a> <img src="images/webapp.png"> </td>
+      <td>deploys a PHP application to App service</td>
+   </tr>
+   <tr>
+  </table>
+
+  
+## Excercise 3: Trigger CI with code change
+
+**PHP** is an interpreted language, so we dont have to compile the code, instead let's archive the files to be used in the release task for deployment.
 We will update the code to trigger CI-CD using **Hosted build agent**.
 
 1. Go to **Code** tab and navigate to the below path to edit the file.
@@ -52,7 +95,7 @@ We will update the code to trigger CI-CD using **Hosted build agent**.
 
    <img src="images/code_editing.png">
 
-3. Go to **Builds** tab to see the CI build in-progress.
+3. Go to **Builds** tab to see the particular CI build in-progress.
 
    <img src="images/build.png">
 
@@ -90,65 +133,27 @@ The build will generate artifact which is used to deploy. After build completes,
 
   <img src="images/build_summary.png">
 
-## Excercise 3: Deploy to Azure
+## Continuous Deployment 
 
-We will use ARM template as an **Infrastructure as a Code**  in the release definition to provision the required resources (App Service) on Azure.
- 
-1. Go to **Releases** under **Build and Release** tab, Select release definition **PHP** and click **Edit**
-
-   <img src="images/release_def.png">
- 
-
-2. Go to **Tasks** and select **Azure Deployment** environment
-
-   <img src="images/azuredeployment.png">
-
-3. Under **Azure Resources Deployment** task, update **Azure subscription**
-
-   <img src="images/azure_sub.png">
-
-4. Under **Azure App Service Deploy** task, update **Azure subscription** 
-
-   <img src="images/azure_app_service.png">
-
-
-
-   <table width="100%">
-   <thead>
-      <tr>
-         <th width="57%"><b>Tasks</b></th>
-         <th><b>Usage</b></th>
-      </tr>
-   </thead>
-   <tr>
-      <td><a href="https://github.com/Microsoft/vsts-tasks/blob/master/Tasks/AzureResourceGroupDeployment/README.md"><b>Azure Resource Group Deployment</b></a>></td>
-      <td>creates an resource group with App Service  </td>
-   </tr>
-   <tr>
-      <td><a href="https://github.com/Microsoft/vsts-tasks/blob/master/Tasks/AzureRmWebAppDeployment/README.md"><b>Azure App Service Deploy</b></a> <img src="images/webapp.png"> </td>
-      <td>deploys a PHP application to App service</td>
-   </tr>
-   <tr>
-  </table>
-
-
-5. You will see in progress release as shown.
+Once the build is complete, navigate to **Releases** under **Build and Release** and notice that a release is in-progress.
 
    <img src="images/release_in_progress.png">
 
-6. Once the release is complete, you  will see the summary.
+1. Once the release is complete, you  will see the summary.
 
    <img src="images/release_summary.png">
 
    <br/>
 
+   Click **Logs** to see the complete logs of the release.
+
    <img src="images/release_logs.png">
 
-7. Login to [Azure Portal](https://portal.azure.com) and go to  **Resource Group**. You will see a resource group with the name **PHP**. Which contains **App Service, App Services Plan** as shown.
+2. Login to [Azure Portal](https://portal.azure.com) and go to  **Resource Group**. You will see a resource group with the name **PHP**. Which contains **App Service, App Services Plan** as shown.
 
    <img src="images/azure.png">
 
-8. Go to **App Service** click on **Browse** you will see the application deployed with the changes as shown.
+3. Go to **App Service** click on **Browse** you will see the application deployed with the changes as shown.
 
    <img src="images/website_php.png">
 
