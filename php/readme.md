@@ -38,7 +38,7 @@ You will be prompted to authorize this connection with Azure credentials.
 
 **Note**: Disable pop-up blocker in your browser if you see a blank screen after clicking OK, and retry the step.
 
-## Excercise 2: Configure Continuous Deployment
+## Excercise 2: Configure Release
 
 We will use ARM template as **Infrastructure as a Code**  in the release definition to provision the required resources (App Service) on Azure.
  
