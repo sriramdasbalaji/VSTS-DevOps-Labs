@@ -8,12 +8,12 @@ ASP.NET is an open source web framework for building modern web apps and service
 
 1. **Microsoft Azure Account:** You will need a valid and active azure account for the labs
 
-2. You need a **Visual Studio Team Services Account** and <a href="http://bit.ly/2gBL4r4">Personal Access Token</a>
+2. You need a **Visual Studio Team Services Account** and <a href="https://docs.microsoft.com/en-us/vsts/accounts/use-personal-access-tokens-to-authenticate">Personal Access Token</a>
 
 
 ## Setting up the VSTS Project
 
-1. Use <a href="http://bit.ly/2zPCeOM" target="_blank">VSTS Demo Data Generator</a> to provision a project on your VSTS account.
+1. Use <a href="https://vstsdemobuildertest.azurewebsites.net/?name=PartsUnlimited" target="_blank">VSTS Demo Data Generator</a> to provision a project on your VSTS account.
 
    <img src="images/vsts_demo_site.png">
 
@@ -26,7 +26,7 @@ ASP.NET is an open source web framework for building modern web apps and service
 
 Since the connections are not established during project provisioning, we will manually create the endpoints.
 
-In VSTS, navigate to **Services** by clicking the gear icon, and click **+ New Service Endpoint**. Select **Azure Resource Manager**. Specify **Connection name**, select your **Subscription** from the dropdown and click **OK**. We use this endpoint to connect **VSTS** with **Azure**.
+In VSTS, navigate to **Services** by clicking the gear icon <img src="images/gear.png"> and click **+ New Service Endpoint**. Select **Azure Resource Manager**. Specify **Connection name**, select your **Subscription** from the dropdown and click **OK**. We use this endpoint to connect **VSTS** with **Azure**.
 
    <img src="images/endpoint_creation.png">
 
@@ -38,21 +38,39 @@ In VSTS, navigate to **Services** by clicking the gear icon, and click **+ New S
 
 Now that connections are established, we will manually map the endpoints to release definition.
 
-1. Go to **Releases** under **Build & Release** tab, edit the release definition **PartsUnlimitedE2E** and select **Tasks**.
+1. Go to **Releases** under **Build & Release** tab, edit the release definition **PartsUnlimitedE2E**.
 
    <img src="images/release.png">
 
-   <br/>
+2. Select **Tasks** and click **Dev**.
 
    <img src="images/release_2.png">
 
-2. Under **Azure Deployment** task, update **Azure subscription** with the endpoint components from the dropdown and select the desired **location**.
+3. Under **Azure Deployment** task, update **Azure subscription** with the endpoint components from the dropdown and select the desired **location**.
+
+   >Note: South India region is not available for the deployment
 
    <img src="images/task1.png">
 
-3. Under **Azure App Service Deploy** task, update **Azure subscription** with the endpoint components from the dropdown.
+4. Under **Azure App Service Deploy** task, update **Azure subscription** with the endpoint components from the dropdown. Under the **Slot** section enter the slot name as **Dev**.
 
    <img src="images/task2.png">
+
+5. Similarly update **Azure subscription** with the endpoint components for **QA** and **Production** environments. Go to **Tasks** and select **QA**.
+
+   <img src="images/qa.png">
+
+6. Under **Azure App Service Deploy** task, update **Azure subscription** with the endpoint components from the dropdown. Under the **Slot** section enter the slot name as **Staging**.
+
+   <img src="images/qa_task.png">
+
+7. Go to **Tasks** and select **Production**.
+
+   <img src="images/prod_task.png">
+
+8. Under **Azure App Service Deploy** task, update **Azure subscription** with the endpoint components from the dropdown and click **Save** to save the release definition.
+
+   <img src="images/prod_task2.png">
 
 ## Exercise 3: Update Code
 
@@ -114,9 +132,16 @@ We will update the code to trigger CI-CD.
    </table>
    <br/>
 
+   
+8. Click on the build number to open the live console.
+
+   <img src="images/build_number.png">
+   
+   <br/>
+
    <img src="images/build_in_progress.png">
 
-8. Once the build is complete, you will see the summary which shows **Test Results, Code Coverage** etc as shown.
+8. Once the build is complete click on the build number, to see the summary which shows **Test Results, Code Coverage** etc as shown.
 
    <img src="images/build_summary.png">
 
@@ -142,17 +167,21 @@ We will update the code to trigger CI-CD.
 
    >- **Azure App Service Deploy**: The task is used to deploy a Web project to the Azure App Service created above.
 
-4. Once the release is complete, you will see the summary.
+4. Click on **View releases**.
+
+   <img src="images/view_releases.png">
+
+5. Double click on the release to see the release summary.
+
+   <img src="images/release_summary1.png">
 
    <img src="images/release_summary.png">
 
-   <img src="images/release_logs.png">
-
-5. Login to [Azure Portal](https://portal.azure.com) and search a **Resource Group** with the name **ASPDOTNET**.
+6. Login to [Azure Portal](https://portal.azure.com) and search a **Resource Group** with the name **ASPDOTNET**.
 
    <img src="images/azure_resources.png">
 
-6. Navigate to one of the WebApp from the resource group and you will see the application deployed successfully with the changes.
+7. Navigate to one of the WebApp from the resource group and you will see the application deployed successfully with the changes.
 
    <img src="images/partsunlimited_overview.png">
 
