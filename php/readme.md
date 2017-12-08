@@ -133,27 +133,29 @@ The build will generate artifact which is used to deploy. After build completes,
 
   <img src="images/build_summary.png">
 
-## Continuous Deployment 
+## Continuous Deployment
 
-Once the build is complete, navigate to **Releases** under **Build and Release** and notice that a release is in-progress.
+# TBA
+
+- Once the build is complete, navigate to **Releases** under **Build and Release** and notice that a release is in-progress.
 
    <img src="images/release_in_progress.png">
 
-1. Once the release is complete, you  will see the summary.
+- Once the release is complete, you  will see the summary.
 
    <img src="images/release_summary.png">
 
    <br/>
 
-   Click **Logs** to see the complete logs of the release.
+- Click **Logs** to see the complete logs of the release.
 
    <img src="images/release_logs.png">
 
-2. Login to [Azure Portal](https://portal.azure.com) and go to  **Resource Group**. You will see a resource group with the name **PHP**. Which contains **App Service, App Services Plan** as shown.
+- Login to [Azure Portal](https://portal.azure.com) and go to  **Resource Group**. You will see a resource group with the name **PHP**. Which contains **App Service, App Services Plan** as shown.
 
    <img src="images/azure.png">
 
-3. Go to **App Service** click on **Browse** you will see the application deployed with the changes as shown.
+- Go to **App Service** click on **Browse** you will see the application deployed with the changes as shown.
 
    <img src="images/website_php.png">
 
