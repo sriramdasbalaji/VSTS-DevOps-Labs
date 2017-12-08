@@ -51,7 +51,7 @@ We will use ARM template as **Infrastructure as a Code**  in the release definit
 
    <img src="images/azuredeployment.png">
 
-3. Under **Azure Resources Deployment** task, update **Azure subscription**
+3. Under **Azure Resource Group Deployment** task, update **Azure subscription** and **Location**
 
    <img src="images/azure_sub.png">
 
@@ -69,7 +69,7 @@ We will use ARM template as **Infrastructure as a Code**  in the release definit
       </tr>
    </thead>
    <tr>
-      <td><a href="https://github.com/Microsoft/vsts-tasks/blob/master/Tasks/AzureResourceGroupDeployment/README.md"><b>Azure Resource Group Deployment</b></a>></td>
+      <td><a href="https://github.com/Microsoft/vsts-tasks/blob/master/Tasks/AzureResourceGroupDeployment/README.md"><b>Azure Resource Group Deployment</b></a></td>
       <td>creates an resource group with App Service  </td>
    </tr>
    <tr>
@@ -95,7 +95,7 @@ We will update the code to trigger CI-CD using **Hosted build agent**.
 
    <img src="images/code_editing.png">
 
-3. Go to **Builds** tab to see the particular CI build in-progress.
+3. Go to **Builds** tab under **Build and Release** tab to see the particular CI build in-progress.
 
    <img src="images/build.png">
 
