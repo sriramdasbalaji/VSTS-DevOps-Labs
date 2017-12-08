@@ -163,3 +163,4 @@ In  this lab, we will setup a Continuous Build and Deployment to Azure App Servi
 
 ## Feedback 
 
+Please let <a href="mailto:devopsdemos@microsoft.com">us</a> know if you have any feedback on this lab.
