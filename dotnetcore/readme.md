@@ -13,23 +13,23 @@ This lab shows how to deploy an ASP.NET Core application to Azure App Service wi
 
 1. **Microsoft Azure Account:** You need a valid and active azure account for the labs
 
-2. You need a **Visual Studio Team Services Account** and <a href="http://bit.ly/2gBL4r4">Personal Access Token</a>
+2. You need a **Visual Studio Team Services Account** and <a href="https://docs.microsoft.com/en-us/vsts/accounts/use-personal-access-tokens-to-authenticate">Personal Access Token</a>
 
 ## Setting up the VSTS Project
 
-1. Use <a href="https://vstsdemogenerator.azurewebsites.net" target="_blank">VSTS Demo Data Generator</a> to provision a project on your VSTS account.
+1. Use <a href="https://vstsdemobuildertest.azurewebsites.net/?name=MyHealthClinic" target="_blank">VSTS Demo Data Generator</a> to provision a project on your VSTS account.
 
    <img src="images/vsts_demoGen.png">
 
 2. Once the project is provisioned, select the URL to navigate to the project.
 
-   <img src="images/">
+   <img src="images/project_provision.png">
 
 ## Exercise 1: Endpoint Creation
 
 Since the connections are not established during project provisioning, we will manually create the endpoints.
 
-In VSTS, navigate to **Services** by clicking the gear icon, and click **+ New Service Endpoint**. Select **Azure Resource Manager**. Specify **Connection name**, select your **Subscription** from the dropdown and click **OK**. We use this endpoint to connect **VSTS** with **Azure**.
+In VSTS, navigate to **Services** by clicking the gear icon <img src="images/gear.png">, and click **+ New Service Endpoint**. Select **Azure Resource Manager**. Specify **Connection name**, select your **Subscription** from the dropdown and click **OK**. We use this endpoint to connect **VSTS** with **Azure**.
 
    <img src="images/endpoint_creation.png">
 
@@ -42,21 +42,39 @@ In VSTS, navigate to **Services** by clicking the gear icon, and click **+ New S
 
 Now that connections are established, we will manually map the endpoints to release definition.
 
-1. Go to **Releases** under **Build & Release** tab, edit the release definition **MyHealthClinicE2E** and select **Tasks**.
+1. Go to **Releases** under **Build & Release** tab, edit the release definition **MyHealthClinicE2E**.
 
    <img src="images/create_release.png">
 
-   <br/>
+2. Select **Tasks** and click **Dev**.
 
    <img src="images/release_2.png">
 
-2. Under **Azure Deployment** task, update **Azure subscription** with the endpoint components from the dropdown and select the desired **location**.
+3. Under **Azure Deployment** task, update **Azure subscription** with the endpoint components from the dropdown and select the desired **location**.
 
+   >Note: South India region is not available for the deployment
+   
    <img src="images/release_3.png">
 
-3. Under **Azure App Service Deploy** task, update **Azure subscription** with the endpoint components from the dropdown.
+4. Under **Azure App Service Deploy** task, update **Azure subscription** with the endpoint components from the dropdown. Under the **Slot** section enter the slot name as **Dev**.
 
    <img src="images/release_4.png">
+
+5. Similarly update **Azure subscription** with the endpoint components for **QA** and **Production** environments. Go to **Tasks** and select **QA**.
+
+   <img src="images/qa.png">
+
+6. Under **Azure App Service Deploy** task, update **Azure subscription** with the endpoint components from the dropdown. Under the **Slot** section enter the slot name as **Staging**.
+
+   <img src="images/qa_1.png">
+
+7. Go to **Tasks** and select **Production**.
+
+   <img src="images/prod.png">
+
+8. Under **Azure App Service Deploy** task, update **Azure subscription** with the endpoint components from the dropdown and click **Save** to save the release definition.
+
+   <img src="images/prod_1.png">
 
 ## Exercise 3: Update Code
 
@@ -138,9 +156,13 @@ We will update the code to trigger CI-CD.
    </table>
    <br/>
 
+8. Click on the build number to open the live console.
+
+   <img src="images/build_number.png">
+
    <img src="images/build_in_progress_2.png">
 
-8. Once the build completes, you will see the summary which shows **Test Results** as shown below.
+9. Once the build is complete click on the build number, to see the summary which shows **Test Results** as shown.
 
    <img src="images/build_summary.png">
 
@@ -148,7 +170,7 @@ We will update the code to trigger CI-CD.
 
 We are using **Infrastructure as a Code** in the release pipeline. We have a release configured to deploy the application which is associated to the build and triggered when the build is successful.
 
-1. Navigate to the **Releases** tab under **Build and Release** hub.
+1. Go to **Releases** tab under **Build and Release** hub.
 
 2. Select the **MyHealthClinicE2E** definition, you will see the release in-progress.
 
@@ -166,24 +188,30 @@ We are using **Infrastructure as a Code** in the release pipeline. We have a rel
 
    >**Azure App Service Deploy**: The task is used to deploy a Web project to the Azure App Service created above.
 
-4. Once the release is complete, you will see the summary.
+4. Click on **View releases**.
 
-   <img src="images/release_summary.png">
+   <img src="images/view_releases.png">
+
+5. Double click on the release to see the release summary.
+
+   <img src="images/release_summary1.png">
 
    <br/>
 
-   <img src="images/release_logs.png">
+   <img src="images/release_summary.png">
 
-5. Login to [Azure Portal](https://portal.azure.com) and search a **Resource Group** with the name **dotnetcore**.
+6. Login to [Azure Portal](https://portal.azure.com) and search a **Resource Group** with the name **dotnetcore**.
 
    <img src="images/azure_resources.png">
 
-8. Navigate to one of the WebApp from the resource group and you will see the application is deployed successfully with the changes.
+7. Navigate to one of the WebApp from the resource group and you will see the application is deployed successfully with the changes.
 
    <img src="images/mhc_web_app.png">
 
 ## Summary
 
 With **Visual Studio Team Services** and **Azure**, we can continuously deploy **ASP.NET Core** applications.
+
+## Feedback
 
 
