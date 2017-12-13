@@ -10,12 +10,7 @@ A deployment group is a logical set of deployment target machines that have agen
 
 2.  You need a **Visual Studio Team Services Account** and <a href="https://docs.microsoft.com/en-us/vsts/accounts/use-personal-access-tokens-to-authenticate">Personal Access Token</a>
 
-<img src="imagesvstsdemogen.png">
-
-
-
-
-
+    <img src="images/vsts_demogen.png">
 
 ## Deployment group
 
