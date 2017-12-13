@@ -16,29 +16,30 @@ This lab will show how you can
 1.  You need a <b>Visual Studio Team Services Account</b> and <a href="https://docs.microsoft.com/en-us/vsts/accounts/use-personal-access-tokens-to-authenticate">Personal Access Token</a>
 
 
-## Exercise 1: Setting up Visual Studuio Team Services
+## Exercise 1: Setting up Visual Studio Team Services
 
 If you are following this lab from "Working with Jenkins, VSTS and Azure, you can skip this exercise. Otherwise,
 
-1. Provison a new VSTS project using the <a href="https://vstsdemogenerator.azurewebsites.net" target="_blank">VSTS Demo Data Generator</a> 
+1. Provision a new VSTS project using the <a href="https://vstsdemogenerator.azurewebsites.net" target="_blank">VSTS Demo Data Generator</a> 
 
 1. Use  **MyShuttle** for the template
 
 
 ## Exercise 2: Creating Azure Web App and MySQL database
 
-1. We will use the **Web App + MySQL** Azure template from the Azure Marketplace to create a Website and MySQL Database together to start developing even faster. 
-    ![Create Web App+MySQL](images/createappservicemysql.png)
-
-1. This template provides three MySQL options : 
-    * **Azure Database for MySQL(Preview)** provides a managed database service for app development 
-    * **ClearDB** is a Microsoft Partner solution for a fully integrated MySQL service on Azure
-    * **MySQL in-app** is an App Service feature where MySQL database is created for your web app. In this scenario,MySQL server is running on the same instance side by side with your web server hosting the site. This is recommended to development purposes and has no additional cost.***We will choose this option***
-
+1. We will use the **Web App + MySQL** Azure template from the Azure Marketplace to create a Website and MySQL Database together to start developing even faster.
     <a href="https://portal.azure.com/#create/Microsoft.WebSiteMySQLDatabase" target="_blank"><img src="http://azuredeploy.net/deploybutton.png"/>
     </a>
 
-1. Wait for the Web App to be provisoned. Once it is ready, select the Web app. You can click the URL to see if it is correctly provisioned. 
+1. This template provides three MySQL options : 
+    * **Azure Database for MySQL(Preview)** provides a managed database service for app development. ***We will choose this option***
+    * **ClearDB** is a Microsoft Partner solution for a fully integrated MySQL service on Azure
+    * **MySQL in-app** is an App Service feature where MySQL database is created for your web app. In this scenario,MySQL server is running on the same instance side by side with your web server hosting the site. This is recommended to development purposes and has no additional cost.
+
+    ![Create Web App+MySQL](images/createwebappmysql.png)
+
+
+1. Wait for the Web App to be provisioned. Once it is ready, select the Web app. You can click the URL to see if it is correctly provisioned. 
 
 1. As we are deploying a Java application, we need to change the web app's web container to Apache Tomcat. Click **Application Settings**. To change it to Tomcat, we will first need to install Java. Select a **Java Version** to install and then change **Web container** to use Apache Tomcat. For this purpose of the lab, we will choose ***Java 8*** and ***Apache Tomcat 9.0*** though the version number would not matter much for the simple app that we are deploying
 
@@ -48,15 +49,24 @@ If you are following this lab from "Working with Jenkins, VSTS and Azure, you ca
 
     ![Default Java App](images/defaultappjava.png)
 
-
 # Exercise 3: Configuring MySQL database
-1. We chose to install the MySQL server on the same instance with the web server. Azure does not support accessing the MySQL in-app remotely using the MySQL CLI or other tools that access external endpoints. You can only access your database content using using the KUDU debug console or **[PHPMyAdmin](https://www.phpmyadmin.net/)**, a free and open source administration tool for MySQL. Note that this extension is automatically installed for you when you provision the web app. 
 
-1. Select **MySQL In App** under **Settings** and then select **Manage**
+1. Navigate to the resource group that you have created. You should see a **Azure Database for MySQL server** provisioned. Select the database server.  
 
-    ![Manage MySQL In-App](images/mysqlinapp.png)
+![Resource Group](images/resourcegroup.png)
 
-1. This should open the PHPMyAdmin home page in a separate tab. 
+1. Select **Properties**. Note down **SERVER NAME** and **SERVER ADMIN LOGIN NAME** You may click the copy button next to each field to copy to the clipboard. 
+
+    ![Database properties](images/dbproperties.png)
+
+    In this example, the server name is *myshuttle-1-mysqldbserver.mysql.database.azure.com* and the admin user name is *mysqldbuser@myshuttle-1-mysqldbserver* 
+
+1. We will use the MySQL command-line tool to establish a connection to the Azure Database for MySQL server. We will run the MySQL command-line tool from the Azure Cloud Shell in the browser.To launch the Azure Cloud Shell, click the `>_` icon in the top right toolbar.
+
+1. Enter the following command
+    ````SQL
+    mysql -h myserver4demo.mysql.database.azure.com -u myadmin@myserver4demo -p
+    ````
 
     ![PHP My Admin Page](images/phpmyadminhome.png)
 
@@ -94,8 +104,10 @@ If you are following this lab from "Working with Jenkins, VSTS and Azure, you ca
     INSERT INTO `fares` (`emp_id`, `pickup`, `dropoff`, `start`, `end`, `fare_charge`, `driver_fee`, `passenger_rating`, `driver_rating`) VALUES ((select `id` from `employees` where `username`='barney'), '43 Brontosaurus Blvd, Bedrock, WA', '51 Stegasaurus St, Rock Gardens, WA', '2014-05-17 10:41:00', '2014-05-17 10:53:00', '1460', '1095', '3', '2');
     ````
 
+>This should create the database, tables and populate records for us.
+
+## Deploying to App Service from VSTS 
+
+1. Navigate to the VSTS project that you provisioned
+
 1. 
-
-
-
-
