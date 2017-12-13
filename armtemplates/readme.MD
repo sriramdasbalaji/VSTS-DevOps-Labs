@@ -14,7 +14,7 @@ A deployment group is a logical set of deployment target machines that have agen
 
 ## Deployment group
 
-Click on **Deploy to Azure** to provision VM.                                                                   
+Click on **Deploy to Azure** to provision VM's                                                                   
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoft%2FVSTS-DevOps-Labs%2Fdeploymentgroups%2Farmtemplates%2Fazurewebsqldeploy.json" target="_blank">
 <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
