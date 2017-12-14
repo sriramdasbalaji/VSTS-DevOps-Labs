@@ -48,7 +48,7 @@ images
 
 images 
 
-3. . Run the registration script using **PowerShell** inside the VM that is available. When prompted by the script enter the **Personal Access Token**. 
+3. Run the registration script using **PowerShell** inside the VM that is available. When prompted by the script enter the **Personal Access Token**. 
 
 images
 
@@ -66,7 +66,7 @@ images
 
 We have the artifacts which will be used to deploy to the machines using tag mechanism. Tags are used to limit deployment to specific sets of target servers.  
 
-1. Go to **Releases** under **Build and Release** tab.you will have the release defnition created. Edit the release defenition and navigate over the **Deployment group Phase**
+1. Go to **Releases** under **Build and Release** tab. You will have the release defnition created. Edit the release defenition and navigate over the **Deployment group Phase**
 
 A phase is a logical grouping of tasks that defines the runtime target on which the tasks will execute. A deployment group phase executes tasks on the machines defined in a deployment group.
 
