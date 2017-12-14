@@ -2,7 +2,7 @@
 
 ## Overview
 
-A deployment group is a logical set of deployment target machines that have agents installed on each one. Deployment groups represent the physical environments; for example, "Dev", "Test", "UAT", and "Production". In effect, a deployment group is just another grouping of agents, much like an agent pool.
+ [Deployment groups](https://docs.microsoft.com/en-us/vsts/build-release/concepts/definitions/release/deployment-groups/) is a logical set of deployment target machines that have agents installed on each one. Deployment groups represent the physical environments; for example, "Dev", "Test", "UAT", and "Production". In effect, a deployment group is just another grouping of agents, much like an agent pool.
 
 ## Pre-requisites
 
@@ -13,9 +13,9 @@ A deployment group is a logical set of deployment target machines that have agen
     <img src="images/vsts_demogen.jpg">
 
 ## Setting up the Environment
+Here we would provisoin seven VM's including six app tier with load balancing network, and a data tier.
 
-
-1. Click on **Deploy to Azure** to provision 7 VM's. It takes approximately 10-15 minutes to deploy.                                                                 
+1. Click on **Deploy to Azure** to provision. It takes approximately 10-15 minutes to deploy.                                                                 
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoft%2FVSTS-DevOps-Labs%2Fdeploymentgroups%2Farmtemplates%2Fazurewebsqldeploy.json" target="_blank">
 <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
@@ -24,7 +24,8 @@ A deployment group is a logical set of deployment target machines that have agen
   
   <img src="images/vm_components.jpg">
 
-3. Login to the VM using RDP with the VM credentials that you provided.
+
+
 
 ## Setting up the VSTS Project
 
@@ -32,84 +33,110 @@ A deployment group is a logical set of deployment target machines that have agen
 
 image
 
-2. Once the project is provisioned, select the URL to navigate to the project that you provisioned.
+2. Once the project is provisioned, select the URL to navigate to the project.
 
 image
+## Exercise 1: Endpoint Creation
+Since the connections are not established during project provisioning, we will manually create the endpoints.
 
-## Exercise 1: Creating and associating target machines to the Deployment group
+1. In VSTS, navigate to **Services** by clicking on the gear icon, and click on **+ New Service Endpoint**. Select **Azure Resource Manager**. Specify **Connection name**, select your **Subscription** from the dropdown and click **OK**. We use this endpoint to connect **VSTS** and **Azure**.
+
+image 
+
+## Exercise 2: Creating Deployment group
 
 [Deployment groups](https://docs.microsoft.com/en-us/vsts/build-release/concepts/definitions/release/deployment-groups/) in VSTS make it easier to organize the servers that you want to use to host your app. A deployment group is a collection of machines with a VSTS agent on each of them. Each machine interacts with VSTS to coordinate deployment of your app.
 
-1. Go to **Deployment Groups** under **Build & Release** tab. Click **Add deployment group** to create one.
+1. Go to **Deployment Groups** under **Build & Release** tab. Click **Add deployment group** .
 
 images
 
-2.  You need to associate target machines to the Deployment Group. Every target machine in the deployment group requires the build and release agent to be installed. This can be achieved using the script that is generated as shown.
+2. Provide name and click create. You will see the script generated.
+images
+
+## Exercise 3: Associating target VMs to Deployment Group
+
+1. Login to app server **cust1websrv0** vm  through RDP with machine credentials provided during the provisoing of environment.
+ image
+
+2. Open powershell console as an administrator  and execute the script generated in deployment group.
+
 
 images 
 
-3. Run the registration script using **PowerShell** inside the VM that is available. When prompted by the script enter the **Personal Access Token**. 
-
 images
 
- >The script that you've run will download and configure a windows agent on the VM so that it can receive new web deployment packages and apply them to IIS.
+3. Tag this VM as **web**
 
- 4. Similarly, you can run the registartion script in all the target machines you want to associate with the deployment group as shown.
+3. Repeat **step 1** to **step 3** on other five web server.
 
-images
+4. Login to data server  **cust1Sqpip** vm.
 
-## Exercise 2: Trigger the Build
+5. perform **step 1** and **step 2** as above.
 
-1. Once the environment is setup, queue the build. The build generates artifacts which we will use in our release to deploy.
+6. Tag this VM as **db**
 
-## Exercise 3: Release to Deployment Groups
-
-We have the artifacts which will be used to deploy to the machines using tag mechanism. Tags are used to limit deployment to specific sets of target servers.  
-
-1. Go to **Releases** under **Build and Release** tab. You will have the release defnition created. Edit the release defenition and navigate over the **Deployment group Phase**
-
-A phase is a logical grouping of tasks that defines the runtime target on which the tasks will execute. A deployment group phase executes tasks on the machines defined in a deployment group.
-
-2. As shown in the below image you can choose the deployment group from the dropdown
-
-images
-
-3. As shown you can use machine tags to limit deployment to specific sets of target servers
-
-images
-
-4. You can define wether the release should happen parallely on the target machines or one target at a time
+7. Use the system user account to configure the agent.
 
 images
 
 
-   <table width="100%">
-   <thead>
-      <tr>
-         <th width="50%"><b>Tasks</b></th>
-         <th><b>Usage</b></th>
-      </tr>
-   </thead>
-      <tr>
-      <td><a href="http://bit.ly/2zlTspl"><b>Manage IIS Website</b></a> <img src="images/iis-manage-icon.png"></td>
-      <td>pulls image from default tag <b>latest</b> Use this task to create or update, start or stop, and recycle IIS Websites, IIS Web Applications, Virtual Directories, and IIS Application Pools. Supports adding application pools, and configuring bindings and authentication</td>
-   </tr>
-   <tr>
-      <td><a href="https://docs.microsoft.com/en-in/vsts/build-release/tasks/deploy/iis-deploy"><b>Deploy IIS website</b></a> <img src="images/iis-deploy-icon.png"> </td>
-      <td>Use this task to deploy IIS Websites and Virtual Applications using WebDeploy </td>
-   </tr>
-   </table>
 
-   5. When release is executing, you see an entry in the live logs page for each server in the deployment group. After a release has completed, you can download the log files for every server to examine the deployments and resolve issues
+## Exercise 4: Configure Release to Deployment Groups
+ Now we have web server and data server ready for deployment. Deployment is done in phases.  
 
-images
+ > A phase is a logical grouping of tasks that defines the runtime target on which the tasks will execute. A deployment group phase executes tasks on the machines defined in a deployment group.
 
-6. Once the release is successful you can see that the web application has been hosted navigating to the below **URL** on your web browser.
+1. Go to Releases under **Build & Release** tab, edit the release definition **Deployment group** and select Tasks.
+
+images 
+ 2images 
+ 
+ You will see task grouped under**Database deploy phase** and **IIS Deployment phase**
+image
+
+**Database deploy phase**: Under this phase we use database deploy task which will deploy dacpac to database server 
+
+This phase is linked to **db** tag.
+
+image
+
+This task will deploy Dacpac to server which is taged as **db** server.
+
+**IIS Deployment phase**: Under this phase we deploy web app to web server.
+
+This phase is linked to **web** tag.
+
+**Maximum number of targets in parallel** allows us to set parallel deployment on multiple web server. In this case we have six server and if we set 50% parallel deployment will happen  on three servre at a time.
+
+image 
+
+2. Go to **Disconnect Azure Network Load Balancer** and update 
+as shown.
+image
+
+This task will disconnect VMs from load balance network.
+
+ **IIS Web App Manage** : This task will create web app on web apps server.
+
+**IIS Web App Deploy** : This task will deploy artifact to web apps server.
+
+3.  Go to **Connect vAzure Network Load Balancer** and update as shown.
+image
+
+This task will connect VMs from load balance network.
+
+4. Click **save** and **create release**
+
+2images
 
 
-       [Web Application URL](http://localhost:8000/)
+5. Once the release is successful go to any web server and browse below URL:
 
-7. The deployed web application will be as shown below.
+
+       [Web Application URL](http://localhost:80/)
+
+7. You will see web application as shown below.
 
 images
 
