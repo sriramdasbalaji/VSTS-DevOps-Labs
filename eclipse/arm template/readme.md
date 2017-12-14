@@ -1,13 +1,4 @@
----
-title: End to End workflow with Eclipse 
-layout: page
-sidebar: java
-permalink: /labs/java/eclipsee2e.html
-folder: /labs/java/
-comments: true
----
-
-
+# Working with Eclipse
 
 In this exercise, you are going to see a typical end-to-end workflow for a Java developer. You should have completed the labs that set up automated build and release (this is a CI/CD pipeline). In this scenario, you will open the running MyShuttle application and discover a bug. You will then use the [Exploratory Testing extension](https://marketplace.visualstudio.com/items?itemName=ms.vss-exploratorytesting-web) to create a Bug work item in VSTS. You will then branch the code for fixing the bug. Once the bug is fixed on the branch, you will merge the code in via a Pull Request and code review. This will then automatically queue the build/release pipeline and your fix will be deployed.
 
