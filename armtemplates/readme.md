@@ -10,7 +10,7 @@
 
 2.  You need a **Visual Studio Team Services Account** and <a href="https://docs.microsoft.com/en-us/vsts/accounts/use-personal-access-tokens-to-authenticate">Personal Access Token</a>
 
-    <img src="images/vsts_demogen.jpg">
+    <img src="images/vsts_demogen.png">
 
 ## Setting up the Environment
 Here we would provisoin seven VM's including six app tier with load balancing network, and a data tier.
@@ -31,17 +31,18 @@ Here we would provisoin seven VM's including six app tier with load balancing ne
 
 1. Use <a href="">VSTS Demo Data Generator</a> to provision a project on your VSTS account.
 
-image
-
+<img src="images/vstsdemogen.png">
 2. Once the project is provisioned, select the URL to navigate to the project.
 
 image
+
 ## Exercise 1: Endpoint Creation
+
 Since the connections are not established during project provisioning, we will manually create the endpoints.
 
 1. In VSTS, navigate to **Services** by clicking on the gear icon, and click on **+ New Service Endpoint**. Select **Azure Resource Manager**. Specify **Connection name**, select your **Subscription** from the dropdown and click **OK**. We use this endpoint to connect **VSTS** and **Azure**.
 
-image 
+<img src="images/service_endpoint.png"> 
 
 ## Exercise 2: Creating Deployment group
 
@@ -49,10 +50,13 @@ image
 
 1. Go to **Deployment Groups** under **Build & Release** tab. Click **Add deployment group** .
 
-images
+<img src="images/add_deploymentgroup.png"> 
 
 2. Provide name and click create. You will see the script generated.
-images
+
+<img src="images/name_dg.png"> 
+
+<img src="images/script_dg.png"> 
 
 ## Exercise 3: Associating target VMs to Deployment Group
 
