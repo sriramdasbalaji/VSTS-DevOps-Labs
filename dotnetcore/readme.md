@@ -113,11 +113,11 @@ We will update the code to trigger CI-CD.
    </thead>
    <tr>
       <td><img src="images/dotnetcore.png"> <b>Restore</b></td>
-      <td>We will use dotnet command-line tool to restore all the package dependencies like <b>ASP.NET Core Identity, ASP.NET Core session</b> etc. required to build this project </td>
+      <td>dotnet command-line tool restores all the package dependencies like <b>ASP.NET Core Identity, ASP.NET Core session</b> etc. required to build this project </td>
    </tr>
    <tr>
       <td><img src="images/npm.png"> <b>npm Install</b> </td>
-      <td>We will use npm task to install npm packages (javascript dependencies) like <b>babelify, browserify</b> etc. required to build this project</td>
+      <td>npm task installs the npm packages (javascript dependencies) like <b>babelify, browserify</b> etc. required to build this project</td>
    </tr>
    <tr>
       <td><img src="images/bower.png"> <b>Bower Install</b></td>
@@ -125,19 +125,19 @@ We will update the code to trigger CI-CD.
    </tr>
    <tr>
       <td><img src="images/gulp.png"> <b>Gulp</b></td>
-      <td>We will use this task to compile sass files, uglify and compress js files </td>
+      <td>gulp task compiles sass files, uglify and compress js files </td>
    </tr>
    <tr>
       <td><img src="images/dotnetcore.png"> <b>Build</b></td>
-      <td>We will use dotnet command-line tool to build the project and its dependencies into a set of binaries since this is a .NETCORE project</td>
+      <td>We will use dotnet command-line tool to build the project and its dependencies into a set of binaries</td>
    </tr>
    <tr>
       <td><img src="images/dotnetcore.png"> <b>Test</b></td>
-      <td>We will use dotnet command-line tool to run unit tests as part of build process to ensure the code quality. This project contains 6 unit tests</td>
+      <td>dotnet command-line tool wil run unit tests as part of build process to ensure the code quality. This project contains 6 unit tests</td>
    </tr>
    <tr>
       <td><img src="images/dotnetcore.png"> <b>Publish</b></td>
-      <td>We will use dotnet command-line tool to create a package with published content for the web deployment</td>
+      <td>We will use this task to create a package with published content for the web deployment</td>
    </tr>
    <tr>
       <td><img src="images/vstest.png"> <b>Publish Test Results</b></td>
