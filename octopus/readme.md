@@ -182,7 +182,7 @@ Once the VM is provisoned, note down the DNS Name. We will need this to connect 
 
    <img src="images/Azure.png">
 
-7. Save and Click **Create Release**
+7. Save | Click **Create Release**
 
    <img src="images/Release.png">
 
