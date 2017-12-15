@@ -115,43 +115,43 @@ We will update the code to trigger CI-CD.
    </thead>
    <tr>
       <td><img src="images/dotnetcore.png"> <b>Restore</b></td>
-      <td>restores all the nuget dependencies like <b>ASP.NET Core Identity, ASP.NET Core session</b> etc. using dotnet command-line tool </td>
+      <td>We will use dotnet command-line tool to restore all the package dependencies like <b>ASP.NET Core Identity, ASP.NET Core session</b> etc. required to build this project </td>
    </tr>
    <tr>
       <td><img src="images/npm.png"> <b>npm Install</b> </td>
-      <td>installs npm packages (javascript dependencies) like <b>babelify, browserify</b> etc. for this project</td>
+      <td>We will use npm task to install npm packages (javascript dependencies) like <b>babelify, browserify</b> etc. required to build this project</td>
    </tr>
    <tr>
       <td><img src="images/bower.png"> <b>Bower Install</b></td>
-      <td>is a package manager for web which manage components that contain HTML, CSS, JavaScript, fonts and even image files. Example: jquery, angular, webcomponentsjs etc.</td>
+      <td>We will use this task to manage components that contain HTML, CSS, JavaScript, fonts and even image files. Example: jquery, angular, webcomponentsjs etc.</td>
    </tr>
    <tr>
       <td><img src="images/gulp.png"> <b>Gulp</b></td>
-      <td>gulp is used to compile sass files, uglify and compress js files </td>
+      <td>We will use this task to compile sass files, uglify and compress js files </td>
    </tr>
    <tr>
       <td><img src="images/dotnetcore.png"> <b>Build</b></td>
-      <td>builds the project and its dependencies into a set of binaries using dotnet command-line tool </td>
+      <td>We will use dotnet command-line tool to build the project and its dependencies into a set of binaries since this is a .NETCORE project</td>
    </tr>
    <tr>
       <td><img src="images/dotnetcore.png"> <b>Test</b></td>
-      <td>executes unit tests in this project using dotnet command-line tool.</td>
+      <td>We will use dotnet command-line tool to run unit tests as part of build process to ensure the code quality. This project contains 6 unit tests</td>
    </tr>
    <tr>
       <td><img src="images/dotnetcore.png"> <b>Publish</b></td>
-      <td>compiles the application, reads through its dependencies specified in the project file, and publishes the resulting set of files to $(build.artifactstagingdirectory)</td>
+      <td>We will use dotnet command-line tool to create a package with published content for the web deployment</td>
    </tr>
    <tr>
       <td><img src="images/vstest.png"> <b>Publish Test Results</b></td>
-      <td>publishes the generated unit test results. There are 6 unit tests in this project</b> </td>
+      <td>We will use this task to publish the unit test results. </b> </td>
    </tr>
    <tr>
       <td><img src="images/copyfiles.png"> <b>Copy Files</b></td>
-      <td>this task will copy the build artifact and arm templates to <b>$(build.artifactstagingdirectory)</b> which will be used in release</td>
+      <td>We will copy the zipped file and the ARM template to a staging directory.</td>
    </tr>
    <tr>
       <td><img src="images/publishartifacts.png"> <b>Publish Build Artifacts</b></td>
-      <td>the package MyHealth.Web.zip will be published to VSTS which will be used to deploy on Azure App Service</td>
+      <td>And finally, we will publish the files in the staging directory which were copied in the previous step.</td>
    </tr>
    </table>
    <br/>
@@ -214,4 +214,4 @@ With **Visual Studio Team Services** and **Azure**, we can continuously deploy *
 
 ## Feedback
 
-
+Please let <a href="mailto:devopsdemos@microsoft.com" target="_blank" >us</a> know if you have any feedback on this lab.
