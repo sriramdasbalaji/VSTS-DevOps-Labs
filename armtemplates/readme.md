@@ -61,17 +61,22 @@ Since the connections are not established during project provisioning, we will m
 ## Exercise 3: Associating target VMs to Deployment Group
 
 1. Login to app server **cust1websrv0** vm  through RDP with machine credentials provided during the provisoing of environment.
- image
+
+   <img src="images/rdp.png"> 
 
 2. Open powershell console as an administrator  and execute the script generated in deployment group.
 
 
-images 
+   <img src="images/powershell.png"> 
 
-images
+   <img src="images/powershell_agent.png">
 
 3. Tag this VM as **web**
+   
+    <img src="images/powershell_web.png"> 
 
+    <img src="images/powershell_complete.png"> 
+  
 3. Repeat **step 1** to **step 3** on other five web server.
 
 4. Login to data server  **cust1Sqpip** vm.
@@ -79,7 +84,9 @@ images
 5. perform **step 1** and **step 2** as above.
 
 6. Tag this VM as **db**
-
+  
+   <img src="images/powershell_db.png"> 
+       
 7. Use the system user account to configure the agent.
 
 images
