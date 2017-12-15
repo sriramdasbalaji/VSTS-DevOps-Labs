@@ -89,7 +89,7 @@ Since the connections are not established during project provisioning, we will m
        
 7. Use the system user account to configure the agent.
 
-images
+   <img src="images/powershell_user.png"> 
 
 
 
@@ -100,17 +100,23 @@ images
 
 1. Go to Releases under **Build & Release** tab, edit the release definition **Deployment group** and select Tasks.
 
-images 
- 2images 
+    <img src="images/release_tab.png"> 
+
+
+     
+    <img src="images/task.png"> 
  
- You will see task grouped under**Database deploy phase** and **IIS Deployment phase**
-image
+   You will see task grouped under **Database deploy phase** and **IIS Deployment phase**
+
+   <img src="images/phases.png"> 
 
 **Database deploy phase**: Under this phase we use database deploy task which will deploy dacpac to database server 
+    
+<img src="images/dacpac.png">
 
 This phase is linked to **db** tag.
 
-image
+<img src="images/db_tag.png">
 
 This task will deploy Dacpac to server which is taged as **db** server.
 
@@ -118,38 +124,51 @@ This task will deploy Dacpac to server which is taged as **db** server.
 
 This phase is linked to **web** tag.
 
+<img src="images/iis.png">
+
 **Maximum number of targets in parallel** allows us to set parallel deployment on multiple web server. In this case we have six server and if we set 50% parallel deployment will happen  on three servre at a time.
 
-image 
+   <img src="images/targets.png">
+ 
 
-2. Go to **Disconnect Azure Network Load Balancer** and update 
-as shown.
-image
+2. Go to **Disconnect Azure Network Load Balancer** and update as shown.
+
+ <img src="images/disconnect_lb.png">
 
 This task will disconnect VMs from load balance network.
 
  **IIS Web App Manage** : This task will create web app on web apps server.
 
+ <img src="images/web_manage.png">
+
 **IIS Web App Deploy** : This task will deploy artifact to web apps server.
 
+<img src="images/web_app.png">
+
 3.  Go to **Connect vAzure Network Load Balancer** and update as shown.
-image
+
+<img src="images/connect_lb.png">
 
 This task will connect VMs from load balance network.
 
 4. Click **save** and **create release**
 
-2images
+
+ <img src="images/save.png">  
+
+ <img src="images/create_release.png">
 
 
 5. Once the release is successful go to any web server and browse below URL:
 
 
-       [Web Application URL](http://localhost:80/)
+       Web Application URL(http://localhost:80/)
 
 7. You will see web application as shown below.
 
-images
+   <img src="images/application.png">
+
+  
 
 # Summary
 
