@@ -10,7 +10,7 @@
 
 2.  You need a **Visual Studio Team Services Account** and <a href="https://docs.microsoft.com/en-us/vsts/accounts/use-personal-access-tokens-to-authenticate">Personal Access Token</a>
 
-    <img src="images/vsts_demogen.png">
+
 
 ## Setting up the Environment
 Here we would provisoin seven VM's including six app tier with load balancing network, and a data tier.
@@ -21,8 +21,8 @@ Here we would provisoin seven VM's including six app tier with load balancing ne
 </a>
 
 2. Once the deployment is successful, you will see all the resources in the resource group in Azure Portal.
-  
-  <img src="images/vm_components.jpg">
+   
+   <img src="images/resources.png">
 
 
 
