@@ -51,8 +51,6 @@ Now that connections are established, we will manually map the endpoints to rele
    <img src="images/release_2.png">
 
 3. Under **Azure Deployment** task, update **Azure subscription** with the endpoint components from the dropdown and select the desired **location**.
-
-   >Note: South India region is not available for the deployment
    
    <img src="images/release_3.png">
 
