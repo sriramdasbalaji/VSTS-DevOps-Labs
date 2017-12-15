@@ -57,6 +57,7 @@ Since the connections are not established during project provisioning, we will m
 
    <img src="images/name_dg.png"> 
 
+
    <img src="images/script_dg.png"> 
 
 ## Exercise 3: Associating target VMs to Deployment Group
@@ -66,7 +67,6 @@ Since the connections are not established during project provisioning, we will m
    <img src="images/rdp.png"> 
 
 2. Open powershell console as an administrator  and execute the script generated in deployment group.
-
 
    <img src="images/powershell.png"> 
 
