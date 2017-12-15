@@ -90,11 +90,11 @@ We will update the code to trigger CI-CD using **Hosted build agent**
 
    <img src="images/code1.png">
 
-2. Go to line number **11**, modify **PHP** to **DevOps for PHP using VSTS** and commit the code.
+1. Go to line number **11**, modify **PHP** to **DevOps for PHP using VSTS** and commit the code.
 
    <img src="images/code_editing.png">
 
-3. Go to **Builds** tab under **Build and Release** tab to see the particular CI build in-progress.
+1. Go to **Builds** tab under **Build and Release** tab to see the particular CI build in-progress.
 
    <img src="images/build.png">
 
