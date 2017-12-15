@@ -6,18 +6,18 @@ ASP.NET is an open source web framework for building modern web apps and service
 
 ## Pre-requisites
 
-1. **Microsoft Azure Account:** You will need a valid and active azure account for the labs
+1. **Microsoft Azure Account:** You will need a valid and an active azure account for this lab.
 
 2. You need a **Visual Studio Team Services Account** and <a href="https://docs.microsoft.com/en-us/vsts/accounts/use-personal-access-tokens-to-authenticate">Personal Access Token</a>
 
 
 ## Setting up the VSTS Project
 
-1. Use <a href="https://vstsdemobuildertest.azurewebsites.net/?name=PartsUnlimited" target="_blank">VSTS Demo Data Generator</a> to provision a project on your VSTS account.
+1. Use <a href="https://vstsdemobuildertest.azurewebsites.net/?name=PartsUnlimited" target="_blank">VSTS Demo Data Generator</a> to provision the project on your VSTS account.
 
    <img src="images/vsts_demo_site.png">
 
-2. Once the project is provisioned, select the URL to navigate to the project.
+2. Once the project is provisioned, click the URL to navigate to the project.
 
    <img src="images/navigate_to_vsts.png">
 
@@ -100,7 +100,7 @@ We will update the code to trigger CI-CD.
 
    <img src="images/build_overview.png">
 
-   While the build is in progress, let's explore the build definition. The tasks that is used in the build definition are listed in the table below.
+   While the build is in progress, let's explore the tasks used in the build definition.
 
    <table width="100%">
    <thead>
@@ -111,29 +111,29 @@ We will update the code to trigger CI-CD.
    </thead>
    <tr>
       <td><img src="images/nuget.png"> <b>Nuget Installer</b></td>
-      <td>nuget installer restores all the dependencies like <b>ASP.NET MVC, ASP.NET Web Pages</b> etc. present in this project  </td>
+      <td>We will use the nuget installer to restore all the package dependencies like <b>ASP.NET MVC, ASP.NET Web Pages</b> etc. required to build this project.  </td>
    </tr>
    <tr>
       <td><img src="images/visual-studio-build.png"> <b>Visual Studio Build</b></td>
-      <td>VisualStudio Build task uses MS build arguments to compile and package the output in a zip file. This project is compiled using Visual Studio 2017</td>
+      <td>We will use the VisualStudio Build task to invoke MS build to compile and package the output in a zip file. Note that this project is compiled using Visual Studio 2017</td>
    </tr>
    <tr>
       <td><img src="images/vstest.png"> <b>Visual Studio Test</b></td>
-      <td>VisualStudio Test task identifies and runs unit tests using Visual Studio Test Runner. This project contains 16 unit tests</td>
+      <td>As part of the build process, we will run all the unit tests using the VisualStudio Test task to ensure the code quality. This project contains 16 unit tests.</td>
    </tr>
    <tr>
       <td><img src="images/copy-files.png"> <b>Copy Files</b></td>
-      <td>this task will copy the build artifact and arm templates to <b>$(build.artifactstagingdirectory)</b> which will be used in release</td>
+      <td>We will copy the zipped file and the ARM template to a staging directory.</td>
    </tr>
    <tr>
       <td><img src="images/publish-build-artifacts.png"> <b>Publish Build Artifacts</b></td>
-      <td>the package PartsUnlimitedWebsite.zip will be published to VSTS which will be used to deploy on Azure App Service </td>
+      <td>And finally, we will publish the files in the staging directory which were copied in the previous step. </td>
    </tr>
    </table>
    <br/>
 
    
-8. Click on the build number to open the live console.
+8. Click on the build number to open the build live console.
 
    <img src="images/build_number.png">
    
@@ -141,7 +141,7 @@ We will update the code to trigger CI-CD.
 
    <img src="images/build_in_progress.png">
 
-8. Once the build is complete click on the build number, to see the summary which shows **Test Results, Code Coverage** etc as shown.
+8. Once the build is complete, click on the build number to see the build summary including **Test Results, Code Coverage** etc.
 
    <img src="images/build_summary.png">
 
