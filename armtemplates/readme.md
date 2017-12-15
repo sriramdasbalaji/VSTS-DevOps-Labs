@@ -31,7 +31,8 @@ Here we would provisoin seven VM's including six app tier with load balancing ne
 
 1. Use <a href="">VSTS Demo Data Generator</a> to provision a project on your VSTS account.
 
-<img src="images/vstsdemogen.png">
+   <img src="images/vstsdemogen.png">
+
 2. Once the project is provisioned, select the URL to navigate to the project.
 
 image
@@ -42,7 +43,7 @@ Since the connections are not established during project provisioning, we will m
 
 1. In VSTS, navigate to **Services** by clicking on the gear icon, and click on **+ New Service Endpoint**. Select **Azure Resource Manager**. Specify **Connection name**, select your **Subscription** from the dropdown and click **OK**. We use this endpoint to connect **VSTS** and **Azure**.
 
-<img src="images/service_endpoint.png"> 
+   <img src="images/service_endpoint.png"> 
 
 ## Exercise 2: Creating Deployment group
 
@@ -50,13 +51,13 @@ Since the connections are not established during project provisioning, we will m
 
 1. Go to **Deployment Groups** under **Build & Release** tab. Click **Add deployment group** .
 
-<img src="images/add_deploymentgroup.png"> 
+   <img src="images/add_deploymentgroup.png"> 
 
 2. Provide name and click create. You will see the script generated.
 
-<img src="images/name_dg.png"> 
+   <img src="images/name_dg.png"> 
 
-<img src="images/script_dg.png"> 
+   <img src="images/script_dg.png"> 
 
 ## Exercise 3: Associating target VMs to Deployment Group
 
@@ -133,7 +134,7 @@ This phase is linked to **web** tag.
 
 2. Go to **Disconnect Azure Network Load Balancer** and update as shown.
 
- <img src="images/disconnect_lb.png">
+   <img src="images/disconnect_lb.png">
 
 This task will disconnect VMs from load balance network.
 
@@ -147,16 +148,16 @@ This task will disconnect VMs from load balance network.
 
 3.  Go to **Connect vAzure Network Load Balancer** and update as shown.
 
-<img src="images/connect_lb.png">
+    <img src="images/connect_lb.png">
 
 This task will connect VMs from load balance network.
 
 4. Click **save** and **create release**
 
 
- <img src="images/save.png">  
+   <img src="images/save.png">  
 
- <img src="images/create_release.png">
+   <img src="images/create_release.png">
 
 
 5. Once the release is successful go to any web server and browse below URL:
