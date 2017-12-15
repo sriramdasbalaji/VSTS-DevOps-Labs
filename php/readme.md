@@ -82,7 +82,7 @@ We will use ARM template as **Infrastructure as a Code**  in the release definit
 ## Excercise 3: Trigger CI with code change
 
 **PHP** is an interpreted language, so we dont have to compile the code, instead let's archive the files to be used in the release task for deployment.
-We will update the code to trigger CI-CD using **Hosted build agent**.
+We will update the code to trigger CI-CD using **Hosted build agent**
 
 1. Go to **Code** tab and navigate to the below path to edit the file.
 
