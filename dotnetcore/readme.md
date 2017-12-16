@@ -74,9 +74,7 @@ Now that connections are established, we will manually map the endpoints to rele
 
    <img src="images/prod_1.png">
 
-## Exercise 3: Update Code
-
-We will update the code to trigger CI-CD.
+## Exercise 3: Triggering a Continuous Integration (CI) build
 
 1. Go to the **Code** hub.
 
@@ -206,9 +204,6 @@ We are using **Infrastructure as a Code** in the release pipeline. We have a rel
 
    <img src="images/mhc_web_app.png">
 
-## Summary
-
-With **Visual Studio Team Services** and **Azure**, we can continuously deploy **ASP.NET Core** applications.
 
 ## Feedback
 
