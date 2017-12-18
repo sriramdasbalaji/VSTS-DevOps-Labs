@@ -61,11 +61,9 @@ Since the connections are not established during project provisioning, we will m
 
    <img src="images/script_dg.png"> 
 
-Now that we have created deployment group, we will use the above generated script to associate the VM's.
-
 ## Exercise 3: Associating target VMs to Deployment Group
 
-In this exercise, we will associate all 7 machines which are created while provisioning. We will run the above script on each machine to associate with the deployment group.
+In this exercise, we will associate all 7 machines which are created while provisioning. We will run the registration script on each machine to associate with the deployment group.
 
 1. Login to the app server using [RDP](https://support.microsoft.com/en-in/help/17463/windows-7-connect-to-another-computer-remote-desktop-connection) with the following details.
    
@@ -124,7 +122,7 @@ In this exercise, we will associate all 7 machines which are created while provi
 
    <img src="images/sqlpip.png">
 
-8. Repeat the steps 2 and 3 only.
+8. In this case, repeat the steps 2 and 3 only.
 
 9. Tag the DB server (**cust1sqlSrv14**) by entering the tag as **db**.
   
