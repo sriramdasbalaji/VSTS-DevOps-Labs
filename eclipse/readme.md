@@ -2,6 +2,8 @@
 
 In this exercise, you are going to see a typical end-to-end workflow for a Java developer. You should have completed the labs that set up automated build and release (this is a CI/CD pipeline). In this scenario, you will open the running MyShuttle application and discover a bug. You will then use the [Exploratory Testing extension](https://marketplace.visualstudio.com/items?itemName=ms.vss-exploratorytesting-web) to create a Bug work item in VSTS. You will then branch the code for fixing the bug. Once the bug is fixed on the branch, you will merge the code in via a Pull Request and code review. This will then automatically queue the build/release pipeline and your fix will be deployed.
 
+This exercise assumes you have completed the exercises to create a Team Project and have set up the Docker private VSTS agent. You should also have completed the labs to set up an automated build for both the MyShuttleCalc and the MyShuttle2 repos. You should also have complete the release management lab. This exercise uses a team project named jdev, though your team project name may differ.
+
 
 ## Pre-requisites
 
@@ -39,9 +41,8 @@ In this task you will install the [Exploratory Testing extension](https://market
 
 1. Open chrome and navigate to `https://chrome.google.com/webstore`. Enter "exploratory testing" into the search box. Find the "Test & Feedback" extension from Microsoft Corporation and click "Add to Chrome". Click Install in the dialog.
 
-    ![Adding the Exploratory Test Extensions to Chrome](images/e2e-eclipse/add-ext.png "Adding the Exploratory Test Exteions to Chrome")
     
-    <img src="images/add-ext.png">
+   <img src="images/add-ext.png">
     
 
 1. Once installed, a beaker icon appears in the top right of the Chrome toolbar. Click it to open the UI.
