@@ -2,7 +2,7 @@
 
 ## Overview
 
- [Deployment groups](https://docs.microsoft.com/en-us/vsts/build-release/concepts/definitions/release/deployment-groups/) is a logical set of deployment target machines that have agents installed on each one. Deployment groups represent the physical environments; for example, "Dev", "Test", "UAT", and "Production". In effect, a deployment group is just another grouping of agents, much like an agent pool.
+ [Deployment Groups](https://docs.microsoft.com/en-us/vsts/build-release/concepts/definitions/release/deployment-groups/) is a logical set of deployment target machines that have agents installed on each one. Deployment groups represent the physical environments; for example, "Dev", "Test", "UAT", and "Production". In effect, a deployment group is just another grouping of agents, much like an agent pool.
 
 ## Pre-requisites
 
@@ -13,14 +13,15 @@
 
 
 ## Setting up the Environment
-Here we would provisoin seven VM's including six app tier with load balancing network, and a data tier.
+
+We will provision 7 VM's which includes 6 app tiers with a load balancer, and a data tier which includes SQL components.
 
 1. Click on **Deploy to Azure** to provision. It takes approximately 10-15 minutes to deploy.                                                                 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoft%2FVSTS-DevOps-Labs%2Fdeploymentgroups%2Farmtemplates%2Fazurewebsqldeploy.json" target="_blank">
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoft%2FVSTS-DevOps-Labs%2Fdeploymentgroups%2Fdeploymentgroups%2Fazurewebsqldeploy.json" target="_blank">
 <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 
-2. Once the deployment is successful, you will see all the resources in the resource group in Azure Portal.
+2. Once the deployment is successful, you will see all the resources in your Azure Portal.
    
    <img src="images/resources.png">
 
@@ -45,53 +46,95 @@ Since the connections are not established during project provisioning, we will m
 
    <img src="images/service_endpoint.png"> 
 
-## Exercise 2: Creating Deployment group
+## Exercise 2: Creating Deployment Group
 
-[Deployment groups](https://docs.microsoft.com/en-us/vsts/build-release/concepts/definitions/release/deployment-groups/) in VSTS make it easier to organize the servers that you want to use to host your app. A deployment group is a collection of machines with a VSTS agent on each of them. Each machine interacts with VSTS to coordinate deployment of your app.
+[Deployment Groups](https://docs.microsoft.com/en-us/vsts/build-release/concepts/definitions/release/deployment-groups/) in VSTS make it easier to organize the servers that you want to use to host your app. A deployment group is a collection of machines with a VSTS agent on each of them. Each machine interacts with VSTS to coordinate deployment of your app.
 
 1. Go to **Deployment Groups** under **Build & Release** tab. Click **Add deployment group** .
 
    <img src="images/add_deploymentgroup.png"> 
 
-2. Provide name and click create. You will see the script generated.
+2. Provide a name and click create. You will see the script generated.
 
    <img src="images/name_dg.png"> 
 
 
    <img src="images/script_dg.png"> 
 
+Now that we have created deployment group, we will use the above generated script to associate the VM's.
+
 ## Exercise 3: Associating target VMs to Deployment Group
 
-1. Login to app server **cust1websrv0** vm  through RDP with machine credentials provided during the provisoing of environment.
+In this exercise, we will associate all 7 machines which are created while provisioning. We will run the above script on each machine to associate with the deployment group.
+
+1. Login to the app server using [RDP](https://support.microsoft.com/en-in/help/17463/windows-7-connect-to-another-computer-remote-desktop-connection) with the following details.
+   
+   - Use public ip and port number to login. For example  **public ip:50001**
+   
+   - Use the credentials which was provided during the environment set up.
+
+   >Note: The Public IP is obtained from Azure Portal. Go to the resource group where you have the resources, click on **cust1webSrv0** VM and copy the Public IP. The port number is **50001** becuase we have a load balancer setup. The port number for other machines is listed in the below table.
+
+   <table width ="75%">
+   <th>Machine Name (Web Servers)</th>
+   <th>Port Number</th>
+   <tr>
+      <td>cust1webSrv0</td>
+      <td>50001</td>
+   <tr>
+      <td>cust1webSrv1</td>
+      <td>50002</td>
+   <tr>
+      <td>cust1webSrv2</td>
+      <td>50003</td>
+   <tr>
+      <td>cust1webSrv3</td>
+      <td>50004</td>
+   <tr>
+      <td>cust1webSrv4</td>
+      <td>50005</td>
+   <tr>
+      <td>cust1webSrv5</td>
+      <td>50006</td>
+    </table>
 
    <img src="images/rdp.png"> 
 
-2. Open powershell console as an administrator  and execute the script generated in deployment group.
+2. Copy the script from the deployment group and **execute** using PowerShell console in administrator mode.
 
    <img src="images/powershell.png"> 
 
+3. Type **Y** and hit enter when prompted to **Enter deployment group tags for agent**.
+
    <img src="images/powershell_agent.png">
 
-3. Tag this VM as **web**
+4. Tag VM 1 (**cust1webSrv0**) by entering the tag as **web**.
    
     <img src="images/powershell_web.png"> 
 
+5. You will see the deployment agent is configured successfully.
+
     <img src="images/powershell_complete.png"> 
   
-3. Repeat **step 1** to **step 3** on other five web server.
+6. Repeat the steps from 1 to 5 to tag other web servers.
 
-4. Login to data server  **cust1Sqpip** vm.
+7. Login to the DB server using the Public IP.
 
-5. perform **step 1** and **step 2** as above.
+   >Note: Obtain the Public IP from your Azure Portal by going to the resource with the name **cust1SqlPip** and copy the IP address.
 
-6. Tag this VM as **db**
+   <img src="images/sqlpip.png">
+
+8. Repeat the steps 2 and 3 only.
+
+9. Tag the DB server (**cust1sqlSrv14**) by entering the tag as **db**.
   
    <img src="images/powershell_db.png"> 
        
-7. Use the system user account to configure the agent.
+10. Enter the **User Account** to configure the deployment agent.
 
-   <img src="images/powershell_user.png"> 
+    >Note: In this example the user account is **vmadmin**. 
 
+    <img src="images/powershell_user.png"> 
 
 
 ## Exercise 4: Configure Release to Deployment Groups
