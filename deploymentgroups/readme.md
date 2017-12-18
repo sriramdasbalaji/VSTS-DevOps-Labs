@@ -20,10 +20,11 @@ We will use ARM template to provision below resources on Azure:
 
 -  Azure Network Load Balancer
 
-1. Click on **Deploy to Azure** to provision. It takes approximately 10-15 minutes to deploy.                                                          
+1. Click on **Deploy to Azure** to provision. It takes approximately 10-15 minutes to deploy.
+
    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoft%2FVSTS-DevOps-Labs%2Fdeploymentgroups%2Fdeploymentgroups%2Fazurewebsqldeploy.json" target="_blank">
-<img src="http://azuredeploy.net/deploybutton.png"/>
-</a>
+   <img src="http://azuredeploy.net/deploybutton.png"/>
+   </a>
 
 2. Once the deployment is successful, you will see all the resources in your Azure Portal.
    
