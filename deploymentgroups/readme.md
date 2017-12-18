@@ -1,4 +1,4 @@
-# Authoring release using Deployment Groups in VSTS
+# Using Deployment Groups in VSTS
 
 ## Overview
 
@@ -10,23 +10,24 @@
 
 2.  You need a **Visual Studio Team Services Account** and <a href="https://docs.microsoft.com/en-us/vsts/accounts/use-personal-access-tokens-to-authenticate">Personal Access Token</a>
 
-
-
 ## Setting up the Environment
 
-We will provision 7 VM's which includes 6 app tiers with a load balancer, and a data tier which includes SQL components.
+We will use ARM template to provision below resources on Azure:
 
-1. Click on **Deploy to Azure** to provision. It takes approximately 10-15 minutes to deploy.                                                                 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoft%2FVSTS-DevOps-Labs%2Fdeploymentgroups%2Fdeploymentgroups%2Fazurewebsqldeploy.json" target="_blank">
+-  Six VMs with IIS configured
+
+-  A SQL server and
+
+-  Azure Network Load Balancer
+
+1. Click on **Deploy to Azure** to provision. It takes approximately 10-15 minutes to deploy.                                                          
+   <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoft%2FVSTS-DevOps-Labs%2Fdeploymentgroups%2Fdeploymentgroups%2Fazurewebsqldeploy.json" target="_blank">
 <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 
 2. Once the deployment is successful, you will see all the resources in your Azure Portal.
    
    <img src="images/resources.png">
-
-
-
 
 ## Setting up the VSTS Project
 
@@ -36,7 +37,7 @@ We will provision 7 VM's which includes 6 app tiers with a load balancer, and a 
 
 2. Once the project is provisioned, select the URL to navigate to the project.
 
-image
+   #Image To be added
 
 ## Exercise 1: Endpoint Creation
 
@@ -135,85 +136,103 @@ In this exercise, we will associate all 7 machines which are created while provi
     <img src="images/powershell_user.png"> 
 
 
-## Exercise 4: Configure Release to Deployment Groups
- Now we have web server and data server ready for deployment. Deployment is done in phases.  
+## Exercise 4: Configure Release
 
- > A phase is a logical grouping of tasks that defines the runtime target on which the tasks will execute. A deployment group phase executes tasks on the machines defined in a deployment group.
+We have target machines available in the deployment group to deploy the application. The release definition uses **Phases** to deploy to target servers.
 
-1. Go to Releases under **Build & Release** tab, edit the release definition **Deployment group** and select Tasks.
+A phase is a logical grouping of tasks that defines the runtime target on which the tasks will execute. A deployment group phase executes tasks on the machines defined in a deployment group.
+
+1. Go to Releases under **Build & Release** tab. Edit the release definition **Deployment group** and select **Tasks**.
 
     <img src="images/release_tab.png"> 
 
-
+    <br/>
      
     <img src="images/task.png"> 
  
-   You will see task grouped under **Database deploy phase** and **IIS Deployment phase**
+2. You will see tasks grouped under **Database deploy phase** and **IIS Deployment phase**.
 
    <img src="images/phases.png"> 
 
-**Database deploy phase**: Under this phase we use database deploy task which will deploy dacpac to database server 
+   - **Database deploy phase**: In this phase we use [**SQL Server Database Deploy**](https://github.com/Microsoft/vsts-tasks/blob/master/Tasks/SqlDacpacDeploymentOnMachineGroup/README.md) task to deploy [**dacpac**](https://docs.microsoft.com/en-us/sql/relational-databases/data-tier-applications/data-tier-applications) file to the DB server.
+ 
     
-<img src="images/dacpac.png">
+     <img src="images/dacpac.png">
 
-This phase is linked to **db** tag.
+     This phase is linked to **db** tag.
 
-<img src="images/db_tag.png">
+     <img src="images/db_tag.png">
 
-This task will deploy Dacpac to server which is taged as **db** server.
+   - **IIS Deployment phase**: In this phase we deploy application to the web servers. We use following tasks- 
+      
+      - **Azure Network Load Balancer**: As the target machines are connected to NLB, this task will disconnect machines from NLB before the deployments and re-connects to NLB post deployments
 
-**IIS Deployment phase**: Under this phase we deploy web app to web server.
+      - **IIS Web App Manage**: The task runs on the deployment target machine(s) registered with the Deployment Group configured for the task/phase. It creates a webapp and application pool locally with the name **PartsUnlimited** running under the port http://localhost:80
 
-This phase is linked to **web** tag.
+      - **IIS Web App Deploy**: The task runs on the deployment target machine(s) registered with the Deployment Group configured for the task/phase. It deploys the application to the IIS server using **Web Deploy**.
 
-<img src="images/iis.png">
+     This phase is linked to **web** tag.
 
-**Maximum number of targets in parallel** allows us to set parallel deployment on multiple web server. In this case we have six server and if we set 50% parallel deployment will happen  on three servre at a time.
+     <img src="images/iis.png">
+
+3. Control the number of concurrent deployments by setting the **Maximum number of targets in parallel**. 
+
+   >In this case we have 6 web servers. Setting it to 50% will deploy to 3 servers at a time.
 
    <img src="images/targets.png">
  
 
-2. Go to **Disconnect Azure Network Load Balancer** and update as shown.
+4. Go to **Disconnect Azure Network Load Balancer** task and update the following details-
+
+   - **Azure Subscription**: ARM Endpoint created in **Exercise 1**
+
+   - **Resource Group**: Name of the Resource Group which was created while provisioning the environment
+
+   - **Load Balancer Name**: Select the name **cust1webSrvlb** from the dropdown
+
+   - **Action**: Set the action to **Disconnect Primary Network Interface**
 
    <img src="images/disconnect_lb.png">
 
-This task will disconnect VMs from load balance network.
+5.  Go to **Connect Azure Network Load Balancer** and update the following details-
 
- **IIS Web App Manage** : This task will create web app on web apps server.
+    - **Azure Subscription**: ARM Endpoint created in **Exercise 1**
 
- <img src="images/web_manage.png">
+    - **Resource Group**: Name of the Resource Group which was created while provisioning the environment
 
-**IIS Web App Deploy** : This task will deploy artifact to web apps server.
+    - **Load Balancer Name**: Select the name **cust1webSrvlb** from the dropdown
 
-<img src="images/web_app.png">
-
-3.  Go to **Connect vAzure Network Load Balancer** and update as shown.
+    - **Action**: Set the action to **Connect Primary Network Interface**
 
     <img src="images/connect_lb.png">
 
-This task will connect VMs from load balance network.
-
-4. Click **save** and **create release**
+6. Click **Save** and **Create release**.
 
 
-   <img src="images/save.png">  
+   <img src="images/save.png">
+
+   <br/>
 
    <img src="images/create_release.png">
 
 
-5. Once the release is successful go to any web server and browse below URL:
+7. Once the release is complete, you will see the deployments are done to DB and Web Servers. Go to Logs to see the summary.
+
+   <img src="images/release_summary.png">
 
 
-       Web Application URL(http://localhost:80/)
+   >In your server, go to http://localhost:80/ to access the application
 
-7. You will see web application as shown below.
+8. You will see the application as shown.
 
    <img src="images/application.png">
 
-  
-
-# Summary
+## Summary
 
 With Visual Studio Team Services and Azure, we can build and release dotnet applications to multiple target servers using Deployment Groups.
 
-# Feedback
+## Feedback
+
+Please email [us](mailto:devopsdemos@microsoft.com) if you have any feedback on this lab.
+
+
