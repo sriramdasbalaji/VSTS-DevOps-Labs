@@ -1,6 +1,6 @@
 ## Deploy ASP .Net application to Azure App Service using Team Services and Octopus
 
-This lab shows how you can deploy an **ASP .Net application to Azure App Service using CI/CD pipeline in VSTS and Octopus**.
+This lab shows how you can deploy an ASP .Net application to Azure App Service using CI/CD pipeline in VSTS and Octopus.
 
 ## Pre-requisites
 
@@ -30,14 +30,16 @@ This lab shows how you can deploy an **ASP .Net application to Azure App Service
 
 Provide **Resource Group Name** and **Octopus DNS Name**, make sure the names are unique. You should see the green checkmark as shown before you click on **Purchase**
 
-<img src="images/A1.png">
+   <img src="images/A1.png">
 <img src="images/A2.png">
 
-Once the VM is provisoned, note down the DNS Name. We will need this to connect to **Octopus Server**  
+Once the VM is provisoned, note down the **DNS** Name. We will need this to connect to Octopus Server  
 
-<img src="images/A3.png">
+   <img src="images/A3.png">
 
-## Connectand Configure Octopus Server
+## Exercise 1: Configure Octopus Server
+
+In this exercise we will create **deployment environment** in octopus server. In our case deployment environment is **Azure web service**
 
 1. Login to octopus server by browsing DNS name
 
@@ -54,7 +56,7 @@ Once the VM is provisoned, note down the DNS Name. We will need this to connect 
 
    <img src="images/Add Environment.png">
 
-3. Give environment name as **Dev** and **Save**
+3. Give environment name as **Dev** and click **Save**
 
    <img src="images/DevEnvironment.png">
 
@@ -62,11 +64,11 @@ Once the VM is provisoned, note down the DNS Name. We will need this to connect 
 
    <img src="images/Add Account.png">
 
-5. Enter **Name** and **Subecription ID** select **Use Management Certificate** and click **Save and Test**
+5. Enter **Name**, **Subecription ID** and select **Use Management Certificate** then click **Save and Test**
 
    <img src="images/Create Account.png">
 
-6. You will see a failure message click **OK**
+6. You will see a failure message as the management certificate is not uploaded to Azure portal. Click **OK**
 
    <img src="images/Verification Failed.png">
 
@@ -74,11 +76,11 @@ Once the VM is provisoned, note down the DNS Name. We will need this to connect 
 
    <img src="images/Download Certificate.png">
 
-8. Go to Azure portal, and click **Subscriptions**
+8. To upload certificate to Azure, go to Azure portal, and click **Subscriptions**
 
    <img src="images/O8.png">
 
-9. Go to your Subscription, and select **Management certificates**
+9. Go to your subscription, and select **Management certificates**
 
    <img src="images/O9.png">
 
@@ -86,7 +88,7 @@ Once the VM is provisoned, note down the DNS Name. We will need this to connect 
 
    <img src="images/O10.png">
 
-10. Upload the subscription which you had downloaded in **step 7**
+10. Upload the certificate which you had downloaded.
 
     <img src="images/O11.png">
 
@@ -96,7 +98,9 @@ Once the VM is provisoned, note down the DNS Name. We will need this to connect 
 
     <img src="images/Verification Success.png">
 
-## Link VSTS to Octopus Server
+## Exercise 2: Link VSTS to Octopus Server
+
+In this exercise we will create API key in octopus. This key is used to link VSTS with octopus.
 
 1. Create **New API Key** in octopus server. Under user profile, go to **MY API Key** and click **New API Key**
 
@@ -120,9 +124,13 @@ Once the VM is provisoned, note down the DNS Name. We will need this to connect 
 
    <br/>
 
+5. Provide **Connection name**, **URL** of octopus server and **API Key** and click **OK**. You will see service endpint created successfully.
+
    <img src="images/endpointName.png">
 
-## Build Project and Push the Package to Octopus Server
+## Exercise 3: Push the Package to Octopus Server
+
+In this exercise, we will build ASP .Net application. The packages generated are pushed to octopus server
 
 1. Go to **Builds** under **Build and Release** tab and click on **PartsUnlimitedE2E** build 
 
@@ -148,7 +156,9 @@ Once the VM is provisoned, note down the DNS Name. We will need this to connect 
 
    <img src="images/Pkg.png">
 
-## Create Project in Octopus for Deployment
+## Exercise 4: Create Project in Octopus for Deployment
+
+In this exercise, we will create project in octopus server which will deploy the package to **Azure Web Service**
 
 1. Go to Octopus dashboard and click **Create a project** and **ADD PROJECT**
 
