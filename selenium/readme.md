@@ -66,8 +66,8 @@ This script is used to register/associate the VM we created to the Deployment gr
 
 
 2. Run Powershell in an administrator mode and execute the script which you copied from the previous step.
-Provide the details as following-
--Enter comma seperated list of tags- web,db
+Type Y and hit enter when prompted to Enter deployment group tags for agent.
+Tag VM by entering the tag as web, db.
 
    <img src="images/configure_deploymentgroup.png">
 
@@ -89,7 +89,9 @@ Click [here](https://docs.microsoft.com/en-us/vsts/build-release/actions/agents/
    <img src="images/configure_windowsagent.png">
 
 ## Exercise 5: Configure Release
+We have target machine available in the deployment group to deploy the application and run selenium testcases. The release definition uses **Phases** to deploy to target servers.
 
+A phase is a logical grouping of tasks that defines the runtime target on which the tasks will execute. A deployment group phase executes tasks on the machines defined in a deployment group.
 1. Click on Releases tab and select Selenium release definition and edit
 
    <img src="images/setuprelease.png">
@@ -99,12 +101,22 @@ Click [here](https://docs.microsoft.com/en-us/vsts/build-release/actions/agents/
    <img src="images/setuprelease2.png">
 
 3. You will see three phases
+   <img src="images/releasephases.png">
 
-   - IIS Deployment: In this phase we have two tasks. First task will create website in the VM. And the second task deploy website content from build to the website created in first task.
+   - **IIS Deployment phase**: In this phase we deploy application to the web servers. We use following tasks- 
+      
+      - **IIS Web App Manage**: The task runs on the deployment target machine(s) registered with the Deployment Group configured for the task/phase. It creates a webapp and application pool locally with the name **PartsUnlimited** running under the port http://localhost:82
 
-   - SQL Deployment: In this phase we are deploying application DB to the SQL server in VM
+      - **IIS Web App Deploy**: The task runs on the deployment target machine(s) registered with the Deployment Group configured for the task/phase. It deploys the application to the IIS server using **Web Deploy**.
 
-   - Selenium tests execution: In this phase we are executing seleium test cases on the web application deployed above.Here we have two taks. Depoly test agent task will deploy Visual studio test agent on the VM which will help to invoke test cases. Run Functional tests tasks will run our selenium testcases using test agent deployed. 
+    - **Database deploy phase**: In this phase we use [**SQL Server Database Deploy**](https://github.com/Microsoft/vsts-tasks/blob/master/Tasks/SqlDacpacDeploymentOnMachineGroup/README.md) task to deploy [**dacpac**](https://docs.microsoft.com/en-us/sql/relational-databases/data-tier-applications/data-tier-applications) file to the DB server.
+ 
+    
+     <img src="images/dacpac.png">
+
+   - **Selenium tests execution**: In this phase we are executing seleium test cases on the web application deployed above.
+     - **Deploy Visual Studio Test Agent**: The [Deploy Test agent](https://github.com/Microsoft/vsts-tasks/blob/master/Tasks/DeployVisualStudioTestAgent/README.md) task is used to Deploy the Test Agent to a set of machines. This Test Agent can then be used to enable data collection or run Distributed Tests using the ‘Run Functional Tests’ task.
+     - **Run Functional tests**: Any test that you can run using vstest.console.exe can be run using this task.The [Run Functional Tests](https://github.com/Microsoft/vsts-tasks/blob/master/Tasks/RunDistributedTests/README.md) task should be used when you want to run tests on one or more remote machines. 
 
 
 4. Click on IIS deployment phase ans select the Deployement Group which we have created in Exerecise 2
@@ -134,7 +146,7 @@ Click [here](https://docs.microsoft.com/en-us/vsts/build-release/actions/agents/
    <img src="images/buildqueue3.png">
 
 3. Click on the build to see the build progress
-
+   <img src="images/buildprogress.png">
    <img src="images/buildqueue4.png">
 
 4. Once the build success we can see a release has been triggred. click on the Release to see the deployment progress.
@@ -142,8 +154,12 @@ Click [here](https://docs.microsoft.com/en-us/vsts/build-release/actions/agents/
    <img src="images/releasequeue5.png">
 
 5. In Selenium test execution phase we can see selenium UI test cases running in the VM
-
+ Tests running on chrome
    <img src="images/seleniumtest.png">
+
+ Tests running on firefox
+
+    <img src="images/seleniumtestsselenium.png">
 
 6. To Analyze test results click on Tests tab in the Release
 
