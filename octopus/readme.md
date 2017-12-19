@@ -1,6 +1,8 @@
-## Deploy ASP .Net application to Azure App Service using Team Services and Octopus
+## Automate Deployment Using Octopus Deploy & VSTS
 
-This lab shows how you can deploy an ASP .Net application to Azure App Service using CI/CD pipeline in VSTS and Octopus.
+[Octopus Deploy](https://Octopus.com) is an automated deployment server that makes it easy to automate the deployment of ASP.NET web applications, Java applications, database updates, NodeJS application, and custom scripts into development, test, and production environments.
+
+This lab shows how you can deploy an ASP.NET application to Azure App Service using CI-CD pipeline with VSTS and Octopus.
 
 ## Pre-requisites
 
@@ -16,39 +18,59 @@ This lab shows how you can deploy an ASP .Net application to Azure App Service u
 
    ![](images/1.png)
 
-2. Select **PartsUnlimited** for the template.
-
-   ![](images/2.png)
-
-3. Once the project is provisioned, select the URL to navigate to the project that you provisioned.
+2. Once the project is provisioned, select the URL to navigate to the project that you provisioned.
 
 
-## Provision Octopus Server on Azure
-1. Click on **Deploy to Azure** to provision Octopus Server
+## Setting up the Environment
 
-   <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fsatishmkini%2Foctopus%2Fmaster%2Ftemplate.json"><img src="http://azuredeploy.net/deploybutton.png"></a> 
+We will use ARM template to provision below resources on Azure:
 
-Provide **Resource Group Name** and **Octopus DNS Name**, make sure the names are unique. You should see the green checkmark as shown before you click on **Purchase**
+- VM with Octopus server
 
-   <img src="images/A1.png">
-<img src="images/A2.png">
+- #To be added
 
-Once the VM is provisoned, note down the **DNS** Name. We will need this to connect to Octopus Server  
+1. Click on **Deploy to Azure** to provision Octopus Server.
+
+   <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fsatishmkini%2FOctopus%2Fmaster%2Ftemplate.json"><img src="http://azuredeploy.net/deploybutton.png"></a> 
+
+   Provide the following details as shown:
+
+   - **Subscription**: Choose your Azure Subscription
+
+   - **Resource Group**: Provide a name for resource group as  **Octopus**
+
+   - **Location**: Select the location to **South Central US**
+
+   - **Octopus Dns Name**: Provide a unique name.
+
+2.  It takes approximately x minutes to deploy.
+
+    <img src="images/A1.png">
+
+    <br/>
+
+    <img src="images/A2.png">
+
+3. Once the VM is provisoned, note down the **DNS** Name. We will need this to connect to Octopus Server.
+
+   >**Note**: In Azure portal, go to the VM overview which was provisioned and copy the DNS name as shown. 
 
    <img src="images/A3.png">
 
 ## Exercise 1: Configure Octopus Server
 
-In this exercise we will create **deployment environment** in octopus server. In our case deployment environment is **Azure web service**
+In this exercise, we will create **Deployment Environment** in Octopus server. Since we are deploying the application to Azure App Service, we will link the environment to Azure using **Management Certificate**.
 
-1. Login to octopus server by browsing DNS name
+1. Login to Octopus server using DNS name from your browser. Use the below credentials to login.
 
-   >Default credentials **Username**: admin
-**Password**: P2ssw0rd@123
+   - **Username**: admin
+   - **Password**: P2ssw0rd@123
+
+   <br/>
 
    <img src="images/O1.png">
 
-2. Click **Create environment** and **Add Environment**
+2. Click **Create environment** and **Add Environment**.
 
    <img src="images/Create Environment.png">
 
@@ -56,57 +78,65 @@ In this exercise we will create **deployment environment** in octopus server. In
 
    <img src="images/Add Environment.png">
 
-3. Give environment name as **Dev** and click **Save**
+3. Provide the environment name as **Dev** and click **Save**.
 
    <img src="images/DevEnvironment.png">
 
-4. Add your Azure Subscription to Dev environment by clicking **ADD ACCOUNT**
+4. Add **Azure Subscription** to **Dev** environment by clicking on **ADD ACCOUNT**.
 
    <img src="images/Add Account.png">
 
-5. Enter **Name**, **Subecription ID** and select **Use Management Certificate** then click **Save and Test**
+5. Enter the following details as shown:
 
-   <img src="images/Create Account.png">
-
-6. You will see a failure message as the management certificate is not uploaded to Azure portal. Click **OK**
-
-   <img src="images/Verification Failed.png">
-
-7. You will see a management certificate generated. Download this certificate
-
-   <img src="images/Download Certificate.png">
-
-8. To upload certificate to Azure, go to Azure portal, and click **Subscriptions**
-
-   <img src="images/O8.png">
-
-9. Go to your subscription, and select **Management certificates**
-
-   <img src="images/O9.png">
+   - **Name**: Provide a name as **Azure Deployment**
+   - **Subecription ID**: Your [Azure Subscription ID](https://blogs.msdn.microsoft.com/mschray/2016/03/18/getting-your-azure-subscription-guid-new-portal/)
+   - **Authentication Method**: Set to **Use Management Certificate** 
 
    <br/>
 
-   <img src="images/O10.png">
+   <img src="images/Create Account.png">
 
-10. Upload the certificate which you had downloaded.
+6. You will see a failure message because the management certificate is not uploaded to Azure portal. Click **OK**
+
+   <img src="images/Verification Failed.png">
+
+7. You will see a management certificate will be generated. Download this certificate.
+
+   <img src="images/Download Certificate.png">
+
+8. To upload the certificate to azure, go to [Azure Portal](portal.azure.com), and click on **Subscriptions**.
+
+   <img src="images/O8.png">
+
+9. Go to your Subscription.
+
+   <img src="images/O9.png">
+
+10. Scroll down and click **Management certificates**.
+
+    <img src="images/O10.png">
+
+11. Click **Upload** to upload the certificate which you downloaded in the step 7.
 
     <img src="images/O11.png">
 
+    <br/>
+
     <img src="images/O12.png"  height="400px">
 
-11. Go back to Octopus portal and click **Save and Test** you will see verification will be successful
+12. Go back to Octopus portal and click **Save and Test**. You will see the verification for azure connection will be successful.
 
     <img src="images/Verification Success.png">
 
 ## Exercise 2: Link VSTS to Octopus Server
 
-In this exercise we will create API key in octopus. This key is used to link VSTS with octopus.
+In this exercise we will create an **API** key in Octopus. This key is required to link VSTS with Octopus.
 
-1. Create **New API Key** in octopus server. Under user profile, go to **MY API Key** and click **New API Key**
+1. Under user profile, go to **MY API Key** and click **New API Key** to create one.
 
    <img src="images/API Key.png">
 
-2. Give the purpose as VSTS Integration and click **Generate New**
+2. Give the purpose as **VSTS Integration** and click **Generate New**.
 
    <img src="images/Generate New.png">
 
@@ -114,41 +144,43 @@ In this exercise we will create API key in octopus. This key is used to link VST
 
    <img src="images/Key.png">
 
-4. Create a **Service Endpoint** in VSTS. Go to Parts Unlimited team project in **VSTS** click on gear icon and click **Services**
+4. Create a **Service Endpoint** in VSTS. Go to Parts Unlimited team project in **VSTS**, click on gear icon and click **Services**.
 
    <img src="images/Endpoint.png">
 
-   <br/>
+5. Click **+ New Service Endpoint** and select **Octopus Deploy** from the dropdown.
 
-   <img src="images/O22.png">
+    <img src="images/O22.png">
 
-   <br/>
-
-5. Provide **Connection name**, **URL** of octopus server and **API Key** and click **OK**. You will see service endpint created successfully.
+6. Provide **Connection name**, **URL** of Octopus server and **API Key** and click **OK**. 
 
    <img src="images/endpointName.png">
 
+7. You will see service endpint created successfully.
+
+   #Image To be added
+
 ## Exercise 3: Push the Package to Octopus Server
 
-In this exercise, we will build ASP .Net application. The packages generated are pushed to octopus server
+In this exercise, we will build ASP.NET application and push the generated web package to Octopus Server.
 
-1. Go to **Builds** under **Build and Release** tab and click on **PartsUnlimitedE2E** build 
+1. Go to **Builds** under **Build and Release** tab and click on **PartsUnlimitedE2E** definition.
 
    <img src="images/Build Defination.png"> 
  
-2. Click **Edit**
+2. Click **Edit**.
 
    <img src="images/EditBD.png">
 
-3. In **Push Packages to Octopus** task, update **Octopus Deploy Server** then **Save and queue**. You will see the build progress.
+3. In **Push Packages to Octopus** task, update **Octopus Deploy Server** and click **Save and queue**.
 
    <img src="images/QBuild.png">
 
-   <br/>
+4. Once the build is complete, you will see the build summary.
 
    <img src="images/Build Complete.png">
 
-4. Once the build completes, go to Octopus Server. You will see the **Application Package** uploaded. Click **Upload package** to see the package.
+5. Go to Octopus Server. You will see the green check mark showing **Application Package** uploaded successfully. Click **Upload package** to see the package.
 
    <img src="images/Pkg Uploaded.png">
 
@@ -156,11 +188,12 @@ In this exercise, we will build ASP .Net application. The packages generated are
 
    <img src="images/Pkg.png">
 
-## Exercise 4: Create Project in Octopus for Deployment
+## Exercise 4: Project Creation in Octopus
 
-In this exercise, we will create project in octopus server which will deploy the package to **Azure Web Service**
+[Projects](https://octopus.com/docs/deploying-applications/deployment-process/projects) allow you to define all the details required to deploy a project including the steps to run and variables to configure it.
+In this exercise, we will create project in Octopus which will deploy the package to **Azure Web Service**
 
-1. Go to Octopus dashboard and click **Create a project** and **ADD PROJECT**
+1. Go to Octopus dashboard and click **Create a project** and **ADD PROJECT**.
 
    <img src="images/Project.png">
 
@@ -168,23 +201,23 @@ In this exercise, we will create project in octopus server which will deploy the
 
    <img src="images/Add Project.png">
 
-2. Give the name for deployment project and click **SAVE**
+2. Give the name for project and click on **SAVE**.
 
    <img src="images/PUProject.png">
 
-3. Once the project is created click **Define your deployment process**
+3. Once the project is created, click **Define your deployment process**. The [deployment process](https://octopus.com/docs/deploying-applications/deployment-process) is like a recipe for deploying your software.
 
    <img src="images/Define Process.png">
 
-4. Add deployment step
+4. Add deployment step.
 
    <img src="images/Add Step.png">
 
-5. Search for **Azure Web App** template and **Add**
+5. Search for **Azure Web App** template and **Add**.
 
    <img src="images/O20.png">
 
-6. Provide **Step Name** and Select **Package ID**
+6. Provide **Name** and select **Package ID**.
 
    <img src="images/PkgID.png">
 
@@ -192,7 +225,7 @@ In this exercise, we will create project in octopus server which will deploy the
 
    <img src="images/Azure.png">
 
-7. Save and Click **Create Release**
+7. Save and click on **Create Release**.
 
    <img src="images/Release.png">
 
