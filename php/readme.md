@@ -79,11 +79,10 @@ We will use ARM template as **Infrastructure as a Code**  in the release definit
    <tr>
   </table>
 
-  
 ## Excercise 3: Trigger CI with code change
 
 **PHP** is an interpreted language, so we dont have to compile the code, instead let's archive the files to be used in the release task for deployment.
-We will update the code to trigger CI-CD using **Hosted build agent**.
+We will update the code to trigger CI-CD using **Hosted build agent**
 
 1. Go to **Code** tab and navigate to the below path to edit the file.
 
@@ -91,18 +90,17 @@ We will update the code to trigger CI-CD using **Hosted build agent**.
 
    <img src="images/code1.png">
 
-2. Go to line number **11**, modify **PHP** to **DevOps for PHP using VSTS** and commit the code.
+1. Go to line number **11**, modify **PHP** to **DevOps for PHP using VSTS** and commit the code.
 
    <img src="images/code_editing.png">
 
-3. Go to **Builds** tab under **Build and Release** tab to see the particular CI build in-progress.
+1. Go to **Builds** tab under **Build and Release** tab to see the particular CI build in-progress.
 
    <img src="images/build.png">
 
    <br/>
 
    <img src="images/in_progress_build.png">
-
 
    Let's explore the build definition. The tasks used in the build definition are listed as shown. 
 
@@ -114,15 +112,15 @@ We will update the code to trigger CI-CD using **Hosted build agent**.
       </tr>
    </thead>
    <tr>
-      <td><a href="https://docs.microsoft.com/en-us/vsts/build-release/tasks/utility/archive-files"><b>Archive files</b></a> <img src="images/Archive.png"></td>
+      <td><img src="images/Archive.png"><b>Archive files</b></td>
       <td>creates zip file for deployment</td>
    </tr>
    <tr>
-      <td><a href="https://docs.microsoft.com/en-gb/vsts/build-release/tasks/utility/copy-files"><b>Copy Files</b></a> <img src="images/copyfiles.png"></td>
+      <td><img src="images/copyfiles.png"><b>Copy Files</b></td>
       <td>copies ARM template which is used to provision resources on azure </td>
    </tr>
    <tr>
-      <td><a href="https://docs.microsoft.com/en-gb/vsts/build-release/tasks/utility/publish-build-artifacts"><b>Publish Build Artifacts</b></a> <img src="images/PublishArtifact.png"> </td>
+      <td><img src="images/PublishArtifact.png"><b>Publish Build Artifacts</b></td>
       <td> publishes the build artifacts </td>
    </tr>
    </table>
