@@ -12,15 +12,15 @@
 
 ## Setting up the Environment
 
-We will use ARM template to provision below resources on Azure:
+Let us use ARM template to provision below resources on Azure:
 
 -  Six VMs with IIS configured
 
--  A SQL server and
+-  A SQL server VM and
 
 -  Azure Network Load Balancer
 
-1. Click on **Deploy to Azure** to provision. It takes approximately 10-15 minutes to deploy.
+1. Click on **Deploy to Azure** to provision these resources. It takes approximately 10-15 minutes to complete the deployment.
 
    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoft%2FVSTS-DevOps-Labs%2Fdeploymentgroups%2Fdeploymentgroups%2Fazurewebsqldeploy.json" target="_blank">
    <img src="http://azuredeploy.net/deploybutton.png"/>
@@ -30,13 +30,13 @@ We will use ARM template to provision below resources on Azure:
    
    <img src="images/resources.png">
 
-## Setting up the VSTS Project
+## Setting up VSTS Project
 
 1. Use <a href="">VSTS Demo Data Generator</a> to provision a project on your VSTS account.
 
    <img src="images/vstsdemogen.png">
 
-2. Once the project is provisioned, select the URL to navigate to the project.
+2. Once the project is provisioned, click the URL to navigate to the project.
 
    #Image To be added
 
@@ -56,7 +56,7 @@ Since the connections are not established during project provisioning, we will m
 
    <img src="images/add_deploymentgroup.png"> 
 
-2. Provide a name and click create. You will see the script generated.
+2. Provide a name for **Deployment group name**, Description (optional) and click create. You will see a script generated.
 
    <img src="images/name_dg.png"> 
 
@@ -65,15 +65,15 @@ Since the connections are not established during project provisioning, we will m
 
 ## Exercise 3: Associating target VMs to Deployment Group
 
-In this exercise, we will associate all 7 machines which are created while provisioning. We will run the registration script on each machine to associate with the deployment group.
+In this exercise, we will associate all 7 machines which have been provisioned earlier. We will run the VSTS agent registration script on each machine to associate with the deployment group.
 
-1. Login to the app server using [RDP](https://support.microsoft.com/en-in/help/17463/windows-7-connect-to-another-computer-remote-desktop-connection) with the following details.
+1. Login to the **web server** using [RDP](https://support.microsoft.com/en-in/help/17463/windows-7-connect-to-another-computer-remote-desktop-connection) with the following details.
    
-   - Use public ip and port number to login. For example  **public ip:50001**
+   - Use Public IP and port number of the VM to login. For example,  **public ip:50001**
    
-   - Use the credentials which was provided during the environment set up.
+   - Use the credentials which were provided during the environment set up.
 
-   >Note: The Public IP is obtained from Azure Portal. Go to the resource group where you have the resources, click on **cust1webSrv0** VM and copy the Public IP. The port number is **50001** becuase we have a load balancer setup. The port number for other machines is listed in the below table.
+   >Note: Public IP is obtained from Azure Portal. Go to the resource group where you have the resources, click on **cust1webSrv0** VM and copy the Public IP. The port number is **50001** because we have a load balancer setup. The port number for other VMs are already set while being provisioned and are listed in the below table.
 
    <table width ="75%">
    <th>Machine Name (Web Servers)</th>
@@ -97,14 +97,14 @@ In this exercise, we will associate all 7 machines which are created while provi
       <td>cust1webSrv5</td>
       <td>50006</td>
     </table>
-
+    <br>
    <img src="images/rdp.png"> 
 
-2. Copy the script from the deployment group and **execute** using PowerShell console in administrator mode.
+2. Copy the generated registration script. Open **Powershell** in **administrator** mode, paste and **execute** the script.
 
    <img src="images/powershell.png"> 
 
-3. Type **Y** and hit enter when prompted to **Enter deployment group tags for agent**.
+3. When **Enter deployment group tags for agent?(Y/N)** message is prompted in the powershell window, type **Y** and hit **enter**.
 
    <img src="images/powershell_agent.png">
 
@@ -112,27 +112,31 @@ In this exercise, we will associate all 7 machines which are created while provi
    
     <img src="images/powershell_web.png"> 
 
-5. You will see the deployment agent is configured successfully.
+5. The next prompt in the window is the **User Account** to be used to run the deployment agent as a service. We will use the default service account. Press **enter** key without any input.
+
+    >Note: For all web servers, the user account used is **NT AUTHORITY\SYSTEM**.
+
+6. You will see the deployment agent is configured successfully.
 
     <img src="images/powershell_complete.png"> 
   
-6. Repeat the steps from 1 to 5 to tag other web servers.
+6. Repeat steps from 1 to 5 to tag other **web** servers.
 
-7. Login to the DB server using the Public IP.
+7. Login to the SQL **DB** server VM using the Public IP.
 
    >Note: Obtain the Public IP from your Azure Portal by going to the resource with the name **cust1SqlPip** and copy the IP address.
 
    <img src="images/sqlpip.png">
 
-8. In this case, repeat the steps 2 and 3 only.
+8. In this case, follow only the 2nd and 3rd steps of Exercise 3.
 
-9. Tag the DB server (**cust1sqlSrv14**) by entering the tag as **db**.
+9. Tag DB server (**cust1sqlSrv14**) by entering the tag as **db**.
   
    <img src="images/powershell_db.png"> 
        
 10. Enter the **User Account** to configure the deployment agent.
 
-    >Note: In this example the user account is **vmadmin**. 
+    >Note: In this example, provide the credentials of the user account **vmadmin**. 
 
     <img src="images/powershell_user.png"> 
 
@@ -155,7 +159,7 @@ A phase is a logical grouping of tasks that defines the runtime target on which 
 
    <img src="images/phases.png"> 
 
-   - **Database deploy phase**: In this phase we use [**SQL Server Database Deploy**](https://github.com/Microsoft/vsts-tasks/blob/master/Tasks/SqlDacpacDeploymentOnMachineGroup/README.md) task to deploy [**dacpac**](https://docs.microsoft.com/en-us/sql/relational-databases/data-tier-applications/data-tier-applications) file to the DB server.
+   - **Database deploy phase**: In this phase, we use [**SQL Server Database Deploy**](https://github.com/Microsoft/vsts-tasks/blob/master/Tasks/SqlDacpacDeploymentOnMachineGroup/README.md) task to deploy [**dacpac**](https://docs.microsoft.com/en-us/sql/relational-databases/data-tier-applications/data-tier-applications) file to the DB server.
  
     
      <img src="images/dacpac.png">
@@ -164,11 +168,12 @@ A phase is a logical grouping of tasks that defines the runtime target on which 
 
      <img src="images/db_tag.png">
 
-   - **IIS Deployment phase**: In this phase we deploy application to the web servers. We use following tasks- 
+   - **IIS Deployment phase**: In this phase, we deploy application to the web servers. We use following tasks- 
       
-      - **Azure Network Load Balancer**: As the target machines are connected to NLB, this task will disconnect machines from NLB before the deployments and re-connects to NLB post deployments
+      - **Azure Network Load Balancer**: As the target machines are connected to NLB, this task will disconnect machines from NLB before the deployment and re-connects to NLB after the deployment.
 
-      - **IIS Web App Manage**: The task runs on the deployment target machine(s) registered with the Deployment Group configured for the task/phase. It creates a webapp and application pool locally with the name **PartsUnlimited** running under the port http://localhost:80
+      - **IIS Web App Manage**: The task runs on the deployment target machine(s) registered with the Deployment Group configured for the task/phase. It creates a webapp and application pool locally with the name **PartsUnlimited** running under the port 
+      **80**  -  http://localhost:80
 
       - **IIS Web App Deploy**: The task runs on the deployment target machine(s) registered with the Deployment Group configured for the task/phase. It deploys the application to the IIS server using **Web Deploy**.
 
@@ -222,9 +227,9 @@ A phase is a logical grouping of tasks that defines the runtime target on which 
    <img src="images/release_summary.png">
 
 
-   >In your server, go to http://localhost:80/ to access the application
+   >In one of your web servers, go to http://localhost:80/ to access the application. 
 
-8. You will see the application as shown.
+8. The deployed web application is displayed.
 
    <img src="images/application.png">
 
