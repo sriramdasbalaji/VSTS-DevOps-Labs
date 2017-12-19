@@ -120,27 +120,28 @@ In this exercise, we will associate all 7 machines which have been provisioned e
 
     <img src="images/powershell_complete.png"> 
   
-6. Repeat steps from 1 to 5 to tag other **web** servers.
+7. Repeat steps from 1 to 5 to tag other **web** servers.
 
-7. Login to the SQL **DB** server VM using the Public IP.
+8. Login to the SQL **DB** server VM using the Public IP.
 
    >Note: Obtain the Public IP from your Azure Portal by going to the resource with the name **cust1SqlPip** and copy the IP address.
 
    <img src="images/sqlpip.png">
 
-8. In this case, follow only the 2nd and 3rd steps of Exercise 3.
+9. In this case, follow only the 2nd and 3rd steps of Exercise 3.
 
-9. Tag DB server (**cust1sqlSrv14**) by entering the tag as **db**.
+10. Tag DB server (**cust1sqlSrv14**) by entering the tag as **db**.
   
-   <img src="images/powershell_db.png"> 
+    <img src="images/powershell_db.png"> 
        
-10. Enter the **User Account** to configure the deployment agent.
+11. Enter the **User Account** to configure the deployment agent.
 
     >Note: In this example, provide the credentials of the user account **vmadmin**. 
 
     <img src="images/powershell_user.png"> 
+    
 
-
+12. 
 ## Exercise 4: Configure Release
 
 We have target machines available in the deployment group to deploy the application. The release definition uses **Phases** to deploy to target servers.
