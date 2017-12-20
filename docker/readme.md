@@ -284,3 +284,4 @@ With **Visual Studio Team Services** and **Azure**, we can build DevOps for dock
 
 ## Feedback
 
+Please let <a href="mailto:devopsdemos@microsoft.com">us </a> know if you have any feedback on this lab.
