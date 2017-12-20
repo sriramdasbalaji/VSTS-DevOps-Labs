@@ -45,11 +45,8 @@ We will use ARM template to provision below resources on Azure:
 
 2.  It takes approximately x minutes to deploy.
 
-    <img src="images/A1.png">
+    <img src="images/DeployOctopus.png">
 
-    <br/>
-
-    <img src="images/A2.png">
 
 3. Once the VM is provisoned, note down the **DNS** Name. We will need this to connect to Octopus Server.
 
@@ -82,8 +79,15 @@ In this exercise, we will create **Deployment Environment** in Octopus server. S
 
    <img src="images/DevEnvironment.png">
 
-4. Add **Azure Subscription** to **Dev** environment by clicking on **ADD ACCOUNT**.
+4. You will see Dev environment. Go to **Dashboard** and click 
 
+   <img src="images/Dev.png">
+
+4. Add **Azure Subscription** to **Dev** environment by clicking on **ADD an account** and **ADD ACCOUNT**
+
+   <img src="images/AddanAccount.png">
+   <br/>
+   
    <img src="images/Add Account.png">
 
 5. Enter the following details as shown:
