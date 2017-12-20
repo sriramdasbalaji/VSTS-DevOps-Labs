@@ -227,7 +227,7 @@ Since the connections are not established during project provisioning, we will m
    <img src="images/paste_connectionstring.png">
 
 
-## Exercise 4: Code update
+## Exercise 4: Code Update
 
 In this excercise, we will enable the continuous integration trigger to create a new build for each commit to the master branch, and update the code to trigger CI-CD. 
 
