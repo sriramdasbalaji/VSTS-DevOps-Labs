@@ -24,9 +24,9 @@ In this lab, you will learn how to run selenium testcases as part of the CD Pipe
 
 ## Setting up the Environment
 
-1. Click **Deploy To Azure** to provision the Windwos Server 2016 VM with SQL componenets and brwosersChrome and firefox. 
+1. Click **Deploy To Azure** to provision the Windwos Server 2016 VM with SQL componenets and brwosers Chrome and firefox. 
 
-   <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoft%2FVSTS-DevOps-Labs%2Fsonarqube%2Fsonarqube%2Ftemplates%2Fazuredeploy.json"><img src="images/http://azuredeploy.net/deploybutton.png"></a>
+   <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https://raw.githubusercontent.com/Microsoft/VSTS-DevOps-Labs/sonarqube/sonarqube/templates/azuredeploy.json"><img src="images/http://azuredeploy.net/deploybutton.png"></a>
 
 The following resources will be provisioned once successful
 - WS 2016 VM
@@ -158,12 +158,11 @@ A phase is a logical grouping of tasks that defines the runtime target on which 
    <img src="images/seleniumtest.png">
 
  Tests running on firefox
-
-    <img src="images/seleniumtestsselenium.png">
-
+   
+  <img src="images/seleniumtestfirefox.png">
 6. To Analyze test results click on Tests tab in the Release
 
-   <img src="images/analyzetests.png">
+  <img src="images/analyzetests.png">
 
 ## Summary
 
