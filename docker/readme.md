@@ -29,7 +29,7 @@ Below screenshot helps you understand the VSTS DevOps workflow with Docker:
 
 We will create an **Azure Container Registry** to store the images generated during VSTS build. These images contain environment configuration details with build settings.  An **Azure Web App** (with Linux OS) is created where custom built images will be deployed to run inside containers. 
 
-1. Click on **Deploy to Azure** to spin up **Azure Container Registry** and **Azure Web App**.
+1. Click on **Deploy to Azure** to spin up **Azure Container Registry**, **Azure Web App** and **Azure SQL Database** along with **Azure SQL Server**.
 
    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoft%2FVSTS-DevOps-Labs%2Fdocker%2Fdocker%2Ftemplates%2Fazuredeploy.json" target="_blank">
 
@@ -40,15 +40,13 @@ We will create an **Azure Container Registry** to store the images generated dur
 
    <img src="images/createacr-linuxwebapp.png">
 
-2. It takes approximately **3 to 4 minutes** to provision the environment. 
+2. It takes approximately **3 to 4 minutes** to provision the environment. Click on **Go To resource group**.
 
    <img src="images/acrdeploymentsucceeded.png">
 
 3. Below components are created post deployment. Click on **Azure Container Registry**.
 
-   <img src="images/postazuredeployment.png">
-
-    
+     
     <table width="100%">
      <thead>
       <tr>
@@ -57,27 +55,40 @@ We will create an **Azure Container Registry** to store the images generated dur
       </tr>
     </thead>
     <tr>
-      <td><a href="http://bit.ly/2mwVYUz"><b>Azure Container Registry</b></a><img src="images/container_registry.png" width="50px"></td>
+      <td><img src="images/container_registry.png" width="30px"><a href="http://bit.ly/2mwVYUz"><b>Azure Container Registry</b></a></td>
       <td>Used to store images privately</td>
     </tr>
     <tr>
-      <td><a href="http://bit.ly/2iYiCQx"><b>Storage Account</b></a> <img src="images/storage.png" width="30px"> </td>
+      <td><img src="images/storage.png" width="30px"> <a href="http://bit.ly/2iYiCQx"><b>Storage Account</b></a> </td>
       <td>Container Registry resides in this storage account</td>
     </tr>
     <tr>
-      <td><a href="http://bit.ly/2ALhdES"><b>App Service</b></a> <img src="images/app_service.png" width="30px"> </td>
+      <td><img src="images/app_service.png" width="30px"> <a href="http://bit.ly/2ALhdES"><b>App Service</b></a>  </td>
       <td>Docker images are deployed to containers in this App Service</td>
     </tr>
     <tr>
-      <td><a href="http://bit.ly/2AINQ5x"><b>App Service Plan</b></a> <img src="images/app_service_plan.png" width="30px"> </td>
+      <td><img src="images/app_service_plan.png" width="30px"> <a href="http://bit.ly/2AINQ5x"><b>App Service Plan</b></a> </td>
       <td>Resource where App Service resides</td>
+    </tr>
+    <tr>
+      <td><img src="images/sqlserver.png" width="30px"> <a href="http://bit.ly/2AINQ5x"><b>SQL Server</b></a> </td>
+      <td>SQL Server to host database</td>
+    </tr>
+    <tr>
+      <td><img src="images/sqldb.png" width="30px"> <a href="http://bit.ly/2AINQ5x"><b>SQL database</b></a> </td>
+      <td>SQL database to host MyHealthClinic data</td>
     </tr>
     </table>
 
+    </br>
 
-4. Click on **Access keys** under **Settings** node. Note down the **Login server**,  **Username** and **Password**. We need these in **Exercise 1**.
+    <img src="images/postazuredeployment.png">
+    <img src="images/dbinazure.png">
 
-   <img src="images/acraccesskeys.png">
+
+4. Click on your container registry. Note down the **Login server** name. We need these details later in Excercise 2.
+
+   <img src="images/acrloginserver.png">
 
 ## Setting up the Project
 
@@ -103,50 +114,20 @@ Since the connections are not established during project provisioning, we will m
 
    **Note:** Disable pop-up blocker in your browser if you see a blank screen after clicking **OK**, and retry the step. 
 
-2. Click **+ New Service Endpoint**, and select **Docker Registry** from the list. We use this endpoint to connect **VSTS** and **Azure Container Registry** (where images would be hosted).
-
-   <img src="images/acrendpoint.png">
-
-   For **Registry Type** select **Others**. Map the details to **Docker Registry Connection** from **Azure Container Registry** (in azure portal) with the parameters as shown:
-
-    <table width="100%">
-     <thead>
-      <tr>
-         <th width="50%"><b>Docker Registry Connection</b></th>
-         <th><b>Azure Container Registry</b></th>
-      </tr>
-   </thead>
-    <tr>
-      <td>Docker Registry (starts with https://)</a></td>
-      <td>Login server</td>
-    </tr>
-    <tr>
-      <td>Docker ID</a> </td>
-      <td>Username</td>
-     </tr>
-     <tr>
-      <td>Password</b></a> </td>
-      <td>Password </td>
-     </tr>
-     <tr>
-      <td>Email</a> </td>
-      <td>Email id of azure account</td>
-     </tr>
-   </table>
-
 
 ## Exercise 2: Configure CI-CD
 
- Now that connections are established, we will manually map the endpoints to build and release definitions.
+ Now that the connection is established, we will manually map the Azure endpoint and Azure Container Registry to build and release definitions.
 
 1. Go to **Builds** under **Build and Release** tab, **Edit** the build definition **Docker**.
 
    <img src="images/build.png">
 
-2. Click on **Process** section, select endpoint components from the dropdown under **Azure subscription** and **Azure Container Registry** as shown.
+2. Click on **Process** section, select appropriate contents from dropdown under **Azure subscription** and **Azure Container Registry**.
 
    <img src="images/updateprocessbd.png">
 
+   <br/>
    <br/>
 
    <table width="100%">
@@ -157,36 +138,37 @@ Since the connections are not established during project provisioning, we will m
       </tr>
    </thead>
    <tr>
-      <td><a href="http://bit.ly/2zlTspl"><b>Run services</b></a> <img src="images/icon.png"></td>
+      <td><img src="images/icon.png"> <a href="http://bit.ly/2zlTspl"><b>Run services</b></a> </td>
       <td>prepares suitable environment by restoring required packages</td>
    </tr>
    <tr>
-      <td><a href="http://bit.ly/2zlTspl"><b>Build services</b></a> <img src="images/icon.png"></td>
+      <td><img src="images/icon.png"> <a href="http://bit.ly/2zlTspl"><b>Build services</b></a></td>
       <td>builds <b>service images</b> specified in a <b>docker-compose.yml</b> file with registry-qualified names and additional tags such as <b>$(Build.BuildId)</b></td>
    </tr>
     <tr>
-      <td><a href="http://bit.ly/2zlTspl"><b>Push services</b></a> <img src="images/icon.png"></td>
+      <td><img src="images/icon.png"> <a href="http://bit.ly/2zlTspl"><b>Push services</b></a></td>
       <td>pushes <b>service images</b> specified in a <b>docker-compose.yml</b> file, with multiple tags, to container registry</td>
    </tr>
     <tr>
-      <td><a href="http://bit.ly/2zlTspl"><b>Lock services</b></a> <img src="images/icon.png"></td>
+      <td><img src="images/icon.png"> <a href="http://bit.ly/2zlTspl"><b>Lock services</b></a></td>
       <td>pulls image from default tag <b>latest</b> in container registry and verifies if uploaded image is up to date</td>
    </tr>
    <tr>
-      <td><a href="http://bit.ly/2iDhjpO"><b>Copy Files</b></a> <img src="images/copy-files.png"> </td>
+      <td><img src="images/copy-files.png"> <a href="http://bit.ly/2iDhjpO"><b>Copy Files</b></a> </td>
       <td>used to copy files from source to destination folder using match patterns </td>
    </tr>
    <tr>
-      <td><a href="http://bit.ly/2zGD6bn"><b>Publish Build Artifacts</b></a> <img src="images/publish-build-artifacts.png"> </td>
+      <td><img src="images/publish-build-artifacts.png"> <a href="http://bit.ly/2zGD6bn"><b>Publish Build Artifacts</b></a> </td>
       <td> used to share the build artifacts </td>
    </tr>
-   </table>
+</table>
+<br/>
 
 3. Click **Save**.
 
    <img src="images/savebd.png">
 
-4. Go to **Releases** under **Build & Release** tab, edit the release definition **Docker** and select **Tasks**.
+4. Go to **Releases** under **Build & Release** tab, **Edit** the release definition **Docker** and select **Tasks**.
 
    <img src="images/release.png">
 
@@ -194,40 +176,88 @@ Since the connections are not established during project provisioning, we will m
 
    <img src="images/release_tasks.png">
 
-5. Under **Deploy Azure App Service** task, update **Azure subscription** and **Azure Service name** with the endpoint components from the dropdown. In the **Registry or Namespace** field, enter **Azure Container Registry Login Server** as shown and click **Save**.
+5. Update the **Azure Connection Type**, **Azure Subscription**, and SQL DB Details such as **Azure SQL Server Name**, **Database Name**, **Server Admin Login** and **Password**. Click **Save**.
+
+    <img src="images/update_dbtask.png">
+
+6. Trigger a release by clicking **+ Create Release** under **+ Release**. 
+
+    <img src="images/createrelease.png">
+
+    After this step is complete, the database schema will be deployed to SQL Database.
+
+7. Right click on task **Execute Azure SQL : DacpacTask**, and select **Disable Selected Task(s)**. After this, right click on **Deploy Azure App Service** task, and select **Enable Selected Task(s)**.
+
+<img src="images/disabletasks_rd.png">
+
+</br>
+
+<img src="images/enabletasks_rd.png">
+
+8. Under **Deploy Azure App Service** task, update **Azure subscription** and **Azure Service name** with the endpoint components from the dropdown. In the **Registry or Namespace** field, enter **Azure Container Registry Login Server** from Azure portal. Let the image name be **myhealth.web**. Click **Save**.
 
    <img src="images/updatedrd.png">
 
-**Deploy Azure App Service** will pull the latest image from repository specified, and deploys the image to App Service. 
+**Deploy Azure App Service** will pull the appropriate image corresponding to the BuildID from repository specified, and deploys the image to Linux App Service. 
 
-## Exercise 3: Code update
+## Exercise 3: Update Connection String
 
-We will update the code to trigger CI-CD. **Docker Daemon** installed in **Hosted VSTS agent** is used to build and deploy custom images to containers. 
+1. Click on **Code** tab, and navigate to **healthclinic.sql** file under **Docker** repository. Copy entire content of this file.
 
-1. Go to **Code** tab, and navigate to the below path to edit the file- 
+    <img src="images/copysql.png">   
+
+2. Switch to **Azure Portal**, and navigate to the **SQL Database** which you created at the beginning of this lab.Click on **Data Explorer**, and provide database **Password** to login. 
+
+    <img src="images/dblogin.png">   
+
+3. Under **Query** section, paste the content copied from **healthclinic.sql** file as shown, and click on **Run**. This will now push required data into the database, so that our sample application MyHealthClinic could interact with it.
+
+    <img src="images/pastesql.png"> 
+
+4.  Scroll down and select **Connection Strings** section. Copy the contents as shown.
+
+    <img src="images/copy_connectionstring.png"> 
+
+5. Switch to your VSTS account. Go to **Code** tab, and navigate to the below path to **edit** the file- 
+
+    >Docker/src/MyHealth.Web/appsettings.json
+
+    Go to line number **9**. Paste the connection string as shown and manually update the **User ID** and **Password**. Click on **Commit**.
+
+   <img src="images/paste_connectionstring.png">
+
+
+## Exercise 4: Code update
+
+In this excercise, we will enable the continuous integration trigger to create a new build for each commit to the master branch, and update the code to trigger CI-CD. 
+
+1. Go to **Builds** under **Build and Release** tab, **Edit** the build definition **Docker**.
+
+   <img src="images/build.png">
+
+2. Click on **Triggers** section, and check the option to **Enable continuous integration**. Click **Save**.
+
+    <img src="images/enable_CI.png">
+
+3. Go to **Code** tab, and navigate to the below path to edit the file- 
 
    >Docker/src/MyHealth.Web/Views/Home/**Index.cshtml**
 
    <img src="images/editcode.png">
 
-2. Go to line number **28**, update **JOIN US** to **JOIN US TODAY**, and click **Commit**.
+4. Go to line number **28**, update **JOIN US** to **JOIN US TODAY**, and click **Commit**.
 
     <img src="images/lineedit.png">
 
-3. Go to **Builds** tab to see the CI build in-progress.
+5. Go to **Builds** tab to see the CI build in-progress.
 
     <img src="images/in_progress_build.png">
 
-4. The build will generate and push the image to ACR. After build completes, you will see the build summary. 
+6. The build will generate and push the image to ACR. After build completes, you will see the build summary. 
     
     <img src="images/build_summary.png">
-   
-
-5. Go to **Releases** tab to see the CD in-progress.
-
-    <img src="images/release_in_progress.png">
-
-6.  The release will deploy the image to App Service and you will see the release summary with logs as shown.
+ 
+7.  Go to **Releases** tab to see the release summary with logs. The release will deploy the image to App Service based on the **BuildID**, which is tagged with the image.
 
     <img src="images/release_summary.png">
 
@@ -235,7 +265,7 @@ We will update the code to trigger CI-CD. **Docker Daemon** installed in **Hoste
 
     <img src="images/release_logs.png">
 
-7. Go to <a href="https://portal.azure.com">Azure Portal</a>, navigate to the **App Service** which was created at the beginning of this lab. Click on the **URL** to see the changes in your app.
+8. Go to <a href="https://portal.azure.com">Azure Portal</a>, navigate to the **App Service** which was created at the beginning of this lab. Click on the **URL** to see the changes in your app.
 
     <img src="images/getwebappurl.png">
 
@@ -243,7 +273,7 @@ We will update the code to trigger CI-CD. **Docker Daemon** installed in **Hoste
 
     <img src="images/finalresult.png">
 
-8. To see the generated images in Azure Portal, go to **Azure Container Registry** and navigate to **Repositories**.
+9. To see the generated images in Azure Portal, go to **Azure Container Registry** and navigate to **Repositories**.
 
     <img src="images/imagesinrepo.png">
 
