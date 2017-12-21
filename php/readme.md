@@ -69,11 +69,11 @@ We will use ARM template as **Infrastructure as a Code**  in the release definit
       </tr>
    </thead>
    <tr>
-      <td><a href="https://github.com/Microsoft/vsts-tasks/blob/master/Tasks/AzureResourceGroupDeployment/README.md"><b>Azure Resource Group Deployment</b></a></td>
+      <td><img src="images/azure_resource.png"><b>Azure Resource Group Deployment</b></td>
       <td>creates an resource group with App Service plan and App Service  </td>
    </tr>
    <tr>
-      <td><a href="https://github.com/Microsoft/vsts-tasks/blob/master/Tasks/AzureRmWebAppDeployment/README.md"><b>Azure App Service Deploy</b></a> <img src="images/webapp.png"> </td>
+      <td><img src="images/webapp.png"> <b>Azure App Service Deploy</b></td>
       <td>deploys a PHP application to App service</td>
    </tr>
    <tr>
