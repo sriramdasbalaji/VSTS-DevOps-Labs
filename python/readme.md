@@ -7,14 +7,13 @@
 
 This lab shows how to deploy **Python** application with [Django](https://www.djangoproject.com/) framework to **Azure App** service using **Visual Studio Team Services**.
 
-
 ## Pre-requisites
 
 1. **Microsoft Azure Account:**  You need a valid and active azure account for the labs
 
- 2.  You need a **Visual Studio Team Services Account** and <a href="https://docs.microsoft.com/en-us/vsts/accounts/use-personal-access-tokens-to-authenticate">Personal Access Token</a>
+ 2. You need a **Visual Studio Team Services Account** and [Personal Access Token](https://docs.microsoft.com/en-us/vsts/accounts/use-personal-access-tokens-to-authenticate)
 
- ## Setting Up the VSTS Project
+## Setting Up the VSTS Project
 
  1. Use <a href="https://vstsdemogenerator.azurewebsites.net" target="_blank">VSTS Demo Data Generator</a> to provision a Python project on your VSTS account.
 
@@ -26,10 +25,11 @@ This lab shows how to deploy **Python** application with [Django](https://www.dj
  #image
 
 
- ## Exercise 1: Endpoint Creation
- Since the connections are not established during project provisioning, we will manually create the endpoints.
+## Exercise 1: Endpoint Creation
 
- In VSTS, navigate to **Services** by clicking the gear icon, and click  **+ New Service Endpoint**. Select **Azure Resource Manager**. Specify connection name, select your subscription from the dropdown and click OK. We use this endpoint to connect VSTS with Azure.
+Since the connections are not established during project provisioning, we will manually create the endpoints.
+
+In VSTS, navigate to **Services** by clicking the gear icon, and click  **+ New Service Endpoint**. Select **Azure Resource Manager**. Specify connection name, select your subscription from the dropdown and click OK. We use this endpoint to connect VSTS with Azure.
 
    <img src ="images/service_endpoint.png">
 
@@ -85,11 +85,9 @@ We will provision the resources on **Azure** using ARM template in the **release
    <tr>
   </table>
 
-
 ## Excercise 3: Trigger CI with code change
 
 **Python** is an interpreted language, and hence compilation is not required. We will archive the files in the build and use the package in the release for deployment. Update the code to trigger CI-CD using **Hosted build agent**.
-
 
 1. Go to **Code** tab and navigate to the below path to edit the file.
 
@@ -108,7 +106,6 @@ We will provision the resources on **Azure** using ARM template in the **release
    <br/>
 
    <img src="images/in_progress_build.png">
-
 
    Let's explore the build definition while the build is in-progress. The tasks used are listed as shown.
 
@@ -139,7 +136,6 @@ We will provision the resources on **Azure** using ARM template in the **release
 
    <img src ="images/build_result.png">
 
-   
 ## Continuous Deployment
 
 We will use the artifact generated from the build to deploy to App Service on azure. 
