@@ -133,7 +133,7 @@ The build will generate artifact which is used to deploy. After build completes,
 
 ## Continuous Deployment
 
-# TBA
+We will use the artifact generated from the build to deploy to App Service on azure.
 
 1. Once the build is complete, navigate to **Releases** under **Build and Release** and notice that a release is in-progress.
 
