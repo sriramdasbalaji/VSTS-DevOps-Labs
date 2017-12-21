@@ -164,7 +164,7 @@ We will use the artifact generated from the build to deploy to App Service on az
 
 - Go to **App Service**, click on **Browse**. You will see the application deployed with the changes as shown.
 
-  <img src ="images/deploy_azure.png">
+  <img src ="images/pythonapp.png">
 
 ## Summary
   
