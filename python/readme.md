@@ -5,7 +5,7 @@
 
 **Python** is a server-side scripting language, and a powerful tool for making dynamic and interactive Web pages.
 
-This lab shows how to deploy **Python** application to **Azure App** service using **Visual Studio Team Services**.
+This lab shows how to deploy **Python** application with [Django](https://www.djangoproject.com/) framework to **Azure App** service using **Visual Studio Team Services**.
 
 
 ## Pre-requisites
@@ -40,18 +40,19 @@ You will be prompted to authorize this connection with Azure credentials.
 
 ## Excercise 2: Configure Release
 
-We will use ARM template as **Infrastructure as a Code**  in the release definition to provision the required resources (App Service) on Azure.
+We will provision the resources on **Azure** using ARM template in the **release definition**.
+
 
 1. Go to **Releases** under **Build and Release** tab, Select release definition **Python** and click **Edit**
 
    <img src ="images/release_edit.png">
 
 
- 2. Go to **Tasks** and select **Azure Deployment** environment
+ 2. Go to **Tasks** and select **Azure Deployment** environment.
 
     <img src ="images/environment.png">
 
- 3. Under **Azure Resource Group Deployment** task, update **Azure subscription** and **Location**
+ 3. Under **Azure Resource Group Deployment** task, update **Azure subscription** and **Location**.
 
     <img src ="images/azure_sub.png">
 
@@ -70,16 +71,16 @@ We will use ARM template as **Infrastructure as a Code**  in the release definit
       </tr>
    </thead>
    <tr>
-      <td><a href="https://github.com/Microsoft/vsts-tasks/blob/master/Tasks/AzureResourceGroupDeployment/README.md"><b>Azure Resource Group Deployment</b></a> <img src="images/azure_resource.png"></td>
-      <td>creates an resource group with App Service  </td>
+      <td><img src="images/azure_resource.png"> <b>Azure Resource Group Deployment</b></td>
+      <td>This task will create a resource group with the name <b>Python</b>, creates an <b>App service</b> and <b>App Service Plan</b> on azure which will be used to deploy the application</td>
    </tr>
     <tr>
-      <td><a href="https://github.com/Microsoft/vsts-tasks/blob/master/Tasks/AzureAppServiceManage/README.md"><b>Install Python Extension </b></a> <img src="images/azure_resource.png"></td>
-      <td>install python extension on App Service </td>
+      <td><img src="images/azure_app_service.png"> <b>Install Python Extension </b></td>
+      <td>the task will install python extensions on the app service which was created above.</td>
    </tr>
    <tr>
-      <td><a href="https://github.com/Microsoft/vsts-tasks/blob/master/Tasks/AzureRmWebAppDeployment/README.md"><b>Azure App Service Deploy</b></a> <img src="images/azure_deploy.png"> </td>
-      <td>deploys a Python application to App service</td>
+      <td><img src="images/azure_deploy.png"> <b>Azure App Service Deploy</b></td>
+      <td>The task is used to update Azure App Service to deploy Web Apps to azure.</td>
    </tr>
    <tr>
   </table>
@@ -87,7 +88,7 @@ We will use ARM template as **Infrastructure as a Code**  in the release definit
 
   ## Excercise 3: Trigger CI with code change
 
-  **Python** is an interpreted language, so we dont have to compile the code, instead let's archive the files to be used in the release task for deployment.  We will update the code to trigger CI-CD using **Hosted build agent**
+  **Python** is an interpreted language, and hence compilation is not required. We will archive the files in the build and use the package in the release for deployment. Update the code to trigger CI-CD using **Hosted build agent**.
 
 
 1. Go to **Code** tab and navigate to the below path to edit the file.
@@ -96,11 +97,11 @@ We will use ARM template as **Infrastructure as a Code**  in the release definit
 
    <img src ="images/code_tab.png">
 
-2. Go to line number **32**, modify **Continuous Delivery** to **Continuous Delivery for python** and commit the code.
+2. Go to line number **32**, modify **Continuous Delivery** to **Continuous Delivery for Python** and commit the code.
 
    <img src ="images/commit_code.png">
 
-3. Go to **Builds** tab under **Build and Release** tab to see the particular CI build in-progress.
+3. Go to **Builds** tab under **Build and Release** tab to see the build in-progress.
 
    <img src="images/build.png">
 
@@ -109,45 +110,45 @@ We will use ARM template as **Infrastructure as a Code**  in the release definit
    <img src="images/in_progress_build.png">
 
 
-   Let's explore the build definition. The tasks used in the build definition are listed as shown.
+   - Let's explore the build definition while the build is in-progress. The tasks used are listed as shown.
 
     <table width="100%">
-   <thead>
+    <thead>
       <tr>
          <th width="60%"><b>Tasks</b></th>
          <th><b>Usage</b></th>
       </tr>
-   </thead>
-   <tr>
-      <td><a href="https://docs.microsoft.com/en-us/vsts/build-release/tasks/utility/archive-files"><b>Archive files</b></a> <img src="images/archive_files.png"></td>
-      <td>creates zip file for deployment</td>
-   </tr>
-   <tr>
-      <td><a href="https://docs.microsoft.com/en-gb/vsts/build-release/tasks/utility/copy-files"><b>Copy Files</b></a> <img src="images/copy_files.png"></td>
-      <td>copies ARM template which is used to provision resources on azure </td>
-   </tr>
-   <tr>
-      <td><a href="https://docs.microsoft.com/en-gb/vsts/build-release/tasks/utility/publish-build-artifacts"><b>Publish Build Artifacts</b></a> <img src="images/publish_artifact.png"> </td>
-      <td> publishes the build artifacts </td>
-   </tr>
-   </table>
+    </thead>
+    <tr>
+        <td><img src="images/archive_files.png"> <b>Archive files</b></td>
+        <td>creates zip file for deployment</td>
+    </tr>
+    <tr>
+        <td><img src="images/copy_files.png"> <b>Copy Files</b></td>
+        <td>copies ARM template which is used to provision resources on azure </td>
+    </tr>
+    <tr>
+        <td><img src="images/publish_artifact.png"> <b>Publish Build Artifacts</b></td>
+        <td> publishes the build artifacts </td>
+    </tr>
+    </table>
 
    <br/>
 
-   The build will generate artifact which is used to deploy. After build completes, you will see the build summary.
+4. The build generates artifact which is used to deploy. After build completes, you will see the build summary.
 
    <img src ="images/build_result.png">
 
    
 ## Continuous Deployment
 
-# TBA
+We will use the artifact generated from the build to deploy to App Service on azure. 
 
-- Once the build is complete, navigate to **Releases** under **Build and Release** and notice that a release is in-progress.
+- Once the build is complete, navigate to **Releases** under **Build and Release** tab. You will see a release in-progress.
 
   <img src ="images/release_in_progress.png">
 
-- Once the release is complete, you  will see the summary.
+- Once the release is complete, you  will see the release summary.
 
   <img src ="images/release_succesful.png">
 
@@ -157,17 +158,17 @@ We will use ARM template as **Infrastructure as a Code**  in the release definit
 
   <img src ="images/release_logs.png">
 
-- Login to [Azure Portal](https://portal.azure.com) and go to  **Resource Group**. You will see a resource group with the name **Python**. Which contains **App Service, App Services Plan** as shown.
+- Login to [Azure Portal](https://portal.azure.com) and go to  the **Resource Group** with the name **Python**. You will see the resources **App Service** and **App Service Plan**.
 
   <img src ="images/azure_portal.png">
 
-- Go to **App Service** click on **Browse** you will see the application deployed with the changes as shown.
+- Go to **App Service**, click on **Browse**. You will see the application deployed with the changes as shown.
 
   <img src ="images/deploy_azure.png">
 
 ## Summary
   
-In  this lab, we will setup a Continuous Build and Deployment to Azure App Service for a Python project using Visual Studio Team Services 
+In this lab, we will setup a Continuous Build and Deployment to Azure App Service for a Python project using Visual Studio Team Services.
 
 ## Feedback 
 
