@@ -46,7 +46,7 @@ Since the connections are not established during project provisioning, we will m
 
 1. In VSTS, navigate to **Services** by clicking on the gear icon, and click on **+ New Service Endpoint**. Select **Azure Resource Manager**. Specify **Connection name**, select your **Subscription** from the dropdown and click **OK**. We use this endpoint to connect **VSTS** and **Azure**.
 
-   <img src="images/service_endpoint.png"> 
+   <img src="images/endpoint.png"> 
 
 ## Exercise 2: Creating Deployment Group
 
