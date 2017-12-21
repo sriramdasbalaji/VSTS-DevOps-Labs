@@ -86,7 +86,7 @@ We will provision the resources on **Azure** using ARM template in the **release
   </table>
 
 
-  ## Excercise 3: Trigger CI with code change
+## Excercise 3: Trigger CI with code change
 
   **Python** is an interpreted language, and hence compilation is not required. We will archive the files in the build and use the package in the release for deployment. Update the code to trigger CI-CD using **Hosted build agent**.
 
@@ -110,9 +110,9 @@ We will provision the resources on **Azure** using ARM template in the **release
    <img src="images/in_progress_build.png">
 
 
-   - Let's explore the build definition while the build is in-progress. The tasks used are listed as shown.
+   Let's explore the build definition while the build is in-progress. The tasks used are listed as shown.
 
-    <table width="100%">
+   <table width="100%">
     <thead>
       <tr>
          <th width="60%"><b>Tasks</b></th>
