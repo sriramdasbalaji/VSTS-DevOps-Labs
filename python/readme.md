@@ -2,7 +2,6 @@
 
 ## Overview
 
-
 **Python** is a server-side scripting language, and a powerful tool for making dynamic and interactive Web pages.
 
 This lab shows how to deploy **Python** application with [Django](https://www.djangoproject.com/) framework to **Azure App** service using **Visual Studio Team Services**.
@@ -22,7 +21,7 @@ This lab shows how to deploy **Python** application with [Django](https://www.dj
 
  2. Once the project is provisioned, click the URL to navigate to the project.
 
- #image
+#image
 
 
 ## Exercise 1: Endpoint Creation
@@ -42,25 +41,24 @@ You will be prompted to authorize this connection with Azure credentials.
 
 We will provision the resources on **Azure** using ARM template in the **release definition**.
 
-
 1. Go to **Releases** under **Build and Release** tab, Select release definition **Python** and click **Edit**
 
    <img src ="images/release_edit.png">
 
+2. Go to **Tasks** and select **Azure Deployment** environment.
 
- 2. Go to **Tasks** and select **Azure Deployment** environment.
+   <img src ="images/environment.png">
 
-    <img src ="images/environment.png">
+3. Under **Azure Resource Group Deployment** task, update **Azure subscription** and **Location**.
 
- 3. Under **Azure Resource Group Deployment** task, update **Azure subscription** and **Location**.
+   <img src ="images/azure_sub.png">
 
-    <img src ="images/azure_sub.png">
+4. Under **Install Python Extension** task, update **Azure subscription**. 
 
- 4. Under **Install Python Extension** task, update **Azure subscription**. 
-
-    <img src ="images/python_sub.png">
+   <img src ="images/python_sub.png">
 
 5. Under **Azure App Service Deploy** task, update **Azure subscription** and click **Save**.
+
    <img src ="images/deploy_app.png">
 
    <table width="75%">
