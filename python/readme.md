@@ -63,7 +63,7 @@ We will provision the resources on **Azure** using ARM template in the **release
 5. Under **Azure App Service Deploy** task, update **Azure subscription** and click **Save**.
    <img src ="images/deploy_app.png">
 
- <table width="100%">
+   <table width="75%">
    <thead>
       <tr>
          <th width="67%"><b>Tasks</b></th>
