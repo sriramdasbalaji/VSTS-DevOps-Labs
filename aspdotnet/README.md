@@ -52,8 +52,6 @@ Now that connections are established, we will manually map the endpoints to rele
 
 3. Under **Azure Deployment** task, update **Azure subscription** with the endpoint components from the dropdown and select the desired **location**.
 
-   >Note: South India region is not available for the deployment
-
    <img src="images/task1.png">
 
 4. Under **Azure App Service Deploy** task, update **Azure subscription** with the endpoint components from the dropdown. Under the **Slot** section enter the slot name as **Dev**.
