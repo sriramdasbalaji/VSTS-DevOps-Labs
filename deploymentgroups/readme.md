@@ -1,4 +1,4 @@
-# Using Deployment Groups in VSTS
+# Multi-machine deployments and rolling releases using VSTS
 
 ## Overview
 
