@@ -1,4 +1,4 @@
-# Multi-machine deployments and rolling releases using VSTS
+# Multi-machine deployments using VSTS
 
 ## Overview
 
