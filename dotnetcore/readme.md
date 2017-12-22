@@ -42,6 +42,8 @@ In VSTS, navigate to **Services** by clicking the gear icon <img src="images/gea
 
 Now that connections are established, we will manually map the endpoints to release definition.
 
+> **Note** : Its important to follow the <a href="https://github.com/Microsoft/VSTS-DevOps-Labs/tree/endpointworkaround/endpointworkaround">Service Endpoint Workaround</a> document to have a successful deployment on Azure.
+
 1. Go to **Releases** under **Build & Release** tab, edit the release definition **MyHealthClinicE2E**.
 
    <img src="images/create_release.png">
