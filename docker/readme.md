@@ -2,13 +2,13 @@
 
 ## Overview
 
-This lab shows how to build custom images of <a href="http://dockr.ly/2zLiDPy">**Dockerized ASP.NETCORE**</a> application, push those images to <a href="http://dockr.ly/2AJLgge"> **Private Repository** </a> (<a href="http://bit.ly/2jssVQy"> Azure Container Registry </a>), and pull these images to deploy to containers in **Azure Web App** (Linux) using Visual Studio Team Services.
+This lab shows how to build custom images of <a href="https://docs.docker.com/engine/examples/dotnetcore/">**Dockerized ASP.NETCORE**</a> application, push those images to <a href="https://docs.docker.com/registry/"> **Private Repository** </a> (<a href="https://azure.microsoft.com/en-in/services/container-registry/"> Azure Container Registry </a>), and pull these images to deploy to containers in **Azure Web App** (Linux) using Visual Studio Team Services.
 
-Web App for containers lets you bring your own <a href="http://dockr.ly/2imRbR4">Docker</a> formatted container images, easily deploy and run them at scale with Azure. Combination of Team Services and Azure integration with Docker will enable you to:
+Web App for containers lets you bring your own <a href="https://www.docker.com/what-docker">Docker</a> formatted container images, easily deploy and run them at scale with Azure. Combination of Team Services and Azure integration with Docker will enable you to:
 
-1.  <a href="http://dockr.ly/2z2Qsi2"> Build </a> your own custom images using <a href="http://bit.ly/2jqGujv"> VSTS Hosted Linux agent </a>
-2. <a href="http://dockr.ly/2hAZco0"> Push </a> and store images in your private repository
-3. Deploy and  <a href="http://dockr.ly/2AJPaEW"> run </a> images inside containers
+1.  <a href="https://docs.docker.com/engine/reference/commandline/build/"> Build </a> your own custom images using <a href="https://docs.microsoft.com/en-us/vsts/build-release/concepts/agents/hosted"> VSTS Hosted Linux agent </a>
+2. <a href="https://docs.docker.com/engine/reference/commandline/push/"> Push </a> and store images in your private repository
+3. Deploy and  <a href="https://docs.docker.com/engine/reference/commandline/run/"> run </a> images inside containers
 
 Below screenshot helps you understand the VSTS DevOps workflow with Docker: 
 
@@ -19,11 +19,11 @@ Below screenshot helps you understand the VSTS DevOps workflow with Docker:
 
 1.  **Microsoft Azure Account**: You need a valid and active azure account for the labs.
 
-2. You need a **Visual Studio Team Services Account** and <a href="http://bit.ly/2gBL4r4">Personal Access Token</a>.
+2. You need a **Visual Studio Team Services Account** and <a href="https://docs.microsoft.com/en-us/vsts/accounts/use-personal-access-tokens-to-authenticate">Personal Access Token</a>.
 
     <img src="images/vstsdemogen.png">
 
-3. You need to install **Docker Integration** extension from <a href="http://bit.ly/2hurgK3">Visual Studio Marketplace</a>.
+3. You need to install **Docker Integration** extension from <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscs-rm.docker">Visual Studio Marketplace</a>.
 
 ## Setting up the Environment
 
@@ -55,27 +55,27 @@ We will create an **Azure Container Registry** to store the images generated dur
       </tr>
     </thead>
     <tr>
-      <td><img src="images/container_registry.png" width="30px"><a href="http://bit.ly/2mwVYUz"><b>Azure Container Registry</b></a></td>
+      <td><img src="images/container_registry.png" width="30px"><a href="https://docs.microsoft.com/en-us/azure/container-registry/container-registry-intro"><b>Azure Container Registry</b></a></td>
       <td>Used to store images privately</td>
     </tr>
     <tr>
-      <td><img src="images/storage.png" width="30px"> <a href="http://bit.ly/2iYiCQx"><b>Storage Account</b></a> </td>
+      <td><img src="images/storage.png" width="30px"> <a href="https://docs.microsoft.com/en-us/azure/storage/common/storage-introduction"><b>Storage Account</b></a> </td>
       <td>Container Registry resides in this storage account</td>
     </tr>
     <tr>
-      <td><img src="images/app_service.png" width="30px"> <a href="http://bit.ly/2ALhdES"><b>App Service</b></a>  </td>
+      <td><img src="images/app_service.png" width="30px"> <a href="https://docs.microsoft.com/en-us/azure/app-service/containers/app-service-linux-intro"><b>App Service</b></a>  </td>
       <td>Docker images are deployed to containers in this App Service</td>
     </tr>
     <tr>
-      <td><img src="images/app_service_plan.png" width="30px"> <a href="http://bit.ly/2AINQ5x"><b>App Service Plan</b></a> </td>
+      <td><img src="images/app_service_plan.png" width="30px"> <a href="https://docs.microsoft.com/en-us/azure/app-service/azure-web-sites-web-hosting-plans-in-depth-overview"><b>App Service Plan</b></a> </td>
       <td>Resource where App Service resides</td>
     </tr>
     <tr>
-      <td><img src="images/sqlserver.png" width="30px"> <a href="http://bit.ly/2AINQ5x"><b>SQL Server</b></a> </td>
+      <td><img src="images/sqlserver.png" width="30px"> <a href="https://docs.microsoft.com/en-us/azure/sql-database/"><b>SQL Server</b></a> </td>
       <td>SQL Server to host database</td>
     </tr>
     <tr>
-      <td><img src="images/sqldb.png" width="30px"> <a href="http://bit.ly/2AINQ5x"><b>SQL database</b></a> </td>
+      <td><img src="images/sqldb.png" width="30px"> <a href="https://docs.microsoft.com/en-us/azure/sql-database/"><b>SQL database</b></a> </td>
       <td>SQL database to host MyHealthClinic data</td>
     </tr>
     </table>
@@ -84,7 +84,7 @@ We will create an **Azure Container Registry** to store the images generated dur
 
     <img src="images/postazuredeployment.png">
     <img src="images/dbinazure.png">
-
+ 
 
 4. Click on your container registry. Note down the **Login server** name. We need these details later in Excercise 2.
 
@@ -138,27 +138,27 @@ Since the connections are not established during project provisioning, we will m
       </tr>
    </thead>
    <tr>
-      <td><img src="images/icon.png"> <a href="http://bit.ly/2zlTspl"><b>Run services</b></a> </td>
+      <td><img src="images/icon.png"><b>Run services</b></td>
       <td>prepares suitable environment by restoring required packages</td>
    </tr>
    <tr>
-      <td><img src="images/icon.png"> <a href="http://bit.ly/2zlTspl"><b>Build services</b></a></td>
-      <td>builds <b>service images</b> specified in a <b>docker-compose.yml</b> file with registry-qualified names and additional tags such as <b>$(Build.BuildId)</b></td>
+      <td><img src="images/icon.png"><b>Build services</b></td>
+      <td>builds images specified in a <b>docker-compose.yml</b> file with registry-qualified names and additional tags such as <b>$(Build.BuildId)</b></td>
    </tr>
     <tr>
-      <td><img src="images/icon.png"> <a href="http://bit.ly/2zlTspl"><b>Push services</b></a></td>
-      <td>pushes <b>service images</b> specified in a <b>docker-compose.yml</b> file, with multiple tags, to container registry</td>
+      <td><img src="images/icon.png"><b>Push services</b></td>
+      <td>pushes images specified in a <b>docker-compose.yml</b> file, with multiple tags, to container registry</td>
    </tr>
     <tr>
-      <td><img src="images/icon.png"> <a href="http://bit.ly/2zlTspl"><b>Lock services</b></a></td>
+      <td><img src="images/icon.png"><b>Lock services</b></td>
       <td>pulls image from default tag <b>latest</b> in container registry and verifies if uploaded image is up to date</td>
    </tr>
    <tr>
-      <td><img src="images/copy-files.png"> <a href="http://bit.ly/2iDhjpO"><b>Copy Files</b></a> </td>
+      <td><img src="images/copy-files.png"><b>Copy Files</b></td>
       <td>used to copy files from source to destination folder using match patterns </td>
    </tr>
    <tr>
-      <td><img src="images/publish-build-artifacts.png"> <a href="http://bit.ly/2zGD6bn"><b>Publish Build Artifacts</b></a> </td>
+      <td><img src="images/publish-build-artifacts.png"><b>Publish Build Artifacts</b> </td>
       <td> used to share the build artifacts </td>
    </tr>
 </table>
