@@ -180,7 +180,7 @@ Since the connections are not established during project provisioning, we will m
 
     <img src="images/update_dbtask.png">
 
-6. Click **Save**. Click on **Builds** tab and then click on build definition **Docker**. 
+6. Click on **Builds** tab and then click on build definition **Docker**. 
 
     <img src="images/selectbd.png">
 
@@ -198,7 +198,7 @@ Since the connections are not established during project provisioning, we will m
 
 <img src="images/enabletasks_rd.png">
 
-8. Under **Deploy Azure App Service** task, update **Azure subscription** and **Azure Service name** with the endpoint components from the dropdown. In the **Registry or Namespace** field, enter **Azure Container Registry Login Server** from Azure portal. Let the image name be **myhealth.web**. Click **Save**.
+9. Under **Deploy Azure App Service** task, update **Azure subscription** and **Azure Service name** with the endpoint components from the dropdown. In the **Registry or Namespace** field, enter **Azure Container Registry Login Server** from Azure portal. Let the image name be **myhealth.web**. Click **Save**.
 
    <img src="images/updatedrd.png">
 
@@ -239,29 +239,33 @@ In this excercise, we will enable the continuous integration trigger to create a
 
    <img src="images/build.png">
 
-2. Under **Tasks**, right click on Click on **Triggers** section, and check the option to **Enable continuous integration**. Click **Save**.
+2. Right click on each task **Run Services**, **Build Services**, **Push Services** and **Lock Services** one by one. Click on **Enable Selected Task(s)** to enable all of these tasks.
+
+    <img src="images/enabletasks_bd.png">
+
+3. Under **Tasks**, click on **Triggers** section. Check the option to **Enable continuous integration**. Click **Save**.
 
     <img src="images/enable_CI.png">
 
-3. Go to **Code** tab, and navigate to the below path to edit the file- 
+4. Go to **Code** tab, and navigate to the below path to edit the file- 
 
    >Docker/src/MyHealth.Web/Views/Home/**Index.cshtml**
 
    <img src="images/editcode.png">
 
-4. Go to line number **28**, update **JOIN US** to **JOIN US TODAY**, and click **Commit**.
+5. Go to line number **28**, update **JOIN US** to **JOIN US TODAY**, and click **Commit**.
 
     <img src="images/lineedit.png">
 
-5. Go to **Builds** tab to see the CI build in-progress.
+6. Go to **Builds** tab to see the CI build in-progress.
 
     <img src="images/in_progress_build.png">
 
-6. The build will generate and push the image to ACR. After build completes, you will see the build summary. 
+7. The build will generate and push the image to ACR. After build completes, you will see the build summary. 
     
     <img src="images/build_summary.png">
  
-7.  Go to **Releases** tab to see the release summary with logs. The release will deploy the image to App Service based on the **BuildID**, which is tagged with the image.
+8.  Go to **Releases** tab to see the release summary with logs. The release will deploy the image to App Service based on the **BuildID**, which is tagged with the image.
 
     <img src="images/release_summary.png">
 
@@ -269,7 +273,7 @@ In this excercise, we will enable the continuous integration trigger to create a
 
     <img src="images/release_logs.png">
 
-8. Go to <a href="https://portal.azure.com">Azure Portal</a>, navigate to the **App Service** which was created at the beginning of this lab. Click on the **URL** to see the changes in your app.
+9. Go to <a href="https://portal.azure.com">Azure Portal</a>, navigate to the **App Service** which was created at the beginning of this lab. Click on the **URL** to see the changes in your app.
 
     <img src="images/getwebappurl.png">
 
@@ -277,14 +281,14 @@ In this excercise, we will enable the continuous integration trigger to create a
 
     <img src="images/finalresult.png">
 
-9. To see the generated images in Azure Portal, go to **Azure Container Registry** and navigate to **Repositories**.
+10. To see the generated images in Azure Portal, go to **Azure Container Registry** and navigate to **Repositories**.
 
     <img src="images/imagesinrepo.png">
 
 
 ## Summary
 
-With **Visual Studio Team Services** and **Azure**, we can build DevOps for dockerized applications.
+With **Visual Studio Team Services** and **Azure**, we can build DevOps for dockerized applications by leveraging docker capabilities enabled on VSTS Hosted Agents.
 
 ## Feedback
 
