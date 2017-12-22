@@ -41,6 +41,8 @@ You will be prompted to authorize this connection with Azure credentials.
 ## Excercise 2: Configure Release
 
 We will use ARM template as **Infrastructure as a Code**  in the release definition to provision the required resources (App Service) on Azure.
+
+> **Note** : Its important to follow the <a href="https://github.com/Microsoft/VSTS-DevOps-Labs/tree/endpointworkaround/endpointworkaround">Service Endpoint Workaround</a> document to have a successful deployment on Azure.
  
 1. Go to **Releases** under **Build and Release** tab, Select release definition **PHP** and click **Edit**
 
