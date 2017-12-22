@@ -31,7 +31,7 @@ We will use ARM template to provision below resources on Azure:
 
 1. Click on **Deploy to Azure** to provision Octopus Server.
 
-   <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fsatishmkini%2Fnewocto%2Fmaster%2Ftemplate.json"><img src="http://azuredeploy.net/deploybutton.png"></a> 
+   <a href="https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoft%2FVSTS-DevOps-Labs%2Foctopus%2Foctopus%2Farm%2520template%2Ftemplate.json"><img src="http://azuredeploy.net/deploybutton.png"></a> 
 
    Provide the following details as shown:
 
