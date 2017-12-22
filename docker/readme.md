@@ -123,7 +123,7 @@ Since the connections are not established during project provisioning, we will m
 
    <img src="images/build.png">
 
-2. Click on **Process** section, select appropriate contents from dropdown under **Azure subscription** and **Azure Container Registry**.
+2. Click on **Process** section, select appropriate contents from dropdown under **Azure subscription** and **Azure Container Registry**. 
 
    <img src="images/updateprocessbd.png">
 
@@ -180,13 +180,17 @@ Since the connections are not established during project provisioning, we will m
 
     <img src="images/update_dbtask.png">
 
-6. Trigger a release by clicking **+ Create Release** under **+ Release**. 
+6. Click **Save**. Click on **Builds** tab and then click on build definition **Docker**. 
 
-    <img src="images/createrelease.png">
+    <img src="images/selectbd.png">
+
+7. Queue a build by clicking **Queue new build**. Click on **Queue** in the pop-up window.
+
+    <img src="images/queuebuild.png">
 
     After this step is complete, the database schema will be deployed to SQL Database.
 
-7. Right click on task **Execute Azure SQL : DacpacTask**, and select **Disable Selected Task(s)**. After this, right click on **Deploy Azure App Service** task, and select **Enable Selected Task(s)**.
+8. Navigate to release definition **Docker** under **Releases** tab, and click on **Edit**. Right click on task **Execute Azure SQL : DacpacTask**, and select **Disable Selected Task(s)**. After this, right click on **Deploy Azure App Service** task, and select **Enable Selected Task(s)**.
 
 <img src="images/disabletasks_rd.png">
 
@@ -235,7 +239,7 @@ In this excercise, we will enable the continuous integration trigger to create a
 
    <img src="images/build.png">
 
-2. Click on **Triggers** section, and check the option to **Enable continuous integration**. Click **Save**.
+2. Under **Tasks**, right click on Click on **Triggers** section, and check the option to **Enable continuous integration**. Click **Save**.
 
     <img src="images/enable_CI.png">
 
