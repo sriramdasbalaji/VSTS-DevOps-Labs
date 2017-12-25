@@ -142,7 +142,7 @@ In this exercise we will create an **API** key in Octopus. This key is required 
 
 2. Give the purpose as **VSTS Integration** and click **Generate New**.
 
-   <img src="images/Generate New.png">
+   <img src="images/Generate new.png">
 
 3. Note down the API Key.
 
@@ -160,9 +160,9 @@ In this exercise we will create an **API** key in Octopus. This key is required 
 
    <img src="images/endpointName.png">
 
-7. You will see service endpint created successfully.
+7. You will see service endpoint created successfully.
 
-   #Image To be added
+   <img src="images/endpointSuccess.png">
 
 ## Exercise 3: Push the Package to Octopus Server
 
@@ -180,11 +180,11 @@ In this exercise, we will build ASP.NET application and push the generated web p
 
    <img src="images/QBuild.png">
 
-4. Once the build is complete, you will see the build summary.
+4. Once the build is completed, you will see the build summary.
 
    <img src="images/Build Complete.png">
 
-5. Go to Octopus Server. You will see the green check mark showing **Application Package** uploaded successfully. Click **Upload package** to see the package.
+5. Go to Octopus Server. You will see the green check mark showing **Application PACKAGING** uploaded successfully. Click **Upload package** to see the package.
 
    <img src="images/Pkg Uploaded.png">
 
@@ -205,7 +205,7 @@ In this exercise, we will create project in Octopus which will deploy the packag
 
    <img src="images/Add Project.png">
 
-2. Give the name for project and click on **SAVE**.
+2. Give the project name **Parts Unlimited** and click on **SAVE**.
 
    <img src="images/PUProject.png">
 
@@ -213,7 +213,7 @@ In this exercise, we will create project in Octopus which will deploy the packag
 
    <img src="images/Define Process.png">
 
-4. Add deployment step.
+4. Click on **ADD STEP**.
 
    <img src="images/Add Step.png">
 
