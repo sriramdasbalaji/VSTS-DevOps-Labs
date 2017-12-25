@@ -219,7 +219,7 @@ In this exercise, we will create project in Octopus which will deploy the packag
 
 5. **Search** for **Azure Web App** template and **Add**.
 
-   <img src="images/O20.png">
+   <img src="images/AddWebAppStep.png">
 
 6. Provide **Step Name** and select **Package ID**.
 
@@ -231,5 +231,18 @@ In this exercise, we will create project in Octopus which will deploy the packag
 
 7. Save and click on **Create Release**.
 
-   <img src="images/Release.png">
+   <img src="images/Create New Release.png"> 
+
+8. Click **Save** to save the release
+
+   <img src="images/SaveRelease.png"> 
+
+9. To Deploy to dev environment click **DEPLOY TO DEV** and then click **Deploy**
+
+   <img src="images/Deploy2Dev.png">
+
+   <br/>
+   <img src="images/Deploy.png">
+   <br/>
+   <img src="images/DeploymentSuccessful.png">
 
