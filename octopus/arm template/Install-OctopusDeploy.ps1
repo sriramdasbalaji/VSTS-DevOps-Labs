@@ -155,7 +155,7 @@ function Configure-OctopusDeploy
   while(!(Test-Path $exe) -and $count -lt 5)
   {
     Write-Log "$exe - not available yet ... waiting 10s ..."
-    Start-Sleep -s 50
+    Start-Sleep -s 10
     $count = $count + 1
   }
     

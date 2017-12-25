@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "octopusDnsName": {
-            "value": "octopuszzzz"
+            "value": "domaninini"
         },
         "vmAdminUsername": {
             "value": "octoadmin"
@@ -21,13 +21,13 @@
             "value": null
         },
         "licenseFullName": {
-            "value": "Satish"
+            "value": "sa"
         },
         "licenseOrganisationName": {
-            "value": "Canarys"
+            "value": "sa"
         },
         "licenseEmailAddress": {
-            "value": "satis@123.com"
+            "value": "sa@ti.com"
         },
         "octopusAdminUsername": {
             "value": "admin"

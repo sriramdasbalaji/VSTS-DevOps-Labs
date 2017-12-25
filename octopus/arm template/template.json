@@ -2,26 +2,13 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        
         "octopusDnsName": {
             "type": "string",
             "metadata": {
                 "description": "Unique DNS Name used to address Octopus Deploy."
             }
         },
-        "octopusAdminUsername": {
-            "type": "string",
-            "defaultValue": "admin",
-            "metadata": {
-                "description": "Admin username for the Octopus Deploy application."
-            }
-        },
-        "octopusAdminPassword": {
-            "type": "securestring",
-            "metadata": {
-                "description": "Admin password for the Octopus Deploy application."
-            }
-        },
+       
         "vmSize": {
             "type": "string",
             "defaultValue": "Standard_D2",
@@ -29,19 +16,7 @@
                 "description": "VM Size for Octopus Deploy Virtual Machine."
             }
         },
-        "vmAdminUsername": {
-            "type": "string",
-            "defaultValue": "octoadmin",
-            "metadata": {
-                "description": "Admin username for the Octopus Deploy Virtual Machine."
-            }
-        },
-        "vmAdminPassword": {
-            "type": "securestring",
-            "metadata": {
-                "description": "Admin password for the Octopus Deploy Virtual Machine."
-            }
-        },
+
         "sqlAdminUsername": {
             "type": "string",
             "defaultValue": "sqladmin",
@@ -54,38 +29,8 @@
             "metadata": {
                 "description": "Admin password for the Octopus Deploy SQL DB Server."
             }
-        },
-        "sqlDbServiceTier": {
-            "type": "string",
-            "defaultValue": "S1",
-            "allowedValues": [
-                "S0",
-                "S1",
-                "S2",
-                "S3"
-            ],
-            "metadata": {
-                "description": "Database Service Tier for the Octopus Deploy DB."
-            }
-        },
-        "licenseFullName": {
-            "type": "string",
-            "metadata": {
-                "description": "Octopus Deploy Trial license - provide Full Name."
-            }
-        },
-        "licenseOrganisationName": {
-            "type": "string",
-            "metadata": {
-                "description": "Octopus Deploy Trial license - provide Organisation Name."
-            }
-        },
-        "licenseEmailAddress": {
-            "type": "string",
-            "metadata": {
-                "description": "Octopus Deploy Trial license - provide Email Addres."
-            }
         }
+        
     },
     "variables": {
         "namespace": "octopus",
@@ -100,8 +45,8 @@
             "name": "[concat(variables('namespace'), '-vm')]",
             "credentials": {
                 "admin": {
-                    "username": "[parameters('vmAdminUsername')]",
-                    "password": "[parameters('vmAdminPassword')]"
+                    "username": "vmadmin",
+                    "password": "P2ssw0rd@123"
                 }
             },
             "size": "[parameters('vmSize')]",
@@ -134,7 +79,7 @@
                 "installer": {
                     "name": "[concat(variables('namespace'), '-vm/octopusDeployInstaller')]",
                     "fileUris": [
-                        "https://github.com/Microsoft/VSTS-DevOps-Labs/blob/octopus/octopus/arm%20template/Install-OctopusDeploy.ps1"
+                        "https://raw.githubusercontent.com/satishmkini/newoctopus/master/Install-OctopusDeploy.ps1"
                     ],
                     "commandToExecute": "[concat('powershell.exe -File Install-OctopusDeploy.ps1 ', base64(variables('azureSql').database.connectionString), ' ', base64(variables('octopus').license.fullName), ' ', base64(variables('octopus').license.organisationName), ' ', base64(variables('octopus').license.emailAddress), ' ', base64(variables('octopus').credentials.admin.username), ' ', base64(variables('octopus').credentials.admin.password), ' 2>&1 > D:\\Install-OctopusDeploy.ps1.log ')]"
                 },
@@ -176,7 +121,7 @@
             "database": {
                 "name": "OctopusDeploy",
                 "edition": "Standard",
-                "serviceTier": "[parameters('sqlDbServiceTier')]",
+                "serviceTier": "S1",
                 "collation": "SQL_Latin1_General_CP1_CI_AS",
                 "maxSizeBytes": "268435456000",
                 "connectionString": "[concat('Server=tcp:', variables('sqlServerName'), '.database.windows.net,1433;Database=OctopusDeploy', ';User Id=', parameters('sqlAdminUsername'), '@', variables('sqlServerName'), ';Password=', parameters('sqlAdminPassword'), ';Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;')]"
@@ -185,14 +130,14 @@
         "octopus": {
             "credentials": {
                 "admin": {
-                    "username": "[parameters('octopusAdminUsername')]",
-                    "password": "[parameters('octopusAdminPassword')]"
+                    "username": "admin",
+                    "password": "P2ssw0rd@123"
                 }
             },
             "license": {
-                "fullName": "[parameters('licenseFullName')]",
-                "organisationName": "[parameters('licenseOrganisationName')]",
-                "emailAddress": "[parameters('licenseEmailAddress')]"
+                "fullName": "VSTS Lab",
+                "organisationName": "VSTS Lab",
+                "emailAddress": "lab@123.com"
             }
         }
     },
