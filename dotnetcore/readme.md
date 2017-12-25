@@ -11,7 +11,7 @@ This lab shows how to deploy an ASP.NET Core application to Azure App Service wi
 
 ## Pre-requisites
 
-1. **Microsoft Azure Account:** You need a valid and active azure account for the labs
+1. **Microsoft Azure Account:** You need a valid and active azure account for the lab
 
 2. You need a **Visual Studio Team Services Account** and <a href="https://docs.microsoft.com/en-us/vsts/accounts/use-personal-access-tokens-to-authenticate">Personal Access Token</a>
 
@@ -51,7 +51,7 @@ Now that connections are established, we will manually map the endpoints to rele
    <img src="images/release_2.png">
 
 
-3. Under **Azure Deployment** task, update **Azure subscription** with the endpoint components from the dropdown and select the desired **location**.
+3. Under **Azure Resource Group Deployment** task, update **Azure subscription** with the endpoint components from the dropdown and select the desired **location**.
 
 > **Note** : Since there is an issue with VSTS service endpoint API, selecting the created ARM endpoint in Azure Resource Group Deployment and Azure App Service Deploy task will throw an exception. Please follow this <a href= "https://github.com/Microsoft/VSTS-DevOps-Labs/tree/endpointworkaround/endpointworkaround">**workaround**</a> until the issue is fixed.
 
@@ -205,7 +205,7 @@ We are using **Infrastructure as a Code** in the release pipeline. We have a rel
 
    <img src="images/azure_resources.png">
 
-7. Navigate to one of the WebApp from the resource group and you will see the application is deployed successfully with the changes.
+7. Navigate to either Dev or Staging web app in the resource group and you will see the application is deployed successfully with the changes.
 
    <img src="images/mhc_web_app.png">
 
