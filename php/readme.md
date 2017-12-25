@@ -41,8 +41,6 @@ You will be prompted to authorize this connection with Azure credentials.
 ## Excercise 2: Configure Release
 
 We will use ARM template as **Infrastructure as a Code**  in the release definition to provision the required resources (App Service) on Azure.
-
-> **Note** : Its important to follow the <a href="https://github.com/Microsoft/VSTS-DevOps-Labs/tree/endpointworkaround/endpointworkaround">Service Endpoint Workaround</a> document to have a successful deployment on Azure.
  
 1. Go to **Releases** under **Build and Release** tab, Select release definition **PHP** and click **Edit**
 
@@ -55,9 +53,13 @@ We will use ARM template as **Infrastructure as a Code**  in the release definit
 
 3. Under **Azure Resource Group Deployment** task, update **Azure subscription** and **Location**
 
+> **Note** : Since there is an issue with VSTS service endpoint API, selecting the created ARM endpoint in Azure Resource Group Deployment and Azure App Service Deploy task will throw an exception. Please follow this <a href= "https://github.com/Microsoft/VSTS-DevOps-Labs/tree/endpointworkaround/endpointworkaround">**workaround**</a> until the issue is fixed.
+
    <img src="images/azure_sub.png">
 
 4. Under **Azure App Service Deploy** task, update **Azure subscription** and click **Save**. 
+
+> **Note** : Since there is an issue with VSTS service endpoint API, selecting the created ARM endpoint in Azure Resource Group Deployment and Azure App Service Deploy task will throw an exception. Please follow this <a href= "https://github.com/Microsoft/VSTS-DevOps-Labs/tree/endpointworkaround/endpointworkaround">**workaround**</a> until the issue is fixed.
 
    <img src="images/azure_app_service.png">
 
