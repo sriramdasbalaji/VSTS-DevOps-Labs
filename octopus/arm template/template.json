@@ -15,21 +15,7 @@
             "metadata": {
                 "description": "VM Size for Octopus Deploy Virtual Machine."
             }
-        },
-
-        "sqlAdminUsername": {
-            "type": "string",
-            "defaultValue": "sqladmin",
-            "metadata": {
-                "description": "Admin username for the Octopus Deploy SQL DB Server."
-            }
-        },
-        "sqlAdminPassword": {
-            "type": "securestring",
-            "metadata": {
-                "description": "Admin password for the Octopus Deploy SQL DB Server."
-            }
-        }
+        }   
         
     },
     "variables": {
@@ -113,8 +99,8 @@
                 "name": "[variables('sqlServerName')]",
                 "credentials": {
                     "admin": {
-                        "username": "[parameters('sqlAdminUsername')]",
-                        "password": "[parameters('sqlAdminPassword')]"
+                        "username": "sqladmin",
+                        "password": "P2ssw0rd@123"
                     }
                 }
             },
@@ -124,7 +110,7 @@
                 "serviceTier": "S1",
                 "collation": "SQL_Latin1_General_CP1_CI_AS",
                 "maxSizeBytes": "268435456000",
-                "connectionString": "[concat('Server=tcp:', variables('sqlServerName'), '.database.windows.net,1433;Database=OctopusDeploy', ';User Id=', parameters('sqlAdminUsername'), '@', variables('sqlServerName'), ';Password=', parameters('sqlAdminPassword'), ';Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;')]"
+                "connectionString": "[concat('Server=tcp:', variables('sqlServerName'), '.database.windows.net,1433;Database=OctopusDeploy', ';User Id=', 'sqladmin', '@', variables('sqlServerName'), ';Password=', 'P2ssw0rd@123', ';Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;')]"
             }
         },
         "octopus": {
