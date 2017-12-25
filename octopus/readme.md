@@ -79,7 +79,7 @@ In this exercise, we will create **Deployment Environment** in Octopus server. S
 
    <img src="images/DevEnvironment.png">
 
-4. You will see Dev environment. Go to **Dashboard** and click 
+4. You will see **Dev** environment. Click on **Dashboard**
 
    <img src="images/Dev.png">
 
@@ -112,7 +112,7 @@ In this exercise, we will create **Deployment Environment** in Octopus server. S
 
    <img src="images/O8.png">
 
-9. Go to your Subscription.
+9. Click on your Subscription.
 
    <img src="images/O9.png">
 
