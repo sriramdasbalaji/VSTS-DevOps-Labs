@@ -48,7 +48,7 @@ Now that connections are established, we will manually map the endpoints to rele
 
    <img src="images/release_2.png">
 
-3. Under **Azure Deployment** task, update **Azure subscription** with the endpoint components from the dropdown and select the desired **location**.
+3. Under **Azure Resource Group Deployment** task, update **Azure subscription** with the endpoint components from the dropdown and select the desired **location**.
 
 > **Note** : Since there is an issue with VSTS service endpoint API, selecting the created ARM endpoint in Azure Resource Group Deployment and Azure App Service Deploy task will throw an exception. Please follow this <a href= "https://github.com/Microsoft/VSTS-DevOps-Labs/tree/endpointworkaround/endpointworkaround">**workaround**</a> until the issue is fixed.
 
@@ -177,7 +177,7 @@ We will update the code to trigger CI-CD.
 
 5. Double click on the release to see the release summary.
 
-   <img src="images/release_summary1.png">
+   <img src="images/release_summary1.png"> 
 
    <img src="images/release_summary.png">
 
@@ -185,7 +185,7 @@ We will update the code to trigger CI-CD.
 
    <img src="images/azure_resources.png">
 
-7. Navigate to one of the WebApp from the resource group and you will see the application deployed successfully with the changes.
+7. Navigate to either Dev or Staging web app in the resource group and you will see the application deployed successfully with the changes.
 
    <img src="images/partsunlimited_overview.png">
 
