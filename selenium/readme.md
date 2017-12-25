@@ -14,15 +14,10 @@ In this lab, you will learn how to run selenium testcases on a C# web applicatio
 
 ## Setting up the Environment
 
-1. Click **Deploy To Azure** to provision the environment. 
+1. Click **Deploy To Azure** to provision the  Windows Server 2016 VM with SQL Express 2017 and browsers (Chrome and FireFox). 
 
    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoft%2FVSTS-DevOps-Labs%2Fselenium%2Fselenium%2Farm%2520template%2Fazure.deploy.json"><img src="http://azuredeploy.net/deploybutton.png"></a>
 
-   The following resources will be provisioned once the deployment is successful:
-
-    - WS 2016 VM
-    - SQL Express 2017
-    - Browsers (Chrome and FireFox)
 
 ## Setting up the VSTS project
 
@@ -33,7 +28,7 @@ In this lab, you will learn how to run selenium testcases on a C# web applicatio
 2. Once the project is provisioned, select the URL to navigate to the project. 
  
    <img src="images/VSTSDemogenerator2.png">
-
+   
 ## Exercise 1: Creating Deployment Group
 
 [Deployment Groups](https://docs.microsoft.com/en-us/vsts/build-release/concepts/definitions/release/deployment-groups/) in VSTS make it easier to organize the servers that you want to use to host your app. A deployment group is a collection of machines with a VSTS agent on each of them. Each machine interacts with VSTS to coordinate deployment of your app.
@@ -168,10 +163,12 @@ In this exercise, we will compile the Selenium C# scripts along with the Web app
    >Tests running in Chrome
 
    <img src="images/seleniumtest.png">
+  
 
    >Tests running in Firefox
    
    <img src="images/seleniumtestfirefox.png">
+  
 
 6. Once the release completes, to analyze the test results click on **Tests** tab.
 
