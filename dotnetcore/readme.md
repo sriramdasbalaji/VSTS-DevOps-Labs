@@ -42,8 +42,6 @@ In VSTS, navigate to **Services** by clicking the gear icon <img src="images/gea
 
 Now that connections are established, we will manually map the endpoints to release definition.
 
-> **Note** : Its important to follow the <a href="https://github.com/Microsoft/VSTS-DevOps-Labs/tree/endpointworkaround/endpointworkaround">Service Endpoint Workaround</a> document to have a successful deployment on Azure.
-
 1. Go to **Releases** under **Build & Release** tab, edit the release definition **MyHealthClinicE2E**.
 
    <img src="images/create_release.png">
@@ -52,11 +50,16 @@ Now that connections are established, we will manually map the endpoints to rele
 
    <img src="images/release_2.png">
 
+
 3. Under **Azure Deployment** task, update **Azure subscription** with the endpoint components from the dropdown and select the desired **location**.
-   
+
+> **Note** : Since there is an issue with VSTS service endpoint API, selecting the created ARM endpoint in Azure Resource Group Deployment and Azure App Service Deploy task will throw an exception. Please follow this <a href= "https://github.com/Microsoft/VSTS-DevOps-Labs/tree/endpointworkaround/endpointworkaround">**workaround**</a> until the issue is fixed.
+
    <img src="images/release_3.png">
 
 4. Under **Azure App Service Deploy** task, update **Azure subscription** with the endpoint components from the dropdown. Under the **Slot** section enter the slot name as **Dev**.
+
+> **Note** : Since there is an issue with VSTS service endpoint API, selecting the created ARM endpoint in Azure Resource Group Deployment and Azure App Service Deploy task will throw an exception. Please follow this <a href= "https://github.com/Microsoft/VSTS-DevOps-Labs/tree/endpointworkaround/endpointworkaround">**workaround**</a> until the issue is fixed.
 
    <img src="images/release_4.png">
 
