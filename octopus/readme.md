@@ -1,14 +1,17 @@
-## Automate Deployment Using Octopus Deploy & VSTS
+## Automate Deployment using Octopus Deploy & VSTS
 
 [Octopus Deploy](https://Octopus.com) is an automated deployment server that makes it easy to automate the deployment of ASP.NET web applications, Java applications, database updates, NodeJS application, and custom scripts into development, test, and production environments.
 
-This lab shows how you can deploy an ASP.NET application to Azure App Service using CI-CD pipeline with VSTS and Octopus.
+This lab shows how you can integrate VSTS, Octopus and Azure to deploy ASP.NET application.
+
 
 ## Pre-requisites
 
-1. **Microsoft Azure Account:** You will need a valid and active azure account for the labs
+1. **Microsoft Azure Account:** You will need a valid and active azure account for the lab.
+ 
 
-2. You need a **Visual Studio Team Services Account** and <a href="http://bit.ly/2gBL4r4">Personal Access Token</a>
+
+2. You will need a **Visual Studio Team Services Account** and <a href="http://bit.ly/2gBL4r4">Personal Access Token</a>
 
 
 
@@ -23,40 +26,26 @@ This lab shows how you can deploy an ASP.NET application to Azure App Service us
 
 ## Setting up the Environment
 
-We will use ARM template to provision below resources on Azure:
-
-- VM with Octopus server
-
-- #To be added
-
 1. Click on **Deploy to Azure** to provision Octopus Server.
 
    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoft%2FVSTS-DevOps-Labs%2Foctopus%2Foctopus%2Farm%2520template%2Ftemplate.json"><img src="http://azuredeploy.net/deploybutton.png"></a> 
 
-   Provide the following details as shown:
+##Refer sonar lab "Setting up environment"" steps 1,2
 
-   - **Subscription**: Choose your Azure Subscription
 
-   - **Resource Group**: Provide a name for resource group as  **Octopus**
-
-   - **Location**: Select the location to **South Central US**
-
-   - **Octopus Dns Name**: Provide a unique name.
-
-2.  It takes approximately x minutes to deploy.
 
     <img src="images/DeployOctopus.png">
 
 
-3. Once the VM is provisoned, note down the **DNS** Name. We will need this to connect to Octopus Server.
+3. Once the deployment is successful, go to the resource group, select the VM and note down the **DNS** name from VM overview. We will need this to access Octopus server.
 
    >**Note**: In Azure portal, go to the VM overview which was provisioned and copy the DNS name as shown. 
 
    <img src="images/A3.png">
 
-## Exercise 1: Configure Octopus Server
+## Exercise 1: Configure Octopus server
 
-In this exercise, we will create **Deployment Environment** in Octopus server. Since we are deploying the application to Azure App Service, we will link the environment to Azure using **Management Certificate**.
+In this exercise, we will create **deployment environment** in Octopus server. Since we are deploying the application to Azure App Service, we will link the environment to Azure using **Management Certificate**.
 
 1. Login to Octopus server using DNS name from your browser. Use the below credentials to login.
 
@@ -79,23 +68,25 @@ In this exercise, we will create **Deployment Environment** in Octopus server. S
 
    <img src="images/DevEnvironment.png">
 
-4. You will see **Dev** environment. Click on **Dashboard**
+4. You will see **Dev** environment. Now click on **Dashboard**
 
    <img src="images/Dev.png">
 
-4. Add **Azure Subscription** to **Dev** environment by clicking on **ADD an account** and **ADD ACCOUNT**
+5. Let us link Azure subscription to **Dev** environment by clicking on **Add an account** 
 
    <img src="images/AddanAccount.png">
-   <br/>
+
+6. Click on **ADD ACCOUNT** for **Azure Subscriptions**
+
    
    <img src="images/Add Account.png">
 
-5. Enter the following details as shown:
+7. Enter the following details as shown:
 
-   - **Name**: Provide a name as **Azure Deployment**
-   - **Subecription ID**: Your [Azure Subscription ID](https://blogs.msdn.microsoft.com/mschray/2016/03/18/getting-your-azure-subscription-guid-new-portal/)
-   - **Authentication Method**: Set to **Use Management Certificate** 
-
+   - **Name**: Provide the account name.
+   - **Subecription ID**: Your [Azure Subscription ID](https://blogs.msdn.microsoft.com/mschray/2016/03/18/getting-your-azure-subscription-guid-new-portal/).
+   - **Authentication Method**: Choose **Use Management Certificate**.
+   >We use management certificate t
    <br/>
 
    <img src="images/Create Account.png">
