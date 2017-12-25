@@ -217,11 +217,11 @@ In this exercise, we will create project in Octopus which will deploy the packag
 
    <img src="images/Add Step.png">
 
-5. Search for **Azure Web App** template and **Add**.
+5. **Search** for **Azure Web App** template and **Add**.
 
    <img src="images/O20.png">
 
-6. Provide **Name** and select **Package ID**.
+6. Provide **Step Name** and select **Package ID**.
 
    <img src="images/PkgID.png">
 
