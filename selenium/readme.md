@@ -1,20 +1,10 @@
-## Running Selenium Testcases in VSTS
+## Continuous Testing of a Web App with Selenium in VSTS
 
 ## Overview
 <a href="http://www.seleniumhq.org/">
-Selenium</a> is probably the best option for automated testing of Websites today. It is becoming increasingly popular and it is the first choice of automation testers as well as organizations for automating the testing of Web-based applications for both the GUI as well as the functionality. Selenium can also be used as a unit testing tool for JavaScript.
+Selenium</a> is a portable open source software-testing framework for web applications. It has the capability to operate on almost every Operating System. It supports all modern browsers and multiple languages such as .NET (C#), Java.
 
-### Why Selenium to use?
-- Taking the other automation tools into consideration, Selenium has the capability to operate on almost every OS.
-Selenium is an open source testing tool and hence it serves for cost-effective automation testing.
-
-- Selenium supports multiple languages such as Python, Pearl, Ruby, PHP, .NET (C#) and Java. You are required to be comfortable in just a single language in order to operate Selenium.
-
-- One highly beneficial feature of Selenium is that the language used for building the program is independent of the language that the web application or website is using. This implies that the test script can be developed in any of the languages that Selenium supports.
-
-- This testing tool supports a range of browsers like Opera, Safari, Chrome, IE 6, 7, 8 and Mozilla Firefox.
-
-In this lab, you will learn how to run selenium testcases as part of the CD Pipeline from VSTS
+In this lab, you will learn how to run selenium testcases on a C# web application as part of the VSTS Continuous Delivery pipeline. 
 
 ## Pre-requisites
 
