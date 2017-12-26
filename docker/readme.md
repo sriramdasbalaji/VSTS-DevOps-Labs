@@ -31,7 +31,7 @@ We will create an **Azure Container Registry** to store the images generated dur
 
 1. Click on **Deploy to Azure** to spin up **Azure Container Registry**, **Azure Web App** and **Azure SQL Database** along with **Azure SQL Server**.
 
-   <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoft%2FVSTS-DevOps-Labs%2Fdocker%2Fdocker%2Ftemplates%2Fazuredeploy.json" target="_blank">
+   <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https://raw.githubusercontent.com/Microsoft/VSTS-DevOps-Labs/docker/docker/templates/template.json" target="_blank">
 
     <img src="http://azuredeploy.net/deploybutton.png"/>
     </a> 
