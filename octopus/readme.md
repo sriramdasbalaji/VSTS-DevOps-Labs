@@ -2,7 +2,7 @@
 
 [Octopus Deploy](https://Octopus.com) is an automated deployment server that makes it easy to automate the deployment of ASP.NET web applications, Java applications, database updates, NodeJS application, and custom scripts into development, test, and production environments.
 
-This lab shows how you can integrate VSTS, Octopus and Azure to deploy ASP.NET application.
+This lab shows how you can integrate VSTS and Octopus to deploy ASP.NET application to Azure.
 
 
 ## Pre-requisites
@@ -81,7 +81,7 @@ In this exercise, we will create **deployment environment** in Octopus server. S
    
    <img src="images/Add Account.png">
 
-7. Enter the following details as shown:
+7. Enter the following details as shown and click **Save and Test**
 
    - **Name**: Provide the account name.
    - **Subecription ID**: Your [Azure Subscription ID](https://blogs.msdn.microsoft.com/mschray/2016/03/18/getting-your-azure-subscription-guid-new-portal/).
@@ -99,7 +99,7 @@ In this exercise, we will create **deployment environment** in Octopus server. S
 
    <img src="images/Download Certificate.png">
 
-8. To upload the certificate to azure, go to [Azure Portal](portal.azure.com), and click on **Subscriptions**.
+8. To upload the certificate to azure, go to [Azure Portal](https://portal.azure.com), and click on **Subscriptions**.
 
    <img src="images/O8.png">
 
@@ -153,7 +153,7 @@ In this exercise we will create an **API** key in Octopus. This key is required 
 
 7. You will see service endpoint created successfully.
 
-   <img src="images/endpointSuccess.png">
+   <img src="images/EndpointSuccess.png">
 
 ## Exercise 3: Push the Package to Octopus Server
 
