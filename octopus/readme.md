@@ -1,8 +1,8 @@
 ## Automate Deployment using Octopus Deploy & VSTS
 
-[Octopus Deploy](https://Octopus.com) is an automated deployment server that makes it easy to automate the deployment of ASP.NET web applications, Java applications, database updates, NodeJS application, and custom scripts into development, test, and production environments.
+[Octopus Deploy](https://Octopus.com) is an automated deployment server that makes it easy to automate the deployment of ASP.NET web applications, Java applications, database updates, PHP application, and custom scripts into development, test, and production environments.
 
-This lab shows how you can integrate VSTS and Octopus to deploy ASP.NET application to Azure.
+This lab shows how you can integrate VSTS and Octopus to deploy PHP application to Azure.
 
 
 ## Pre-requisites
@@ -30,14 +30,20 @@ This lab shows how you can integrate VSTS and Octopus to deploy ASP.NET applicat
 
    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoft%2FVSTS-DevOps-Labs%2Foctopus%2Foctopus%2Farm%2520template%2Ftemplate.json"><img src="http://azuredeploy.net/deploybutton.png"></a> 
 
-##Refer sonar lab "Setting up environment"" steps 1,2
-
-
+2. Provide name to **Resource group** and **Octopus DNS**, check the **terms and conditions** and click **Purchase**
 
     <img src="images/DeployOctopus.png">
 
+3. It takes aproxinately 15 minutes to deploy. Once the deployment is successful, following resources will be provisioned in Azure
 
-3. Once the deployment is successful, go to the resource group, select the VM and note down the **DNS** name from VM overview. We will need this to access Octopus server.
+    - Windows server 2012 VM with **Octopus** 
+    - **App Service** to deploy PHP application
+
+    <br/>
+
+    <img src="images/Resources.png">
+
+4. Click on the VM and note down the **DNS** name. We will need this to access Octopus server.
 
    >**Note**: In Azure portal, go to the VM overview which was provisioned and copy the DNS name as shown. 
 
@@ -56,7 +62,7 @@ In this exercise, we will create **deployment environment** in Octopus server. S
 
    <img src="images/O1.png">
 
-2. Click **Create environment** and **Add Environment**.
+2. Click **Create environment** and **Add Environment**. In Octopus, an environment is a group of machines or cloud services, that you will deploy to at the same time; common examples of environments are Dev, Test, Staging or Production.
 
    <img src="images/Create Environment.png">
 
@@ -64,42 +70,36 @@ In this exercise, we will create **deployment environment** in Octopus server. S
 
    <img src="images/Add Environment.png">
 
-3. Provide the environment name as **Dev** and click **Save**.
+3. Provide the environment name and click **Save**.
 
    <img src="images/DevEnvironment.png">
 
-4. You will see **Dev** environment. Now click on **Dashboard**
+4. You will see the created environment name on your screen . Now, link Azure account to this environment by clicking on **Accounts**
 
    <img src="images/Dev.png">
 
-5. Let us link Azure subscription to **Dev** environment by clicking on **Add an account** 
 
-   <img src="images/AddanAccount.png">
-
-6. Click on **ADD ACCOUNT** for **Azure Subscriptions**
+5. Click on **ADD ACCOUNT** beside **Azure Subscriptions**
 
    
    <img src="images/Add Account.png">
 
-7. Enter the following details as shown and click **Save and Test**
+6. Enter the following details as shown and click **Save**
 
    - **Name**: Provide the account name.
    - **Subecription ID**: Your [Azure Subscription ID](https://blogs.msdn.microsoft.com/mschray/2016/03/18/getting-your-azure-subscription-guid-new-portal/).
    - **Authentication Method**: Choose **Use Management Certificate**.
-   >We use management certificate t
+   >You can also use Service Principal authentication method by following [this link](https://octopus.com/docs/infrastructure/azure/creating-an-azure-account/creating-an-azure-service-principal-account)
    <br/>
 
    <img src="images/Create Account.png">
 
-6. You will see a failure message because the management certificate is not uploaded to Azure portal. Click **OK**
 
-   <img src="images/Verification Failed.png">
-
-7. You will see a management certificate will be generated. Download this certificate.
+7. You will see a management certificate generated. Download this certificate.
 
    <img src="images/Download Certificate.png">
 
-8. To upload the certificate to azure, go to [Azure Portal](https://portal.azure.com), and click on **Subscriptions**.
+8. To upload the certificate on Azure, go to [Azure Portal](https://portal.azure.com), and click on **Subscriptions**.
 
    <img src="images/O8.png">
 
@@ -131,21 +131,18 @@ In this exercise we will create an **API** key in Octopus. This key is required 
 
    <img src="images/API Key.png">
 
-2. Give the purpose as **VSTS Integration** and click **Generate New**.
+2. Give the **purpose** and click **Generate New**.
 
    <img src="images/Generate new.png">
 
-3. Note down the API Key.
+3. Note down this API Key.
 
    <img src="images/Key.png">
 
-4. Create a **Service Endpoint** in VSTS. Go to Parts Unlimited team project in **VSTS**, click on gear icon and click **Services**.
+4. Go to **VSTS** project which was provisioned earlier, click on <img src="images/gear.png"> **icon --> Services --> + New Service Endpint**, scroll down and select **Octopus Deploy**
 
    <img src="images/Endpoint.png">
 
-5. Click **+ New Service Endpoint** and select **Octopus Deploy** from the dropdown.
-
-    <img src="images/O22.png">
 
 6. Provide **Connection name**, **URL** of Octopus server and **API Key** and click **OK**. 
 
@@ -157,19 +154,44 @@ In this exercise we will create an **API** key in Octopus. This key is required 
 
 ## Exercise 3: Push the Package to Octopus Server
 
-In this exercise, we will build ASP.NET application and push the generated web package to Octopus Server.
+In this exercise, we will package PHP application and push the package to Octopus Server.
 
-1. Go to **Builds** under **Build and Release** tab and click on **PartsUnlimitedE2E** definition.
+1. Go to **Builds** under **Build and Release** tab and click on **Octopus** build definition.
 
    <img src="images/Build Defination.png"> 
  
-2. Click **Edit**.
+2. **Edit** the build defination to update Octopus server endpoint.
 
    <img src="images/EditBD.png">
 
 3. In **Push Packages to Octopus** task, update **Octopus Deploy Server** and click **Save and queue**.
 
    <img src="images/QBuild.png">
+
+<table width="100%">
+   <thead>
+      <tr>
+         <th width="50%"><b>Tasks</b></th>
+         <th><b>Usage</b></th>
+      </tr>
+   </thead>
+   <tr>
+      <td><b>Package Application</b></td>
+      <td>Packages the PHP code files into a zip file with version number</td>
+   </tr>
+   <tr>
+      <td><b>Copy Files</b></td>
+      <td>Copies the package from source directory to artifacts directory in build server</td>
+   </tr>
+    <tr>
+      <td><b>Push packages to Octopus</b></td>
+      <td>Pushes the packages to Octopus server</td>
+ 
+
+
+</table>
+<br/>
+
 
 4. Once the build is completed, you will see the build summary.
 
@@ -196,7 +218,7 @@ In this exercise, we will create project in Octopus which will deploy the packag
 
    <img src="images/Add Project.png">
 
-2. Give the project name **Parts Unlimited** and click on **SAVE**.
+2. Give the project name and click on **SAVE**.
 
    <img src="images/PUProject.png">
 
@@ -212,7 +234,7 @@ In this exercise, we will create project in Octopus which will deploy the packag
 
    <img src="images/AddWebAppStep.png">
 
-6. Provide **Step Name** and select **Package ID**.
+6. Provide **Step Name** and select **Package ID, Azure account & Web App** and then click **Save**.
 
    <img src="images/PkgID.png">
 
@@ -220,15 +242,15 @@ In this exercise, we will create project in Octopus which will deploy the packag
 
    <img src="images/Azure.png">
 
-7. Save and click on **Create Release**.
+7. Click on **Create Release** and **Save** it.
 
    <img src="images/Create New Release.png"> 
 
-8. Click **Save** to save the release
+   <br/>
 
    <img src="images/SaveRelease.png"> 
 
-9. To Deploy to dev environment click **DEPLOY TO DEV** and then click **Deploy**
+8. Trigger the deployment to Azure App service by clicking on **DEPLOY TO DEV**, then click **Deploy** and wait untill the deployment steps are passed.  
 
    <img src="images/Deploy2Dev.png">
 
@@ -236,4 +258,12 @@ In this exercise, we will create project in Octopus which will deploy the packag
    <img src="images/Deploy.png">
    <br/>
    <img src="images/DeploymentSuccessful.png">
+
+9. Once the deployment is successful, go to Azure Web App and click on **Browse**
+
+   <img src="images/Browse.png"> 
+
+10. You will see PHP application running 
+
+   <img src="images/PHPApp.png">
 
