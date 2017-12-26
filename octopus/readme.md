@@ -242,7 +242,10 @@ In this exercise, we will create project in Octopus which will deploy the packag
 
    <img src="images/Azure.png">
 
-7. Click on **Create Release** and **Save** it.
+## Exercise 5: Trigger Release in Octopus
+In this exercise we will trigger thr release manually from octopus project. Deployment will happen to Azure App Service.
+
+1. Click on **Create Release** and **Save** it.
 
    <img src="images/Create New Release.png"> 
 
@@ -263,7 +266,7 @@ In this exercise, we will create project in Octopus which will deploy the packag
 
    <img src="images/Browse.png"> 
 
-10. You will see PHP application running 
+10. You will see the PHP application up and running 
 
    <img src="images/PHPApp.png">
 
