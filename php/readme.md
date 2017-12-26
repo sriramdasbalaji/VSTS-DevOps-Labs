@@ -49,7 +49,7 @@ We will use ARM template as **Infrastructure as a Code**  in the release definit
 
 2. Go to **Tasks** and select **Azure Deployment** environment
 
-   <img src="images/azuredeployment.png">
+   <img src="images/dev_release.png">
 
 3. Under **Azure Resource Group Deployment** task, update **Azure subscription** and **Location**
 
