@@ -191,7 +191,7 @@ Since the connections are not established during project provisioning, we will m
 
     <img src="images/dacpac_deployment.png">
 
-8. Navigate to release definition **Docker** under **Releases** tab, and click on **Edit**. Click on **Phase1** and select **Hosted Linux Preview** under **Agent queue**
+8. Navigate to release definition **Docker** under **Releases** tab, and click on **Edit**. Click on **Phase1** and select **Hosted Linux Preview** under **Agent queue**.
 
 <img src="images/selectagent1.png">
 
@@ -270,8 +270,14 @@ In this excercise, we will enable the continuous integration trigger to create a
 7. The build will generate and push the image to ACR. After build completes, you will see the build summary. 
     
     <img src="images/build_summary.png">
+
+5. Go to <a href="https://portal.azure.com">Azure Portal</a>, navigate to the **App Service** which was created at the beginning of this lab. Select **Docker Container** section. Under **Image Source** highlight **Azure Container Registry**. Select your **Registry** from the dropdown. Under **image** dropdown select **myhealth.web** and under **Tag** dropdown select **latest**. This is required to map Azure Container Registry with the Web App. Click **Save**.
+
+    <img src="images/updatereg.png">
+
+    <img src="images/updatereg2.png">
  
-8.  Go to **Releases** tab to see the release summary with logs. The release will deploy the image to App Service based on the **BuildID**, which is tagged with the image.
+8.  Go to **Releases** tab to see the release summary with logs. The release will deploy the image to App Service based on the **BuildID**, which is tagged with the image. 
 
     <img src="images/release_summary.png">
 
@@ -279,7 +285,7 @@ In this excercise, we will enable the continuous integration trigger to create a
 
     <img src="images/release_logs.png">
 
-9. Go to <a href="https://portal.azure.com">Azure Portal</a>, navigate to the **App Service** which was created at the beginning of this lab. Click on the **URL** to see the changes in your app.
+9. Switch back to <a href="https://portal.azure.com">Azure Portal</a>, navigate to the **App Service**. Click on the **URL** to see the changes in your app.
 
     <img src="images/getwebappurl.png">
 
