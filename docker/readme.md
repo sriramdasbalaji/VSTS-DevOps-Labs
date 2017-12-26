@@ -83,8 +83,7 @@ We will create an **Azure Container Registry** to store the images generated dur
     </br>
 
     <img src="images/postazuredeployment.png">
-    <img src="images/dbinazure.png">
- 
+   
 
 4. Click on your container registry. Note down the **Login server** name. We need these details later in Excercise 2.
 
