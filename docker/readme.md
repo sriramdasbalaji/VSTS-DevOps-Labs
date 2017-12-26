@@ -21,8 +21,6 @@ Below screenshot helps you understand the VSTS DevOps workflow with Docker:
 
 2. You need a **Visual Studio Team Services Account** and <a href="https://docs.microsoft.com/en-us/vsts/accounts/use-personal-access-tokens-to-authenticate">Personal Access Token</a>.
 
-    <img src="images/vstsdemogen.png">
-
 3. You need to install **Docker Integration** extension from <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscs-rm.docker">Visual Studio Marketplace</a>.
 
 ## Setting up the Environment
@@ -93,12 +91,14 @@ We will create an **Azure Container Registry** to store the images generated dur
 
 1. Use <a href="https://vstsdemogenerator.azurewebsites.net/?name=Docker&templateid=77364" target="_blank">VSTS Demo Data Generator</a> to provision a project on your VSTS account 
 
+    <img src="images/vstsdemogen.png"> 
+
 2. Select **Docker** for the template. Provide a Project Name, and click on Create Project. Once the project is provisioned, click the URL to navigate.
-   <img src="">
+   <img src="images/vstsdemogen2.png">
 
 3. Once the project is provisioned, select the URL to navigate to the project that you provisioned.
 
-   <img src="">
+   <img src="images/vstsdemogen3.png">
 
 
 ## Exercise 1: Endpoint Creation
@@ -175,7 +175,7 @@ Since the connections are not established during project provisioning, we will m
 
    <img src="images/release_tasks.png">
 
-5. Update the **Azure Connection Type**, **Azure Subscription**, and SQL DB Details such as **Azure SQL Server Name**, **Database Name**, **Server Admin Login** and **Password**. Click **Save**.
+5. Update the **Azure Connection Type**, **Azure Subscription** and SQL DB Details such as **Azure SQL Server Name**. Click **Save**. Note: **Database Name** is set to **mhcdb**. **Server Admin Login** is **sqladmin** and **Password** is **P2ssw0rd1234**.
 
     <img src="images/update_dbtask.png">
 
@@ -187,9 +187,16 @@ Since the connections are not established during project provisioning, we will m
 
     <img src="images/queuebuild.png">
 
-    After this step is complete, the database schema will be deployed to SQL Database.
+    The build will copy over the dacpac to artifacts folder, which will be used in release for deploying this dacpac to database you created earlier. After this step is complete, the database schema will be deployed to SQL Database **mhcdb**.
 
-8. Navigate to release definition **Docker** under **Releases** tab, and click on **Edit**. Right click on task **Execute Azure SQL : DacpacTask**, and select **Disable Selected Task(s)**. After this, right click on **Deploy Azure App Service** task, and select **Enable Selected Task(s)**.
+    <img src="images/dacpac_deployment.png">
+
+8. Navigate to release definition **Docker** under **Releases** tab, and click on **Edit**. Click on **Phase1** and select **Hosted Linux Preview** under **Agent queue**
+
+<img src="images/selectagent1.png">
+
+
+9. Right click on task **Execute Azure SQL : DacpacTask**, and select **Disable Selected Task(s)**. After this, right click on **Deploy Azure App Service** task, and select **Enable Selected Task(s)**.
 
 <img src="images/disabletasks_rd.png">
 
@@ -197,7 +204,7 @@ Since the connections are not established during project provisioning, we will m
 
 <img src="images/enabletasks_rd.png">
 
-9. Under **Deploy Azure App Service** task, update **Azure subscription** and **Azure Service name** with the endpoint components from the dropdown. In the **Registry or Namespace** field, enter **Azure Container Registry Login Server** from Azure portal. Let the image name be **myhealth.web**. Click **Save**.
+10. Under **Deploy Azure App Service** task, update **Azure subscription** and **Azure Service name** with the endpoint components from the dropdown. In the **Registry or Namespace** field, enter **Azure Container Registry Login Server** from Azure portal. Let the image name be **myhealth.web**. Click **Save**.
 
    <img src="images/updatedrd.png">
 
@@ -209,11 +216,11 @@ Since the connections are not established during project provisioning, we will m
 
     <img src="images/copysql.png">   
 
-2. Switch to **Azure Portal**, and navigate to the **SQL Database** which you created at the beginning of this lab.Click on **Data Explorer**, and provide database **Password** to login. 
+2. Switch to **Azure Portal**, and navigate to the **SQL Database** which you created at the beginning of this lab.Click on **Data Explorer**, and provide database **Password:** **P2ssw0rd1234** to login. 
 
     <img src="images/dblogin.png">   
 
-3. Under **Query** section, paste the content copied from **healthclinic.sql** file as shown, and click on **Run**. This will now push required data into the database, so that our sample application MyHealthClinic could interact with it.
+3. Under **Query** section, paste the content copied from **healthclinic.sql** file as shown, and click on **Run**. This will now push required data into the database, so that our sample application MyHealthClinic could interact with it. Verify that message **Query succeeded** is displayed at the bottom.
 
     <img src="images/pastesql.png"> 
 
@@ -225,7 +232,7 @@ Since the connections are not established during project provisioning, we will m
 
     >Docker/src/MyHealth.Web/appsettings.json
 
-    Go to line number **9**. Paste the connection string as shown and manually update the **User ID** and **Password**. Click on **Commit**.
+    Go to line number **9**. Paste the connection string as shown and manually update the **User ID** to **sqladmin** and **Password** to **P2ssw0rd1234**. Click on **Commit**.
 
    <img src="images/paste_connectionstring.png">
 
@@ -238,7 +245,7 @@ In this excercise, we will enable the continuous integration trigger to create a
 
    <img src="images/build.png">
 
-2. Right click on each task **Run Services**, **Build Services**, **Push Services** and **Lock Services** one by one. Click on **Enable Selected Task(s)** to enable all of these tasks.
+2. Right click on each task **Run Services**, **Build Services**, **Push Services** and **Lock Services** one by one. Click on **Enable Selected Task(s)** to enable all of these tasks. Disable **Copy Files** and **Publish Artifact** tasks by selecting **Disable Selected Task(s)** after right clicking on each of them.
 
     <img src="images/enabletasks_bd.png">
 
