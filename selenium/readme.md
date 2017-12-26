@@ -4,8 +4,10 @@
 <a href="http://www.seleniumhq.org/">
 Selenium</a> is a portable open source software-testing framework for web applications. It has the capability to operate on almost every Operating System. It supports all modern browsers and multiple languages such as .NET (C#), Java.
 
+
 In this lab, you will learn how to run selenium testcases on a C# web application as part of the VSTS Continuous Delivery pipeline. 
 
+If you are not familiar with Selenium using Visual Studio/C# [click here](https://www.codeproject.com/Articles/1217887/Getting-started-with-Selenium-using-Visual-Stu) to get started
 ## Pre-requisites
 
 1. **Microsoft Azure Account:** You need a valid and active azure account for the labs
@@ -102,7 +104,7 @@ The target machine is available in the deployment group to deploy the applicatio
 
    <img src="images/setuprelease.png">
 
-2. Open Selenium Dev environment.
+2. Open Dev environment.
 
    <img src="images/setuprelease2.png">
 
