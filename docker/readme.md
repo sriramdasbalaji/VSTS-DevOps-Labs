@@ -160,9 +160,7 @@ Since the connections are not established during project provisioning, we will m
       <td><img src="images/publish-build-artifacts.png"><b>Publish Build Artifacts</b> </td>
       <td> used to share the build artifacts </td>
    </tr>
-</table>
-<br/>
-
+   </table>
 3. Click **Save**.
 
    <img src="images/savebd.png">
