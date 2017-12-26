@@ -84,4 +84,13 @@ If you are following this lab from "Working with Jenkins, VSTS and Azure, you ca
 
 1. Navigate to the VSTS project that you provisioned
 
-1. 
+1. Select **Build and Release** and then **Releases**
+
+1. Select **MyShuttle** and click **Edit** to open the release definition
+
+1. Select the **Dev** deployment process and make sure that **Azure Subscription** and **App Service Name** fields have the right values 
+
+1. The subscription and the app service selected here will be used throughout the tasks in the process. We are using the **Deploy Azure App Service** task. This task is used to update Azure App Service to deploy Web Apps and WebJobs to Azure.  The task works on cross platform agents running Windows, Linux or Mac and uses the underlying deployment technologies of Web Deploy and Kudu. The task works for ASP.NET, ASP.NET Core 1 and Node.js based web applications.
+
+>**Note:** The **Deploy Azure App Service** task works with  Azure Resource Manager APIs only.
+
