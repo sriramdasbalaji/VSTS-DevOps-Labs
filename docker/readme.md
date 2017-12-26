@@ -283,7 +283,7 @@ In this excercise, we will enable the continuous integration trigger to create a
 
     <img src="images/release_logs.png">
 
-9. Switch back to <a href="https://portal.azure.com">Azure Portal</a>, navigate to the **App Service**. Click on the **URL** to see the changes in your app.
+9. Switch back to <a href="https://portal.azure.com">Azure Portal</a>, navigate to the **Overview** section of your **App Service**. Click on the **URL** to see the changes in your app.
 
     <img src="images/getwebappurl.png">
 
