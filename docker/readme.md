@@ -185,28 +185,28 @@ Since the connections are not established during project provisioning, we will m
 
     <img src="images/queuebuild.png">
 
-    The build will copy over the dacpac to artifacts folder, which will be used in release for deploying this dacpac to database you created earlier. After this step is complete, the database schema will be deployed to SQL Database **mhcdb**.
+    The build will copy the dacpac to artifacts folder, which will be used in release for deploying this dacpac to database you created earlier. After this step is complete, the database schema will be deployed to SQL Database **mhcdb**.
 
     <img src="images/dacpac_deployment.png">
 
 8. Navigate to release definition **Docker** under **Releases** tab, and click on **Edit**. Click on **Phase1** and select **Hosted Linux Preview** under **Agent queue**.
 
-<img src="images/selectagent1.png">
+    <img src="images/selectagent1.png">
 
 
 9. Right click on task **Execute Azure SQL : DacpacTask**, and select **Disable Selected Task(s)**. After this, right click on **Deploy Azure App Service** task, and select **Enable Selected Task(s)**.
 
-<img src="images/disabletasks_rd.png">
+    <img src="images/disabletasks_rd.png">
 
-</br>
+    </br>
 
-<img src="images/enabletasks_rd.png">
+    <img src="images/enabletasks_rd.png">
 
 10. Under **Deploy Azure App Service** task, update **Azure subscription** and **Azure Service name** with the endpoint components from the dropdown. In the **Registry or Namespace** field, enter **Azure Container Registry Login Server** from Azure portal. Let the image name be **myhealth.web**. Click **Save**.
 
-   <img src="images/updatedrd.png">
+    <img src="images/updatedrd.png">
 
-**Deploy Azure App Service** will pull the appropriate image corresponding to the BuildID from repository specified, and deploys the image to Linux App Service. 
+    **Deploy Azure App Service** will pull the appropriate image corresponding to the BuildID from repository specified, and deploys the image to Linux App Service. 
 
 ## Exercise 3: Update Connection String
 
