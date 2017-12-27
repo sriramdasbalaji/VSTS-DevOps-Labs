@@ -84,7 +84,7 @@ We will create an **Azure Container Registry** to store the images generated dur
 
    <img src="images/getdbserverurl.png">
 
-5. Go back your resource group. Click on container registry and note down the **Login server** name. We need these details later in Excercise 2.
+5. Go back to your resource group. Click on container registry and note down the **Login server** name. We need these details later in Excercise 2.
 
    <img src="images/acrloginserver.png">
    
@@ -95,11 +95,11 @@ We will create an **Azure Container Registry** to store the images generated dur
 
     <img src="images/vstsdemogen.png"> 
 
-2. Select **Docker** for the template. Provide a Project Name, and click on Create Project. Once the project is provisioned, click the URL to navigate.
+2. Select **Docker** for the template. Provide a Project Name, and click on Create Project.
 
    <img src="images/vstsdemogen2.png">
 
-3. Once the project is provisioned, select the URL to navigate to the project that you provisioned.
+3. Once the project is provisioned, click the **URL** to navigate to the project created.
 
    <img src="images/vstsdemogen3.png">
 
@@ -114,12 +114,14 @@ Since the connections are not established during project provisioning, we will m
 
    You will be prompted to authorize this connection with Azure credentials. 
 
-   **Note:** Disable pop-up blocker in your browser if you see a blank screen after clicking **OK**, and retry the step. 
+   >Note: Disable pop-up blocker in your browser if you see a blank screen after clicking **OK**, and retry the step. 
 
 
 ## Exercise 2: Configure CI-CD
 
  Now that the connection is established, we will manually map the Azure endpoint and Azure Container Registry to build and release definitions.
+
+ >Note : You will encounter an error - ***TFS.WebApi.Exception: Page not found*** for Azure tasks in the build/ release definition. This is due to a recent change in the VSTS Release Management API. While we are working on updating VSTS Demo Generator to resolve this issue, you can fix this by typing a random text in the Azure Subscription field and click the Refresh icon next to it. Once the field is refreshed, you can select the endpoint from the drop down.
 
 1. Go to **Builds** under **Build and Release** tab, **Edit** the build definition **Docker**.
 
