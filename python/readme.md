@@ -43,7 +43,7 @@ We will provision the resources on **Azure** using ARM template in the **release
 
 1. Go to **Releases** under **Build and Release** tab, Select release definition **Python** and click **Edit**
 
-   <img src ="images/release_edit.png">
+   <img src ="images/releaseedit.png">
 
 2. Go to **Tasks** and select **Azure Deployment** environment.
 
