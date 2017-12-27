@@ -53,27 +53,27 @@ We will create an **Azure Container Registry** to store the images generated dur
       </tr>
     </thead>
     <tr>
-      <td><img src="images/container_registry.png" width="30px"><a href="https://docs.microsoft.com/en-us/azure/container-registry/container-registry-intro"><b>Azure Container Registry</b></a></td>
+      <td><img src="images/container_registry.png" width="30px"><b>Azure Container Registry</b></td>
       <td>Used to store images privately</td>
     </tr>
     <tr>
-      <td><img src="images/storage.png" width="30px"> <a href="https://docs.microsoft.com/en-us/azure/storage/common/storage-introduction"><b>Storage Account</b></a> </td>
+      <td><img src="images/storage.png" width="30px"> <b>Storage Account</b></td>
       <td>Container Registry resides in this storage account</td>
     </tr>
     <tr>
-      <td><img src="images/app_service.png" width="30px"> <a href="https://docs.microsoft.com/en-us/azure/app-service/containers/app-service-linux-intro"><b>App Service</b></a>  </td>
+      <td><img src="images/app_service.png" width="30px"> <b>App Service</b></td>
       <td>Docker images are deployed to containers in this App Service</td>
     </tr>
     <tr>
-      <td><img src="images/app_service_plan.png" width="30px"> <a href="https://docs.microsoft.com/en-us/azure/app-service/azure-web-sites-web-hosting-plans-in-depth-overview"><b>App Service Plan</b></a> </td>
+      <td><img src="images/app_service_plan.png" width="30px"> <b>App Service Plan</b></td>
       <td>Resource where App Service resides</td>
     </tr>
     <tr>
-      <td><img src="images/sqlserver.png" width="30px"> <a href="https://docs.microsoft.com/en-us/azure/sql-database/"><b>SQL Server</b></a> </td>
+      <td><img src="images/sqlserver.png" width="30px"> <b>SQL Server</b> </td>
       <td>SQL Server to host database</td>
     </tr>
     <tr>
-      <td><img src="images/sqldb.png" width="30px"> <a href="https://docs.microsoft.com/en-us/azure/sql-database/"><b>SQL database</b></a> </td>
+      <td><img src="images/sqldb.png" width="30px"> <b>SQL database</b> </td>
       <td>SQL database to host MyHealthClinic data</td>
     </tr>
     </table>
