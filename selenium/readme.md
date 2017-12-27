@@ -5,9 +5,11 @@
 Selenium</a> is a portable open source software-testing framework for web applications. It has the capability to operate on almost every Operating System. It supports all modern browsers and multiple languages such as .NET (C#), Java.
 
 
+
 In this lab, you will learn how to run selenium testcases on a C# web application as part of the VSTS Continuous Delivery pipeline. 
 
-If you are not familiar with Selenium using Visual Studio/C# [click here](https://www.codeproject.com/Articles/1217887/Getting-started-with-Selenium-using-Visual-Stu) to get started
+If you are not familiar with UI Automation using Selenium Tests [click here](https://almvm.azurewebsites.net/labs/vsts/selenium/) to get started.
+
 ## Pre-requisites
 
 1. **Microsoft Azure Account:** You need a valid and active azure account for the labs
@@ -41,14 +43,13 @@ We will use Deployment Groups to deploy the application to a VM which was provis
 
    <img src="images/add_deploymentgroup.png">
 
-2. Provide deployment group name and click create. You will see the registration script generated.
+2. Provide deployment group name and click create. We will see the registration script generated.
 
    <img src="images/create_deploymentgroup.png">
 
    <img src="images/create_deploymentgroup2.png">
 
-Check, **Use the personal access token in the script for authentication** and click on **Copy script to dashboard**.
-This script is used to associate the VM to the deployment group.
+Select the check box, **Use the personal access token in the script for authentication** and click on **Copy script to dashboard** to copy the script which will be used in the next exercise to associate the VM to the deployment group.
 
 ## Exercise 2: Associate the VM to Deployment Group
 
@@ -60,7 +61,7 @@ In this exercise, we will run the registration script on the VM to associate wit
    - **Password**: P2ssw0rd@123
 
 
-2. Copy the generated registration script. Open **Powershell** in **administrator** mode, paste and **execute** the script.
+2. Open **Powershell** in **administrator** mode, paste and **execute** the registration script.
 
    <img src="images/configure_deploymentgroup-2.png">
 
@@ -68,7 +69,7 @@ In this exercise, we will run the registration script on the VM to associate wit
 
    <img src="images/deploygroup_agent.png">
 
-4. Tag VM by entering the tags as **web, db**.
+4. Tag VM by entering the tags as **web, db**. And hit **Enter**
 
    <img src="images/configure_deploymentgroup.png">
 
@@ -121,10 +122,10 @@ The target machine is available in the deployment group to deploy the applicatio
     - **Database deploy phase**: In this phase we use [**SQL Server Database Deploy**](https://github.com/Microsoft/vsts-tasks/blob/master/Tasks/SqlDacpacDeploymentOnMachineGroup/README.md) task to deploy [**dacpac**](https://docs.microsoft.com/en-us/sql/relational-databases/data-tier-applications/data-tier-applications) file to the DB server.
  
 
-   - **Selenium tests execution**: In this phase we will execute Selenium tests on the web application deployed using the following tasks.
-
-     - **Deploy Visual Studio Test Agent**: The [Deploy Test agent](https://github.com/Microsoft/vsts-tasks/blob/master/Tasks/DeployVisualStudioTestAgent/README.md) task will deploy the test agent to the VM. The test agent is used to run distributed tests using the **Run Functional Tests** task.
-     - **Run Functional tests**: Any test which you can run using **vstest.console.exe** can be run using this task. The [Run Functional Tests](https://github.com/Microsoft/vsts-tasks/blob/master/Tasks/RunDistributedTests/README.md) task is used to run Selenium tests on the VM.
+   - **Selenium tests execution**: Performing user interface testing as part of the release process is a great way of detecting unexpected changes, and need not be difficult. In this phase we will execute Selenium tests on the web application deployed. The below tasks describes using Selenium to test your website in the release pipeline.
+   
+     - **Deploy Test Agent**: The [Deploy Test agent](https://github.com/Microsoft/vsts-tasks/blob/master/Tasks/DeployVisualStudioTestAgent/README.md) task will deploy the test agent to the VM. The test agent is used to run distributed tests like Coded UI and Selenium.
+     - **Run Functional tests**: This [task](https://github.com/Microsoft/vsts-tasks/blob/master/Tasks/RunDistributedTests/README.md) uses **vstest.console.exe** to execute the selenium testcases.
 
 
 4. Click on **IIS Deployment** phase and select the Deployement Group which we have created in **Exerecise 2**.
@@ -152,7 +153,7 @@ In this exercise, we will compile the Selenium C# scripts along with the Web app
 
    <img src="images/buildqueue4.png">
 
-3. Once the build completes, the release will be triggered. Navigate to **Releases** tab to see the progress.
+3. Once the build completes, the release will be triggered. Navigate to **Releases** tab to see the deployment In-progress.
 
    <img src="images/releasequeue5.png">
 
