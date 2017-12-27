@@ -193,7 +193,7 @@ Since the connections are not established during project provisioning, we will m
 
     <img src="images/dacpac_deployment.png">
 
-8. Navigate to release definition **Docker** under **Releases** tab, and click on **Edit**. Click on **Phase1** and select **Hosted Linux Preview** under **Agent queue**.
+8. Navigate to release definition **Docker** under **Releases** tab, and click on **Edit**. Click on **Tasks** and select **Phase1**. Under **Agent queue** select **Hosted Linux Preview** .
 
     <img src="images/selectagent1.png">
 
