@@ -173,9 +173,8 @@ Since the connections are not established during project provisioning, we will m
 4. Go to **Releases** under **Build & Release** tab, **Edit** the release definition **Docker** and select **Tasks**.
 
    <img src="images/release.png">
-
    <br/>
-
+   <br/>
    <img src="images/release_tasks.png">
 
 5. Update the **Azure Connection Type**, **Azure Subscription** and SQL DB Details such as **Azure SQL Server Name**. Click **Save**. Note: **Database Name** is set to **mhcdb**. **Server Admin Login** is **sqladmin** and **Password** is **P2ssw0rd1234**.
@@ -202,9 +201,8 @@ Since the connections are not established during project provisioning, we will m
 9. Right click on task **Execute Azure SQL : DacpacTask**, and select **Disable Selected Task(s)**. After this, right click on **Deploy Azure App Service** task, and select **Enable Selected Task(s)**.
 
     <img src="images/disabletasks_rd.png">
-
-    </br>
-
+    <br/>
+    <br/>
     <img src="images/enabletasks_rd.png">
 
 10. Under **Deploy Azure App Service** task, update **Azure subscription** and **Azure Service name** with the endpoint components from the dropdown. In the **Registry or Namespace** field, enter **Azure Container Registry Login Server** from Azure portal. Let the image name be **myhealth.web**. Click **Save**.
@@ -277,29 +275,27 @@ In this excercise, we will enable the continuous integration trigger to create a
 8. Go to <a href="https://portal.azure.com">Azure Portal</a>, navigate to the **App Service** which was created at the beginning of this lab. Select **Docker Container** section. Under **Image Source** highlight **Azure Container Registry**. Select your **Registry** from the dropdown. Under **image** dropdown select **myhealth.web** and under **Tag** dropdown select **latest**. This is required to map Azure Container Registry with the Web App. Click **Save**.
 
     <img src="images/updatereg.png">
-
+    <br/>
+    <br/>
     <img src="images/updatereg2.png">
  
 9.  Go to **Releases** tab to see the release summary with logs. The release will deploy the image to App Service based on the **BuildID**, which is tagged with the image. 
 
     <img src="images/release_summary.png">
-
     <br/>
-
+    <br/>
     <img src="images/release_logs.png">
 
 10. Switch back to <a href="https://portal.azure.com">Azure Portal</a>, navigate to the **Overview** section of your **App Service**. Click on the **URL** to see the changes in your app.
 
     <img src="images/getwebappurl.png">
-
-    <br/> 
-
+    <br/>
+    <br/>
     <img src="images/finalresult.png">
 
 11. To see the generated images in Azure Portal, go to **Azure Container Registry** and navigate to **Repositories**.
 
     <img src="images/imagesinrepo.png">
-
 
 ## Summary
 
