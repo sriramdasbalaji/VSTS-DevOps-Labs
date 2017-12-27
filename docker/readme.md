@@ -30,12 +30,10 @@ We will create an **Azure Container Registry** to store the images generated dur
 1. Click on **Deploy to Azure** (or right click and select ***Open in new tab***) to spin up **Azure Container Registry**, **Azure Web App** and **Azure SQL Database** along with **Azure SQL Server**. Enter required details such as Acr name, Site Name and DB Server Name. Agree to ***Terms and Conditions***, and click **Purchase**.
 
    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoft%2FVSTS-DevOps-Labs%2Fdocker%2Fdocker%2Ftemplates%2Ftemplate.json" target="_blank">
-
-    <img src="http://azuredeploy.net/deploybutton.png"/>
-    </a> 
-
+   <img src="http://azuredeploy.net/deploybutton.png"/>
+   </a> 
    <br/>
-
+   <br/>
    <img src="images/createazurecomponents.png">
 
 2. It takes approximately **3 to 4 minutes** to provision the environment. Click on **Go To resource group**.
@@ -43,7 +41,6 @@ We will create an **Azure Container Registry** to store the images generated dur
    <img src="images/acrdeploymentsucceeded.png">
 
 3. Below components are created post deployment. Click on **Azure Container Registry**.
-
      
     <table width="100%">
      <thead>
@@ -80,7 +77,7 @@ We will create an **Azure Container Registry** to store the images generated dur
 
     </br>
 
-    <img src="images/postazuredeployment.png">
+   <img src="images/postazuredeployment.png">
    
 
 4. Click on **mhcdb** SQL database. Note down the **Server name**.
@@ -99,6 +96,7 @@ We will create an **Azure Container Registry** to store the images generated dur
     <img src="images/vstsdemogen.png"> 
 
 2. Select **Docker** for the template. Provide a Project Name, and click on Create Project. Once the project is provisioned, click the URL to navigate.
+
    <img src="images/vstsdemogen2.png">
 
 3. Once the project is provisioned, select the URL to navigate to the project that you provisioned.
@@ -229,7 +227,7 @@ Since the connections are not established during project provisioning, we will m
 
     <img src="images/copy_connectionstring.png"> 
 
-5. Switch to your VSTS account. Go to **Code** tab, and navigate to the below path to **edit** the file- 
+5. Switch to your VSTS account. Go to **Code** tab, and navigate to the below path to **edit** the file **appsettings.json** 
 
     >Docker/src/MyHealth.Web/appsettings.json
 
