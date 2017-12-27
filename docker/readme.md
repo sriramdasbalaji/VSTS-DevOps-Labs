@@ -219,7 +219,7 @@ Now that the database schema is set, we will push some data into the tables and 
 
     <img src="images/copysql.png">   
 
-2. Switch to **Azure Portal**, and navigate to the **SQL Database** which you created at the beginning of this lab.Click on **Data Explorer**, and provide database **Password:** **P2ssw0rd1234** to login. 
+2. Switch to **Azure Portal**, and navigate to **mhcdb** SQL database which you created at the beginning of this lab. Click on **Data Explorer**. Under authorization type **SQL server authentication** provide database **Login: sqladmin** and **Password: P2ssw0rd1234**. Click **OK**.
 
     <img src="images/dblogin.png">   
 
