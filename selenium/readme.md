@@ -6,7 +6,7 @@ Selenium</a> is a portable open source software-testing framework for web applic
 
 
 
-In this lab, you will learn how to run selenium testcases on a C# web application as part of the VSTS Continuous Delivery pipeline. 
+In this lab, you will learn how to run selenium testcases on a C# web application as part of the VSTS Continuous Delivery pipeline.
 
 If you are not familiar with UI Automation using Selenium Tests [click here](https://almvm.azurewebsites.net/labs/vsts/selenium/) to get started.
 
@@ -161,7 +161,7 @@ In this exercise, we will compile the Selenium C# scripts along with the Web app
 
    <img src="images/Releaseprogress.png">
 
-5. The test scenarios are configured to run on **Chrome** and **Firefox** browsers.
+5. In this lab we are executing 4 UI scenarios configured to run on **Chrome** and **Firefox** browsers.
 
    >Tests running in Chrome
 
