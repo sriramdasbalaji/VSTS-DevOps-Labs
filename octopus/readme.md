@@ -269,8 +269,42 @@ In this exercise we will trigger the release manually from octopus project. Depl
 
    <img src="images/PHPApp.png">
 
-## Enabling Continuous Build and Release
+## Exercise 6: Enabling Continuous Build and Release
 
+In this exercise, we will enable continuous build and release of PHP application.
+
+1. Enable **Create Octopus Release** and **Deploy Octopus Release**  
+
+   <img src="images/CD-Create.png">
+
+2. Update **Octopus Deploy Server**, **Project** fields in both the task and **Deploy to Environment** field in **Deploy Octopus Release**.
+
+    <img src="images/Update.png"> 
+
+3. Save the build defination.
+
+    <img src="images/Save.png">
+
+4. Go to **Code** tab and **Edit** functions.php.
+
+    <img src="images/EditFile.png">
+
+5. Update the code as shown, and **commit** the changes.
+
+    <img src="images/EditCommit.png">
+
+6. Go to **Build** tab, you will see in-progress build
+
+    <img src="images/BuildProgress.png">
+
+7. Quickly go to Octopus project dashboard to see release triggered.
+
+    <img src="images/CD-Octopus.png">
+
+8. Once the release is complete, browse the application, you will see the changes reflecting on your screen.
+
+    <img src="images/Changes.png">
+   
 ## Summary
 
 We can integrate Octopus with VSTS for delpoying applications to Azure.
