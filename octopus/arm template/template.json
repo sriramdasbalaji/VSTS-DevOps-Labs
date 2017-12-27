@@ -19,6 +19,7 @@
         
     },
     "variables": {
+        "serverFarmName":"[concat('Octopus','-plan-',uniqueString(resourceGroup().id))]",
         "namespace": "octopus",
         "location": "[resourceGroup().location]",
         "tags": {
@@ -65,7 +66,7 @@
                 "installer": {
                     "name": "[concat(variables('namespace'), '-vm/octopusDeployInstaller')]",
                     "fileUris": [
-                        "https://raw.githubusercontent.com/Microsoft/VSTS-DevOps-Labs/octopus/octopus/arm%20template/Install-OctopusDeploy.ps1"
+                        "https://raw.githubusercontent.com/satishmkini/newoctopus/master/Install-OctopusDeploy.ps1"
                     ],
                     "commandToExecute": "[concat('powershell.exe -File Install-OctopusDeploy.ps1 ', base64(variables('azureSql').database.connectionString), ' ', base64(variables('octopus').license.fullName), ' ', base64(variables('octopus').license.organisationName), ' ', base64(variables('octopus').license.emailAddress), ' ', base64(variables('octopus').credentials.admin.username), ' ', base64(variables('octopus').credentials.admin.password), ' 2>&1 > D:\\Install-OctopusDeploy.ps1.log ')]"
                 },
@@ -432,7 +433,33 @@
                     }
                 }
             ]
+        },
+        {
+            "type": "Microsoft.Web/serverfarms",
+            "sku": {
+                "name": "F1"
+            },
+            "name": "[variables('serverFarmName')]",
+            "apiVersion": "2015-08-01",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "name": "[variables('serverFarmName')]"
+            }
+        },
+        {
+            "type": "Microsoft.Web/sites",
+            "name": "[concat('Octopus','-web-',uniqueString(resourceGroup().id))]",
+            "apiVersion": "2015-08-01",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "serverFarmId": "[variables('serverFarmName')]"
+            },
+            
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/serverfarms', variables('serverFarmName'))]"
+            ]
         }
+
     ],
     "outputs": {
         "octopusDomainLabel": {
