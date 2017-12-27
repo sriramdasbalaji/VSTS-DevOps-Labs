@@ -27,7 +27,7 @@ Below screenshot helps you understand the VSTS DevOps workflow with Docker:
 
 We will create an **Azure Container Registry** to store the images generated during VSTS build. These images contain environment configuration details with build settings.  An **Azure Web App** (with Linux OS) is created where custom built images will be deployed to run inside containers. 
 
-1. Click on **Deploy to Azure** to spin up **Azure Container Registry**, **Azure Web App** and **Azure SQL Database** along with **Azure SQL Server**.
+1. Click on **Deploy to Azure** (or right click and select ***Open in new tab***) to spin up **Azure Container Registry**, **Azure Web App** and **Azure SQL Database** along with **Azure SQL Server**. Enter required details such as Acr name, Site Name and DB Server Name. Agree to Terms and Conditions, and click **Purchase**.
 
    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoft%2FVSTS-DevOps-Labs%2Fdocker%2Fdocker%2Ftemplates%2Ftemplate.json" target="_blank">
 
@@ -36,7 +36,7 @@ We will create an **Azure Container Registry** to store the images generated dur
 
    <br/>
 
-   <img src="images/createacr-linuxwebapp.png">
+   <img src="images/createazurecomponents.png">
 
 2. It takes approximately **3 to 4 minutes** to provision the environment. Click on **Go To resource group**.
 
@@ -83,9 +83,14 @@ We will create an **Azure Container Registry** to store the images generated dur
     <img src="images/postazuredeployment.png">
    
 
-4. Click on your container registry. Note down the **Login server** name. We need these details later in Excercise 2.
+4. Click on **mhcdb** SQL database. Note down the **Server name**. We need these details later in Excercise 2.
+
+   <img src="images/getdbserverurl.png">
+
+5. Go back your resource group. Click on container registry. Note down the **Login server** name. We need these details later in Excercise 2.
 
    <img src="images/acrloginserver.png">
+   
 
 ## Setting up the Project
 
@@ -103,7 +108,7 @@ We will create an **Azure Container Registry** to store the images generated dur
 
 ## Exercise 1: Endpoint Creation
 
-Since the connections are not established during project provisioning, we will manually create the endpoints. 
+Since the connections are not established during project provisioning, we will manually create the Azure endpoint. 
 
 1. In VSTS, navigate to **Services** by clicking on the gear icon, and click on **+ New Service Endpoint**. Select **Azure Resource Manager**. Specify **Connection name**, select your **Subscription** from the dropdown and click **OK**. We use this endpoint to connect **VSTS** and **Azure**.
 
@@ -269,13 +274,13 @@ In this excercise, we will enable the continuous integration trigger to create a
     
     <img src="images/build_summary.png">
 
-5. Go to <a href="https://portal.azure.com">Azure Portal</a>, navigate to the **App Service** which was created at the beginning of this lab. Select **Docker Container** section. Under **Image Source** highlight **Azure Container Registry**. Select your **Registry** from the dropdown. Under **image** dropdown select **myhealth.web** and under **Tag** dropdown select **latest**. This is required to map Azure Container Registry with the Web App. Click **Save**.
+8. Go to <a href="https://portal.azure.com">Azure Portal</a>, navigate to the **App Service** which was created at the beginning of this lab. Select **Docker Container** section. Under **Image Source** highlight **Azure Container Registry**. Select your **Registry** from the dropdown. Under **image** dropdown select **myhealth.web** and under **Tag** dropdown select **latest**. This is required to map Azure Container Registry with the Web App. Click **Save**.
 
     <img src="images/updatereg.png">
 
     <img src="images/updatereg2.png">
  
-8.  Go to **Releases** tab to see the release summary with logs. The release will deploy the image to App Service based on the **BuildID**, which is tagged with the image. 
+9.  Go to **Releases** tab to see the release summary with logs. The release will deploy the image to App Service based on the **BuildID**, which is tagged with the image. 
 
     <img src="images/release_summary.png">
 
@@ -283,7 +288,7 @@ In this excercise, we will enable the continuous integration trigger to create a
 
     <img src="images/release_logs.png">
 
-9. Switch back to <a href="https://portal.azure.com">Azure Portal</a>, navigate to the **Overview** section of your **App Service**. Click on the **URL** to see the changes in your app.
+10. Switch back to <a href="https://portal.azure.com">Azure Portal</a>, navigate to the **Overview** section of your **App Service**. Click on the **URL** to see the changes in your app.
 
     <img src="images/getwebappurl.png">
 
@@ -291,7 +296,7 @@ In this excercise, we will enable the continuous integration trigger to create a
 
     <img src="images/finalresult.png">
 
-10. To see the generated images in Azure Portal, go to **Azure Container Registry** and navigate to **Repositories**.
+11. To see the generated images in Azure Portal, go to **Azure Container Registry** and navigate to **Repositories**.
 
     <img src="images/imagesinrepo.png">
 
