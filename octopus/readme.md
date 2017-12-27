@@ -30,11 +30,11 @@ This lab shows how you can integrate VSTS and Octopus to deploy PHP application 
 
    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoft%2FVSTS-DevOps-Labs%2Foctopus%2Foctopus%2Farm%2520template%2Ftemplate.json"><img src="http://azuredeploy.net/deploybutton.png"></a> 
 
-2. Provide name to **Resource group** and **Octopus DNS**, check the **terms and conditions** and click **Purchase**
+2. Provide **Resource group** and **Octopus DNS Name**, check the **terms and conditions** and click **Purchase**
 
     <img src="images/DeployOctopus.png">
 
-3. It takes aproxinately 15 minutes to deploy. Once the deployment is successful, following resources will be provisioned in Azure
+3. It takes approxinately 15 minutes to deploy. Once the deployment is succeeded, following resources will be provisioned in Azure:
 
     - Windows server 2012 VM with **Octopus** 
     - **App Service** to deploy PHP application
@@ -43,9 +43,8 @@ This lab shows how you can integrate VSTS and Octopus to deploy PHP application 
 
     <img src="images/Resources.png">
 
-4. Click on the VM and note down the **DNS** name. We will need this to access Octopus server.
+4. Click on the octopus-vm and note down the **DNS name**. We will need this to access Octopus server.
 
-   >**Note**: In Azure portal, go to the VM overview which was provisioned and copy the DNS name as shown. 
 
    <img src="images/A3.png">
 
@@ -123,7 +122,7 @@ In this exercise, we will create **deployment environment** in Octopus server. S
 
     <img src="images/Verification Success.png">
 
-## Exercise 2: Link VSTS to Octopus Server
+## Exercise 2: Link VSTS and Octopus Server
 
 In this exercise we will create an **API** key in Octopus. This key is required to link VSTS with Octopus.
 
@@ -139,12 +138,12 @@ In this exercise we will create an **API** key in Octopus. This key is required 
 
    <img src="images/Key.png">
 
-4. Go to **VSTS** project which was provisioned earlier, click on <img src="images/gear.png"> **icon --> Services --> + New Service Endpint**, scroll down and select **Octopus Deploy**
+4. Go to **VSTS project** which was provisioned earlier, click on <img src="images/gear.png"> **icon --> Services --> + New Service Endpint**, scroll down and select **Octopus Deploy**
 
    <img src="images/Endpoint.png">
 
 
-6. Provide **Connection name**, **URL** of Octopus server and **API Key** and click **OK**. 
+6. Provide **Connection name**, **Octopus server URL** and **API Key** and click OK. 
 
    <img src="images/endpointName.png">
 
@@ -168,36 +167,36 @@ In this exercise, we will package PHP application and push the package to Octopu
 
    <img src="images/QBuild.png">
 
-<table width="100%">
-   <thead>
+  <table width="100%">
+     <thead>
       <tr>
          <th width="50%"><b>Tasks</b></th>
          <th><b>Usage</b></th>
       </tr>
-   </thead>
-   <tr>
-      <td><b>Package Application</b></td>
-      <td>Packages the PHP code files into a zip file with version number</td>
-   </tr>
-   <tr>
+     </thead>
+     <tr>
+        <td><b>Package Application</b></td>
+        <td>Packages the PHP code files into a zip file with version number</td>
+     </tr>
+     <tr>
       <td><b>Copy Files</b></td>
       <td>Copies the package from source directory to artifacts directory in build server</td>
-   </tr>
-    <tr>
-      <td><b>Push packages to Octopus</b></td>
-      <td>Pushes the packages to Octopus server</td>
+     </tr>
+      <tr>
+        <td><b>Push packages to Octopus</b></td>
+        <td>Pushes the packages to Octopus server</td>
  
 
 
-</table>
+  </table>
 <br/>
 
 
-4. Once the build is completed, you will see the build summary.
+4. Once the build completes, you will see the build summary.
 
    <img src="images/Build Complete.png">
 
-5. Go to Octopus Server. You will see the green check mark showing **Application PACKAGING** uploaded successfully. Click **Upload package** to see the package.
+5. Go to Octopus Server. You will see the green check mark which indicates **Application package** is pushed successfully. Click **Upload package** to see the package.
 
    <img src="images/Pkg Uploaded.png">
 
@@ -234,7 +233,7 @@ In this exercise, we will create project in Octopus which will deploy the packag
 
    <img src="images/AddWebAppStep.png">
 
-6. Provide **Step Name** and select **Package ID, Azure account & Web App** and then click **Save**.
+6. Provide **step name** and select **package ID, Azure account** & **Web App** and then click **Save**.
 
    <img src="images/PkgID.png">
 
@@ -243,7 +242,7 @@ In this exercise, we will create project in Octopus which will deploy the packag
    <img src="images/Azure.png">
 
 ## Exercise 5: Trigger Release in Octopus
-In this exercise we will trigger thr release manually from octopus project. Deployment will happen to Azure App Service.
+In this exercise we will trigger the release manually from octopus project. Deployment will happen to Azure App Service.
 
 1. Click on **Create Release** and **Save** it.
 
@@ -270,3 +269,10 @@ In this exercise we will trigger thr release manually from octopus project. Depl
 
    <img src="images/PHPApp.png">
 
+## Summary
+
+We can integrate Octopus with VSTS for delpoying applications to Azure.
+
+## Feedback
+
+Please email [us](mailto:devopsdemos@microsoft.com) if you have any feedback on this lab.
