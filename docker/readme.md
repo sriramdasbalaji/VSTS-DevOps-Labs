@@ -119,7 +119,7 @@ Since the connections are not established during project provisioning, we will m
 
 ## Exercise 2: Configure CI-CD
 
- Now that the connection is established, we will manually map the Azure endpoint and Azure Container Registry to build and release definitions.
+ Now that the connection is established, we will manually map the Azure endpoint and Azure Container Registry to build and release definitions. We will also deploy the dacpac to mhcdb database so that the schema is set for the backend.
 
  >Note : You will encounter an error - ***TFS.WebApi.Exception: Page not found*** for Azure tasks in the build/ release definition. This is due to a recent change in the VSTS Release Management API. While we are working on updating VSTS Demo Generator to resolve this issue, you can fix this by typing a random text in the Azure Subscription field and click the Refresh icon next to it. Once the field is refreshed, you can select the endpoint from the drop down.
 
@@ -212,6 +212,8 @@ Since the connections are not established during project provisioning, we will m
     **Deploy Azure App Service** will pull the appropriate image corresponding to the BuildID from repository specified, and deploys the image to Linux App Service. 
 
 ## Exercise 3: Update Connection String
+
+Now that the database schema is set, we will push some data into the tables and update the connection string in MyHealthClinic .NetCore application.
 
 1. Click on **Code** tab, and navigate to **healthclinic.sql** file under **Docker** repository. Copy entire content of this file.
 
