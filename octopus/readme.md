@@ -165,6 +165,8 @@ In this exercise, we will package PHP application and push the package to Octopu
 
 3. In **Push Packages to Octopus** task, update **Octopus Deploy Server** and click **Save and queue**.
 
+   > **Note** : You will encounter an error - **TFS.WebApi.Exception: Page not found** for Azure tasks in the release definition. This is due to a recent change in the VSTS Release Management API. While we are working on updating VSTS Demo Generator to resolve this issue, you can fix this by typing a random text in the **Azure Subscription** field and click the **Refresh** icon next to it. Once the field is refreshed, you can select the endpoint from the drop down.
+
    <img src="images/QBuild.png">
 
   <table width="100%">
