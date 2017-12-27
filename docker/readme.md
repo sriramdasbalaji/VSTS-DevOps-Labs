@@ -177,9 +177,11 @@ Since the connections are not established during project provisioning, we will m
    <br/>
    <img src="images/release_tasks.png">
 
-5. Update the **Azure Connection Type**, **Azure Subscription** and SQL DB Details such as **Azure SQL Server Name**. Click **Save**. Note: **Database Name** is set to **mhcdb**. **Server Admin Login** is **sqladmin** and **Password** is **P2ssw0rd1234**.
+5. Update the **Azure Connection Type**, **Azure Subscription** and SQL DB Details such as **Azure SQL Server Name**. Click **Save**. 
 
     <img src="images/update_dbtask.png">
+
+    >Note: **Database Name** is set to **mhcdb**. **Server Admin Login** is **sqladmin** and **Password** is **P2ssw0rd1234**.
 
 6. Click on **Builds** tab and then click on build definition **Docker**. 
 
