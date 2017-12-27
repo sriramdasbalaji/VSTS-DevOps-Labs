@@ -34,7 +34,7 @@ In VSTS, navigate to **Services** by clicking the gear icon <img src="images/gea
 
    You will be prompted to authorize this connection with Azure credentials.
 
-   **Note**: Disable pop-up blocker in your browser if you see a blank screen after clicking OK, and retry the step.
+> **Note**: Disable pop-up blocker in your browser if you see a blank screen after clicking OK, and retry the step.
 
 ## Exercise 2: Configure Release
 
@@ -157,15 +157,15 @@ We will update the code to trigger CI-CD.
 
 2. Select the **PartsUnlimitedE2E** definition, you will see the release in-progress.
 
-   <img src="images/release_in_progress.png">
+   <img src="images/release_in_progress.png">  
 
 3. While the release is in-progress, let's explore the tasks used. Click **edit** to see the release pipeline. We have three environments **Dev**, **QA** and **Production**.
 
-   <img src="images/edit_release.png">
+   <img src="images/edit_release.png"> 
 
    >Go to the **Dev** environment, you will see 2 tasks are used. Let us explore the tasks.
 
-   <img src="images/tasks.png">
+   <img src="images/tasks.png">  
    
    >- **Azure Resource Group Deployment**: The project used in this lab contains frontend (Azure App Service) and backend (Azure SQL DB) services. We will provision these services as <a href="https://azure.microsoft.com/en-in/overview/what-is-paas/">PAAS on Azure</a> using <a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-create-first-template">ARM</a> templates. This task will create the above services in a resource group **ASPDOTNET**.
 
@@ -179,7 +179,7 @@ We will update the code to trigger CI-CD.
 
    <img src="images/release_summary1.png"> 
 
-   <img src="images/release_summary.png">
+   <img src="images/release_summary.png"> 
 
 6. Login to [Azure Portal](https://portal.azure.com) and search a **Resource Group** with the name **ASPDOTNET**.
 
