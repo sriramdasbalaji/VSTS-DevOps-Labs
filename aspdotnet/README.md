@@ -40,6 +40,8 @@ In VSTS, navigate to **Services** by clicking the gear icon <img src="images/gea
 
 Now that connections are established, we will manually map the endpoints to release definition.
 
+>**Note** : You will encounter an error - **TFS.WebApi.Exception: Page not found** for Azure tasks in the release definition. This is due to a recent change in the VSTS Release Management API. While we are working on updating VSTS Demo Generator to resolve this issue, you can fix this by typing a random text in the **Azure Subscription** field and click the **Refresh** icon next to it. Once the field is refreshed, you can select the endpoint from the drop down.
+
 1. Go to **Releases** under **Build & Release** tab, edit the release definition **PartsUnlimitedE2E**.
 
    <img src="images/release.png">
@@ -50,13 +52,9 @@ Now that connections are established, we will manually map the endpoints to rele
 
 3. Under **Azure Resource Group Deployment** task, update **Azure subscription** with the endpoint components from the dropdown and select the desired **location**.
 
-> **Note** : Since there is an issue with VSTS service endpoint API, selecting the created ARM endpoint in Azure Resource Group Deployment and Azure App Service Deploy task will throw an exception. Please follow this <a href= "https://github.com/Microsoft/VSTS-DevOps-Labs/tree/endpointworkaround/endpointworkaround">**workaround**</a> until the issue is fixed.
-
    <img src="images/task1.png">
 
 4. Under **Azure App Service Deploy** task, update **Azure subscription** with the endpoint components from the dropdown. Under the **Slot** section enter the slot name as **Dev**.
-
-> **Note** : Since there is an issue with VSTS service endpoint API, selecting the created ARM endpoint in Azure Resource Group Deployment and Azure App Service Deploy task will throw an exception. Please follow this <a href= "https://github.com/Microsoft/VSTS-DevOps-Labs/tree/endpointworkaround/endpointworkaround">**workaround**</a> until the issue is fixed.
 
    <img src="images/task2.png">
 
