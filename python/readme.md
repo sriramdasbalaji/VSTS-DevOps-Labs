@@ -41,11 +41,13 @@ You will be prompted to authorize this connection with Azure credentials.
 
 We will provision the resources on **Azure** using ARM template in the **release definition**.
 
+> Note:You will encounter an error - TFS.WebApi.Exception: Page not found for Azure tasks in the release definition. This is due to a recent change in the VSTS Release Management API. While we are working on updating VSTS Demo Generator to resolve this issue, you can fix this by typing a random text in the Azure Subscription field and click the Refresh icon next to it. Once the field is refreshed, you can select the endpoint from the drop down.
+
 1. Go to **Releases** under **Build and Release** tab, Select release definition **Python** and click **Edit**
 
    <img src ="images/releaseedit.png">
 
-2. Go to **Tasks** and select **Azure Deployment** environment.
+2. Go to **Tasks** and select **Dev** environment.
 
    <img src ="images/environment.png">
 
