@@ -269,6 +269,8 @@ In this exercise we will trigger the release manually from octopus project. Depl
 
    <img src="images/PHPApp.png">
 
+## Enabling Continuous Build and Release
+
 ## Summary
 
 We can integrate Octopus with VSTS for delpoying applications to Azure.
