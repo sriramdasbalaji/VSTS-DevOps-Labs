@@ -25,7 +25,7 @@ Below screenshot helps you understand the VSTS DevOps workflow with Docker:
 
 ## Setting up the Environment
 
-We will create an **Azure Container Registry** to store the images generated during VSTS build. These images contain environment configuration details with build settings.  An **Azure Web App** (with Linux OS) is created where custom built images will be deployed to run inside containers. 
+We will create an **Azure Container Registry** to store the images generated during VSTS build. These images contain environment configuration details with build settings.  An **Azure Web App** (with Linux OS) is created where custom built images will be deployed to run inside container (single container). **Azure SQL Database** along with **SQL Server** is created as a backend to **MyHealthClinic** .NetCore sample application.
 
 1. Click on **Deploy to Azure** (or right click and select ***Open in new tab***) to spin up **Azure Container Registry**, **Azure Web App** and **Azure SQL Database** along with **Azure SQL Server**. Enter required details such as Acr name, Site Name and DB Server Name. Agree to Terms and Conditions, and click **Purchase**.
 
@@ -83,7 +83,7 @@ We will create an **Azure Container Registry** to store the images generated dur
     <img src="images/postazuredeployment.png">
    
 
-4. Click on **mhcdb** SQL database. Note down the **Server name**. We need these details later in Excercise 2.
+4. Click on **mhcdb** SQL database. Note down the **Server name**.
 
    <img src="images/getdbserverurl.png">
 
