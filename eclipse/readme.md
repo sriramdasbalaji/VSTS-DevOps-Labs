@@ -1,38 +1,49 @@
 # Working with Eclipse
 
-In this exercise, you are going to see a typical end-to-end workflow for a Java developer. You should have completed the labs that set up automated build and release (this is a CI/CD pipeline). In this scenario, you will open the running MyShuttle application and discover a bug. You will then use the [Exploratory Testing extension](https://marketplace.visualstudio.com/items?itemName=ms.vss-exploratorytesting-web) to create a Bug work item in VSTS. You will then branch the code for fixing the bug. Once the bug is fixed on the branch, you will merge the code in via a Pull Request and code review. This will then automatically queue the build/release pipeline and your fix will be deployed.
+VSTS helps teams modernize their application development lifecycle and go from idea to deployment with continuous integration, testing, and deployment for any app targeting any platform. VSTS works with (m)any development tool including Visual Studio, Eclipse, IntelliJ, Android Studio, XCode, etc., to make it easy for developers to use VSTS.
 
-This exercise assumes you have completed the exercises to create a Team Project and have set up the Docker private VSTS agent. You should also have completed the labs to set up an automated build for both the MyShuttleCalc and the MyShuttle2 repos. You should also have complete the release management lab. This exercise uses a team project named jdev, though your team project name may differ.
+In this exercise, you are going to see a typical end-to-end workflow for a Java developer using VSTS and working with Eclipse. We will explore Team Explorer Everywhere for Eclipse,a plug-in that provides you with access to features related to Visual Studio Team Services/ Team Foundation Server from within the Eclipse
+IDE. You will notice that many of the experiences in working with
+VSTS/TFS in Eclipse are similar to working inside Visual Studio, such as
+source control, work item tracking, or build automation.
+
+You should have completed the labs that set up automated build and release (this is a CI/CD pipeline). In this scenario, you will open the running MyShuttle application and discover a bug. You will then use the [Exploratory Testing extension](https://marketplace.visualstudio.com/items?itemName=ms.vss-exploratorytesting-web) to create a Bug work item in VSTS. You will then branch the code for fixing the bug. Once the bug is fixed on the branch, you will merge the code in via a Pull Request and code review. This will then automatically queue the build/release pipeline and your fix will be deployed.
+
 
 
 ## Pre-requisites
 
 1.  **Microsoft Azure Account**: You need a valid and active azure account for the labs.
 
-2. You need a **Visual Studio Team Services Account** and <a href="http://bit.ly/2gBL4r4">Personal Access Token</a>.
+2. You need a **Visual Studio Team Services Account** and <a href="https://docs.microsoft.com/en-us/vsts/accounts/use-personal-access-tokens-to-authenticate">Personal Access Token</a>.
 
-    <img src="images/vstsdemogen.png">
-
-
-
-## Provisioning Eclipse VM on Azure
-Click on **Deploy to Azure** to provision Ubuntu vm with eclipse. 
-
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoft%2FVSTS-DevOps-Labs%2Feclipse%2Feclipse%2Farm%2520template%2Fazuredeploy.json" target="_blank">
-<img src="http://azuredeploy.net/deploybutton.png"/>
-</a>
 
 ## Setting up the project
 
 1. Use <a href="https://vstsdemogenerator.azurewebsites.net" target="_blank">VSTS Demo Data Generator</a> to provision a project on your VSTS account.
 
-   ![](images/1.png)
+ ![VSTS Demo Generator](images/vstsdemogen.png)
 
-2. Select **** for the template.
+1. Select **** for the template.
 
-   ![](images/2.png)
+ ![VSTS Demo Generator](images/vstsdemogen.png)
+
 
 3. Once the project is provisioned, select the URL to navigate to the project that you provisioned.
+
+## Provisioning Eclipse VM on Azure
+
+Click on **Deploy to Azure** to provision a Ubuntu VM pre-installed with Eclipse. 
+
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoft%2FVSTS-DevOps-Labs%2Feclipse%2Feclipse%2Farm%2520template%2Fazuredeploy.json" target="_blank">
+<img src="http://azuredeploy.net/deploybutton.png"/>
+</a>
+
+Once the machine is provisioned, you can RDP to it. 
+
+## Connecting to VSTS from Eclipse
+
+1.  Open Eclipse from the Launcher by clicking on the **Eclipse** icon.
 
 
 Install the Exploratory Testing Extension for Chrome
