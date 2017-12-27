@@ -21,7 +21,7 @@ This lab shows how to deploy **Python** application with [Django](https://www.dj
 
  2. Once the project is provisioned, click the URL to navigate to the project.
 
-#image
+    <img src="images/python_template.png">
 
 
 ## Exercise 1: Endpoint Creation
