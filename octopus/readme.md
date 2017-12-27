@@ -185,8 +185,14 @@ In this exercise, we will package PHP application and push the package to Octopu
       <tr>
         <td><b>Push packages to Octopus</b></td>
         <td>Pushes the packages to Octopus server</td>
- 
-
+     <tr>
+      <td><b>Create Octopus Release</b></td>
+      <td>We enable this task to automate the creation of release in octopus server</td>
+     </tr>
+     <tr>
+      <td><b>Deploy Octopus Release</b></td>
+      <td>We enable this task to automate the deployment of release in octopus server</td>
+     </tr>
 
   </table>
 <br/>
