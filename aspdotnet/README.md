@@ -84,7 +84,7 @@ We will update the code to trigger CI-CD.
 
 2. We have an **ASP.NET** app code provisioned by the demo generator system. We will deploy this to Azure app service.
 
-3. We have a Continious Integration (CI) build setup to run upon a code commit. Let's make a simple change to the code to trigger the CI build.
+3. We have a Continuous Integration (CI) build setup to run upon a code commit. Let's make a simple change to the code to trigger the CI build.
 
 4. Open the file **Index.cshtml** by navigating to the below path-
    
