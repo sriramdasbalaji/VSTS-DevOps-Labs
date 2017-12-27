@@ -27,7 +27,7 @@ Below screenshot helps you understand the VSTS DevOps workflow with Docker:
 
 We will create an **Azure Container Registry** to store the images generated during VSTS build. These images contain environment configuration details with build settings.  An **Azure Web App** (with Linux OS) is created where custom built images will be deployed to run inside container (single container). **Azure SQL Database** along with **SQL Server** is created as a backend to **MyHealthClinic** .NetCore sample application.
 
-1. Click on **Deploy to Azure** (or right click and select ***Open in new tab***) to spin up **Azure Container Registry**, **Azure Web App** and **Azure SQL Database** along with **Azure SQL Server**. Enter required details such as Acr name, Site Name and DB Server Name. Agree to Terms and Conditions, and click **Purchase**.
+1. Click on **Deploy to Azure** (or right click and select ***Open in new tab***) to spin up **Azure Container Registry**, **Azure Web App** and **Azure SQL Database** along with **Azure SQL Server**. Enter required details such as Acr name, Site Name and DB Server Name. Agree to ***Terms and Conditions***, and click **Purchase**.
 
    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoft%2FVSTS-DevOps-Labs%2Fdocker%2Fdocker%2Ftemplates%2Ftemplate.json" target="_blank">
 
@@ -87,7 +87,7 @@ We will create an **Azure Container Registry** to store the images generated dur
 
    <img src="images/getdbserverurl.png">
 
-5. Go back your resource group. Click on container registry. Note down the **Login server** name. We need these details later in Excercise 2.
+5. Go back your resource group. Click on container registry and note down the **Login server** name. We need these details later in Excercise 2.
 
    <img src="images/acrloginserver.png">
    
