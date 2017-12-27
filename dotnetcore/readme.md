@@ -42,6 +42,8 @@ In VSTS, navigate to **Services** by clicking the gear icon <img src="images/gea
 
 Now that connections are established, we will manually map the endpoints to release definition.
 
+>**Note** : You will encounter an error - **TFS.WebApi.Exception: Page not found** for Azure tasks in the release definition. This is due to a recent change in the VSTS Release Management API. While we are working on updating VSTS Demo Generator to resolve this issue, you can fix this by typing a random text in the **Azure Subscription** field and click the **Refresh** icon next to it. Once the field is refreshed, you can select the endpoint from the drop down.
+
 1. Go to **Releases** under **Build & Release** tab, edit the release definition **MyHealthClinicE2E**.
 
    <img src="images/create_release.png">
@@ -204,6 +206,9 @@ We are using **Infrastructure as a Code** in the release pipeline. We have a rel
 
    <img src="images/mhc_web_app.png">
 
+## Summary
+
+**Visual Studio Team Services** simplifies creation of continuous integration and continuous delivery pipelines for your application to be deployed to Azure.
 
 ## Feedback
 
