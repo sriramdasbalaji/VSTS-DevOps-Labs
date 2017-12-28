@@ -2,19 +2,19 @@
 
 ## Overview
 
-**Python** is a server-side scripting language, and a powerful tool for making dynamic and interactive Web pages.
+**Python** is a server-side scripting language and a powerful tool for making dynamic and interactive web pages.
 
 This lab shows how to deploy **Python** application with [Django](https://www.djangoproject.com/) framework to **Azure App** service using **Visual Studio Team Services**.
 
 ## Pre-requisites
 
-1. **Microsoft Azure Account:**  You need a valid and active azure account for the labs
+1. **Microsoft Azure Account:**  You need a valid and active azure account for the lab
 
  2. You need a **Visual Studio Team Services Account** and [Personal Access Token](https://docs.microsoft.com/en-us/vsts/accounts/use-personal-access-tokens-to-authenticate)
 
 ## Setting Up the VSTS Project
 
- 1. Use <a href="https://vstsdemogenerator.azurewebsites.net" target="_blank">VSTS Demo Data Generator</a> to provision a Python project on your VSTS account.
+ 1. Use <a href="http://vstsdemobuildertest.azurewebsites.net " target="_blank">VSTS Demo Generator</a> to provision a Python project on your VSTS account.
 
     <img src="images/vsts_demo.png">
 
@@ -41,7 +41,7 @@ You will be prompted to authorize this connection with Azure credentials.
 
 We will provision the resources on **Azure** using ARM template in the **release definition**.
 
-> Note:You will encounter an error - TFS.WebApi.Exception: Page not found for Azure tasks in the release definition. This is due to a recent change in the VSTS Release Management API. While we are working on updating VSTS Demo Generator to resolve this issue, you can fix this by typing a random text in the Azure Subscription field and click the Refresh icon next to it. Once the field is refreshed, you can select the endpoint from the drop down.
+> **Note**: You will encounter an error - **TFS.WebApi.Exception: Page not found** for Azure tasks in the release definition. This is due to a recent change in the VSTS Release Management API. While we are working on updating VSTS Demo Generator to resolve this issue, you can fix this by typing a random text in the **Azure Subscription** field and click the **Refresh** icon next to it. Once the field is refreshed, you can select the endpoint from the drop down.
 
 1. Go to **Releases** under **Build and Release** tab, Select release definition **Python** and click **Edit**
 
@@ -63,27 +63,27 @@ We will provision the resources on **Azure** using ARM template in the **release
 
    <img src ="images/deploy_app.png">
 
-   <table width="75%">
-   <thead>
-      <tr>
-         <th width="67%"><b>Tasks</b></th>
-         <th><b>Usage</b></th>
-      </tr>
-   </thead>
-   <tr>
-      <td><img src="images/azure_resource.png"> <b>Azure Resource Group Deployment</b></td>
-      <td>This task will create a resource group with the name <b>Python</b>, creates an <b>App service</b> and <b>App Service Plan</b> on azure which will be used to deploy the application</td>
-   </tr>
+    <table width="75%">
+    <thead>
+        <tr>
+          <th width="67%"><b>Tasks</b></th>
+          <th><b>Usage</b></th>
+        </tr>
+    </thead>
     <tr>
-      <td><img src="images/azure_app_service.png"> <b>Install Python Extension </b></td>
-      <td>the task will install python extensions on the app service which was created above.</td>
-   </tr>
-   <tr>
-      <td><img src="images/azure_deploy.png"> <b>Azure App Service Deploy</b></td>
-      <td>The task is used to update Azure App Service to deploy Web Apps to azure.</td>
-   </tr>
-   <tr>
-  </table>
+        <td><img src="images/azure_resource.png"> <b>Azure Resource Group Deployment</b></td>
+        <td>This task will create a resource group with the name <b>Python</b>, creates an <b>App service</b> and <b>App Service Plan</b> on Azure </td>
+    </tr>
+      <tr>
+        <td><img src="images/azure_app_service.png"> <b>Install Python Extension </b></td>
+        <td>The task will install python extension on the Azure app service.</td>
+    </tr>
+    <tr>
+        <td><img src="images/azure_deploy.png"> <b>Azure App Service Deploy</b></td>
+        <td>The task is used to update Azure App Service to deploy Web Apps to azure.</td>
+    </tr>
+    <tr>
+    </table>
 
 ## Excercise 3: Trigger CI with code change
 
