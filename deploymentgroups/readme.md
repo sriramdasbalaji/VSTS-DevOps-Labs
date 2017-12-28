@@ -38,7 +38,7 @@ Let us use ARM template to provision below resources on Azure:
 
 2. Once the project is provisioned, click the URL to navigate to the project.
 
-   #Image To be added
+   <img src="images/vsts_demo.png">
 
 ## Exercise 1: Endpoint Creation
 
