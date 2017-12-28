@@ -80,9 +80,9 @@ Now that connections are established, we will manually map the endpoints to rele
 
    <img src="images/code_hub.png">
 
-2. We have an **DOTNETCORE** app code provisioned by the demo generator system. We will deploy this to Azure app service.
+2. We have a **DOTNETCORE** app code provisioned by the demo generator system. We will deploy this to Azure app service.
 
-3. We have a Continious Integration (CI) build setup to run upon a code commit. Let's make a simple change to the code to trigger the CI build.
+3. We have a Continuous Integration (CI) build setup to run upon a code commit. Let's make a simple change to the code to trigger the CI build.
 
 4. Open the file **Index.cshtml** by navigating to the below path-
 
