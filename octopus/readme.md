@@ -1,4 +1,4 @@
-## Automate Deployment using Octopus Deploy & VSTS
+## Automate Deployments from VSTS to Octopus Deploy
 
 [Octopus Deploy](https://Octopus.com) is an automated deployment server that makes it easy to automate the deployment of web applications and custom scripts to multiple environments.
 
@@ -124,9 +124,9 @@ Octopus authenticates with Azure using the Management Certificate.
 
 In this exercise we will create an **API** key in Octopus. This key is required to link VSTS with Octopus.
 
-1. Under user profile, go to **MY API Key** and click **New API Key** to create one.
+1. Under user profile, go to **MY API Key** and click **New API Key** to create.
 
-Add step
+
 
    <img src="images/API Key.png">
 
