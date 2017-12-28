@@ -28,7 +28,7 @@ This lab shows how to deploy **Python** application with [Django](https://www.dj
 
 Since the connections are not established during project provisioning, we will manually create the endpoints.
 
-In VSTS, navigate to **Services** by clicking the gear icon, and click  **+ New Service Endpoint**. Select **Azure Resource Manager**. Specify connection name, select your subscription from the dropdown and click OK. We use this endpoint to connect VSTS with Azure.
+In VSTS, navigate to **Services** by clicking the gear icon, and click  **+ New Service Endpoint**. Select **Azure Resource Manager**. Specify connection name, select your subscription from the drop down and click OK. We use this endpoint to connect VSTS with Azure.
 
    <img src ="images/service_endpoint.png">
 
@@ -37,7 +37,7 @@ You will be prompted to authorize this connection with Azure credentials.
 
 **Note**: Disable pop-up blocker in your browser if you see a blank screen after clicking OK, and retry the step.
 
-## Excercise 2: Configure Release
+## Exercise 2: Configure Release
 
 We will provision the resources on **Azure** using ARM template in the **release definition**.
 
@@ -85,7 +85,7 @@ We will provision the resources on **Azure** using ARM template in the **release
     <tr>
     </table>
 
-## Excercise 3: Trigger CI with code change
+## Exercise 3: Trigger CI with code change
 
 **Python** is an interpreted language, and hence compilation is not required. We will archive the files in the build and use the package in the release for deployment. Update the code to trigger CI-CD using **Hosted build agent**.
 
