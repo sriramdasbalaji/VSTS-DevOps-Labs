@@ -164,7 +164,7 @@ We will use the artifact generated from the build to deploy to App Service on az
 
 ## Summary
   
-In this lab, we will setup a Continuous Build and Deployment to Azure App Service for a Python project using Visual Studio Team Services.
+This lab shows how to create a continuous integration(CI) and continuous deployment (CD) pipeline for Python code with Visual Studio Team Services (VSTS) on Azure..
 
 ## Feedback 
 
