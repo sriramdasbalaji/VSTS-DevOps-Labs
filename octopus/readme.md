@@ -1,6 +1,6 @@
 ## Automate Deployment using Octopus Deploy & VSTS
 
-[Octopus Deploy](https://Octopus.com) is an automated deployment server that makes it easy to automate the deployment of ASP.NET web applications, Java applications, database updates, PHP application, and custom scripts into development, test, and production environments.
+[Octopus Deploy](https://Octopus.com) is an automated deployment server that makes it easy to automate the deployment of web applications and custom scripts to multiple environments.
 
 This lab shows how you can integrate VSTS and Octopus to deploy PHP application to Azure.
 
@@ -30,14 +30,14 @@ This lab shows how you can integrate VSTS and Octopus to deploy PHP application 
 
    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoft%2FVSTS-DevOps-Labs%2Foctopus%2Foctopus%2Farm%2520template%2Ftemplate.json"><img src="http://azuredeploy.net/deploybutton.png"></a> 
 
-2. Provide **Resource group** and **Octopus DNS Name**, check the **terms and conditions** and click **Purchase**
+2. Provide **Resource group** and **Octopus DNS Name**, check the **terms and conditions** and click **Purchase**.
 
     <img src="images/DeployOctopus.png">
 
-3. It takes approxinately 15 minutes to deploy. Once the deployment is succeeded, following resources will be provisioned in Azure:
+3. It takes approximately 15 minutes to deploy. Once the deployment is succeeded, following resources will be provisioned in Azure:
 
-    - Windows server 2012 VM with **Octopus** 
-    - **App Service** to deploy PHP application
+    - Windows server 2012 VM with **Octopus Deploy** server
+    - **Azure App Service** to deploy PHP application
 
     <br/>
 
@@ -48,11 +48,13 @@ This lab shows how you can integrate VSTS and Octopus to deploy PHP application 
 
    <img src="images/A3.png">
 
-## Exercise 1: Configure Octopus server
+## Exercise 1: Configure Deployment Target in Octopus
 
-In this exercise, we will create **deployment environment** in Octopus server. Since we are deploying the application to Azure App Service, we will link the environment to Azure using **Management Certificate**.
+In this exercise, we will create **deployment environment** in Octopus server and link it to Azure using **Management Certificate**.
 
-1. Login to Octopus server using DNS name from your browser. Use the below credentials to login.
+Octopus authenticates with Azure using the Management Certificate.
+
+1. Login to Octopus server using DNS name and credentials as below:
 
    - **Username**: admin
    - **Password**: P2ssw0rd@123
@@ -73,21 +75,21 @@ In this exercise, we will create **deployment environment** in Octopus server. S
 
    <img src="images/DevEnvironment.png">
 
-4. You will see the created environment name on your screen . Now, link Azure account to this environment by clicking on **Accounts**
+4. Once the environment is created, click on **Accounts** 
 
    <img src="images/Dev.png">
 
 
-5. Click on **ADD ACCOUNT** beside **Azure Subscriptions**
+5. Click on **ADD ACCOUNT** to link your Azure subscription to the created environment.
 
    
    <img src="images/Add Account.png">
 
-6. Enter the following details as shown and click **Save**
+6. Enter the following details and click **Save**.
 
-   - **Name**: Provide the account name.
-   - **Subecription ID**: Your [Azure Subscription ID](https://blogs.msdn.microsoft.com/mschray/2016/03/18/getting-your-azure-subscription-guid-new-portal/).
-   - **Authentication Method**: Choose **Use Management Certificate**.
+   - **Name**: Provide the account name
+   - **Subscription ID**: Your [Azure Subscription ID](https://blogs.msdn.microsoft.com/mschray/2016/03/18/getting-your-azure-subscription-guid-new-portal/)
+   - **Authentication Method**: Choose **Use Management Certificate**
    >You can also use Service Principal authentication method by following [this link](https://octopus.com/docs/infrastructure/azure/creating-an-azure-account/creating-an-azure-service-principal-account)
    <br/>
 
@@ -98,7 +100,7 @@ In this exercise, we will create **deployment environment** in Octopus server. S
 
    <img src="images/Download Certificate.png">
 
-8. To upload the certificate on Azure, go to [Azure Portal](https://portal.azure.com), and click on **Subscriptions**.
+8. To upload the certificate on Azure, go to [Azure Portal](https://portal.azure.com) and search for **Subscriptions**.
 
    <img src="images/O8.png">
 
@@ -118,15 +120,17 @@ In this exercise, we will create **deployment environment** in Octopus server. S
 
     <img src="images/O12.png"  height="400px">
 
-12. Go back to Octopus portal and click **Save and Test**. You will see the verification for azure connection will be successful.
+12. Once the certificate is uploaded successfully, go back to Octopus portal and click **Save and Test**. You will see the verification for azure connection is successful.
 
     <img src="images/Verification Success.png">
 
-## Exercise 2: Link VSTS and Octopus Server
+## Exercise 2: Link VSTS and Octopus Deploy server
 
 In this exercise we will create an **API** key in Octopus. This key is required to link VSTS with Octopus.
 
 1. Under user profile, go to **MY API Key** and click **New API Key** to create one.
+
+Add step
 
    <img src="images/API Key.png">
 
@@ -138,7 +142,7 @@ In this exercise we will create an **API** key in Octopus. This key is required 
 
    <img src="images/Key.png">
 
-4. Go to **VSTS project** which was provisioned earlier, click on <img src="images/gear.png"> **icon --> Services --> + New Service Endpint**, scroll down and select **Octopus Deploy**
+4. Go to **VSTS project** which was provisioned earlier, click on gear <img src="images/gear.png"> icon --> **Services --> + New Service Endpint**, scroll down and select **Octopus Deploy**
 
    <img src="images/Endpoint.png">
 
@@ -147,7 +151,7 @@ In this exercise we will create an **API** key in Octopus. This key is required 
 
    <img src="images/endpointName.png">
 
-7. You will see service endpoint created successfully.
+7. We will see service endpoint created.
 
    <img src="images/EndpointSuccess.png">
 
@@ -159,7 +163,7 @@ In this exercise, we will package PHP application and push the package to Octopu
 
    <img src="images/Build Defination.png"> 
  
-2. **Edit** the build defination to update Octopus server endpoint.
+2. **Edit** the build definition to update Octopus server endpoint.
 
    <img src="images/EditBD.png">
 
@@ -189,43 +193,44 @@ In this exercise, we will package PHP application and push the package to Octopu
         <td>Pushes the packages to Octopus server</td>
      <tr>
       <td><b>Create Octopus Release</b></td>
-      <td>We enable this task to automate the creation of release in octopus server</td>
+      <td>This task is used to automate the creation of release in octopus server. We will enable this task in <b>Exercise 6</b></td>
      </tr>
      <tr>
       <td><b>Deploy Octopus Release</b></td>
-      <td>We enable this task to automate the deployment of release in octopus server</td>
+      <td>This task is used to automate the deployment of release in octopus server. We will enable this task in <b>Exercise 6</b></td>
      </tr>
 
   </table>
 <br/>
 
 
-4. Once the build completes, you will see the build summary.
+4. Once the build completes, go to Octopus portal.
 
    <img src="images/Build Complete.png">
 
-5. Go to Octopus Server. You will see the green check mark which indicates **Application package** is pushed successfully. Click **Upload package** to see the package.
+5. You will see the green check mark which indicates **Application package** is pushed successfully. 
 
    <img src="images/Pkg Uploaded.png">
 
    <br/>
+6. To see the uploaded package, go to **Library** and click **Packages**.
 
    <img src="images/Pkg.png">
 
 ## Exercise 4: Project Creation in Octopus
 
-[Projects](https://octopus.com/docs/deploying-applications/deployment-process/projects) allow you to define all the details required to deploy a project including the steps to run and variables to configure it.
-In this exercise, we will create project in Octopus which will deploy the package to **Azure Web Service**
+[Projects](https://octopus.com/docs/deploying-applications/deployment-process/projects) allow you to define all the details required to deploy an application.
+In this exercise, we will create a project with steps to deploy the package to **Azure App Service**.
 
-1. Go to Octopus dashboard and click **Create a project** and **ADD PROJECT**.
+1. Go to Octopus dashboard and click **Create a project**.
 
    <img src="images/Project.png">
 
-   <br/>
+2. Click on **ADD PROJECT**, provide the project name and click on **SAVE**
 
    <img src="images/Add Project.png">
 
-2. Give the project name and click on **SAVE**.
+   <br/>
 
    <img src="images/PUProject.png">
 
@@ -241,7 +246,7 @@ In this exercise, we will create project in Octopus which will deploy the packag
 
    <img src="images/AddWebAppStep.png">
 
-6. Provide **step name** and select **package ID, Azure account** & **Web App** and then click **Save**.
+6. Provide **step name** and select **package ID, Azure account** & **Web App** from the dropdown, and click **Save**.
 
    <img src="images/PkgID.png">
 
@@ -281,11 +286,15 @@ In this exercise we will trigger the release manually from octopus project. Depl
 
 In this exercise, we will enable continuous build and release of PHP application.
 
-1. Enable **Create Octopus Release** and **Deploy Octopus Release**  
+1. In VSTS portal, under builts tab, edit build definition, right click on **Create Octopus Release** task and **enable** it. Similarly enable **Deploy Octopus Release** task.  
 
    <img src="images/CD-Create.png">
 
-2. Update **Octopus Deploy Server**, **Project** fields in both the task and **Deploy to Environment** field in **Deploy Octopus Release**.
+2. Update **Octopus Deploy Server**, **Project** fields in Create Octopus Release.
+
+    <img src="images/Update1.png">
+
+3. Update **Octopus Deploy Server**, **Project** and **Deploy to Environments** fields in Deploy Octopus Release.
 
     <img src="images/Update.png"> 
 
