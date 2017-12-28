@@ -48,6 +48,18 @@ Since the connections are not established during project provisioning, we will m
 
    <img src="images/endpoint.png"> 
 
+2. Create an endpoint of type **Team Foundation Server/Team Services**. Select **Token based authentication** and specify the following details-
+
+   - **Connection Name**: Give any name
+
+   - **Connection Url**: Your VSTS account Url
+
+   - **Personal Access Token**: Your VSTS Personal Access Token
+ 
+   We will use this endpoint later in the release because agent registration with deployment group requires access to your VSTS project.
+
+   <img src="images/vsts.png"> 
+
 ## Exercise 2: Creating Deployment Group
 
 [Deployment Groups](https://docs.microsoft.com/en-us/vsts/build-release/concepts/definitions/release/deployment-groups/) in VSTS make it easier to organize the servers that you want to use to host your app. A deployment group is a collection of machines with a VSTS agent on each of them. Each machine interacts with VSTS to coordinate deployment of your app.
@@ -80,6 +92,12 @@ A [Phase](https://docs.microsoft.com/en-us/vsts/build-release/concepts/process/p
 2. You will see tasks grouped under **Agent phase**, **Database deploy phase** and **IIS Deployment phase**.
 
    <img src="images/phases.png"> 
+
+   - **Agent Phase**: In this phase , we will associate the target servers to the deployment group. The below task is used-
+
+     - **Azure Resource Group Deployment**: This task will automate the configuration of the deployment group agents to the web and db servers.
+
+       <img src="images/agent_phase.png">
 
    - **Database deploy phase**: In this phase, we use [**SQL Server Database Deploy**](https://github.com/Microsoft/vsts-tasks/blob/master/Tasks/SqlDacpacDeploymentOnMachineGroup/README.md) task to deploy [**dacpac**](https://docs.microsoft.com/en-us/sql/relational-databases/data-tier-applications/data-tier-applications) file to the DB server.
  
@@ -134,7 +152,11 @@ A [Phase](https://docs.microsoft.com/en-us/vsts/build-release/concepts/process/p
 
     <img src="images/connect_lb.png">
 
-6. Click **Save** and **Create release**.
+6. Go to **Variables** tab and update the **DefaultConnectionString** value with **Your SQL_DNS name**.
+
+   <img src="images/release_variable.png">
+
+7. Click **Save** and **Create release**.
 
 
    <img src="images/save.png">
@@ -144,14 +166,14 @@ A [Phase](https://docs.microsoft.com/en-us/vsts/build-release/concepts/process/p
    <img src="images/create_release.png">
 
 
-7. Once the release is complete, you will see the deployments are done to DB and Web Servers. Go to Logs to see the summary.
+8. Once the release is complete, you will see the deployments are done to DB and Web Servers. Go to Logs to see the summary.
 
    <img src="images/release_summary.png">
 
 
    >In one of your web servers, go to http://localhost:80/ to access the application. 
 
-8. The deployed web application is displayed.
+9. The deployed web application is displayed.
 
    <img src="images/application.png">
 
