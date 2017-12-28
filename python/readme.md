@@ -14,7 +14,7 @@ This lab shows how to deploy **Python** application with [Django](https://www.dj
 
 ## Setting Up the VSTS Project
 
- 1. Use <a href="http://vstsdemobuildertest.azurewebsites.net " target="_blank">VSTS Demo Generator</a> to provision a Python project on your VSTS account.
+ 1. Use <a href="https://vstsdemogenerator.azurewebsites.net/?name=Python&templateid=77369" target="_blank">VSTS Demo Generator</a> to provision a Python project on your VSTS account.
 
     <img src="images/vsts_demo.png">
 
