@@ -33,14 +33,13 @@ In VSTS, navigate to **Services** by clicking the gear icon <img src="images/gea
 
    <img src="images/endpoint_creation.png">
 
-   You will be prompted to authorize this connection with Azure credentials.
-
-   **Note**: Disable pop-up blocker in your browser if you see a blank screen after clicking OK, and retry the step.
-
+   You will be prompted to authorize this connection with Azure credentials. Disable pop-up blocker in your browser if you see a blank screen after clicking OK, and retry the step.
 
 ## Exercise 2: Configure Release
 
 Now that connections are established, we will manually map the endpoints to release definition.
+
+> **Note** : You will encounter an error - **TFS.WebApi.Exception: Page not found** for Azure tasks in the release definition. This is due to a recent change in the VSTS Release Management API. While we are working on updating VSTS Demo Generator to resolve this issue, you can fix this by typing a random text in the **Azure Subscription** field and click the **Refresh** icon next to it. Once the field is refreshed, you can select the endpoint from the drop down.
 
 1. Go to **Releases** under **Build & Release** tab, edit the release definition **MyHealthClinicE2E**.
 
@@ -53,13 +52,9 @@ Now that connections are established, we will manually map the endpoints to rele
 
 3. Under **Azure Resource Group Deployment** task, update **Azure subscription** with the endpoint components from the dropdown and select the desired **location**.
 
-> **Note** : Since there is an issue with VSTS service endpoint API, selecting the created ARM endpoint in Azure Resource Group Deployment and Azure App Service Deploy task will throw an exception. Please follow this <a href= "https://github.com/Microsoft/VSTS-DevOps-Labs/tree/endpointworkaround/endpointworkaround">**workaround**</a> until the issue is fixed.
-
    <img src="images/release_3.png">
 
 4. Under **Azure App Service Deploy** task, update **Azure subscription** with the endpoint components from the dropdown. Under the **Slot** section enter the slot name as **Dev**.
-
-> **Note** : Since there is an issue with VSTS service endpoint API, selecting the created ARM endpoint in Azure Resource Group Deployment and Azure App Service Deploy task will throw an exception. Please follow this <a href= "https://github.com/Microsoft/VSTS-DevOps-Labs/tree/endpointworkaround/endpointworkaround">**workaround**</a> until the issue is fixed.
 
    <img src="images/release_4.png">
 
@@ -103,7 +98,7 @@ Now that connections are established, we will manually map the endpoints to rele
 
 7. The code commit will trigger the CI build. Go to the **Build** tab to see the CI build running in progress.
 
-   <img src="images/build_in_progress.png">
+   <img src="images/build_in_progress.png"> 
 
    While the build is in progress, let's explore the build definition. The tasks that is used in the build definition are listed in the table below.
 
@@ -165,7 +160,7 @@ Now that connections are established, we will manually map the endpoints to rele
 
 9. Once the build is complete click on the build number, to see the summary which shows **Test Results** as shown.
 
-   <img src="images/build_summary.png">
+   <img src="images/build_summary.png"> 
 
 ## Exercise 4: Continuous Delivery
 
@@ -175,7 +170,7 @@ We are using **Infrastructure as a Code** in the release pipeline. We have a rel
 
 2. Select the **MyHealthClinicE2E** definition, you will see the release in-progress.
 
-   <img src="images/release.png">
+   <img src="images/release.png"> 
 
 3. While the release is in-progress, let's explore the tasks used. Click **edit** to see the release pipeline. We have three environments **Dev, QA** and **Production**.
 
@@ -195,11 +190,11 @@ We are using **Infrastructure as a Code** in the release pipeline. We have a rel
 
 5. Double click on the release to see the release summary.
 
-   <img src="images/release_summary1.png">
+   <img src="images/release_summary1.png"> 
 
    <br/>
 
-   <img src="images/release_summary.png">
+   <img src="images/release_summary.png"> 
 
 6. Login to [Azure Portal](https://portal.azure.com) and search a **Resource Group** with the name **dotnetcore**.
 
@@ -209,6 +204,9 @@ We are using **Infrastructure as a Code** in the release pipeline. We have a rel
 
    <img src="images/mhc_web_app.png">
 
+## Summary
+
+**Visual Studio Team Services** simplifies creation of continuous integration and continuous delivery pipelines for your application to be deployed to Azure.
 
 ## Feedback
 
