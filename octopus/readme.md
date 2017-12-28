@@ -161,7 +161,7 @@ In this exercise, we will package PHP application and push the package to Octopu
 
 1. Go to **Builds** under **Build and Release** tab and click on **Octopus** build definition.
 
-   <img src="images/Build Defination.png"> 
+   <img src="images/Build definition.png"> 
  
 2. **Edit** the build definition to update Octopus server endpoint.
 
@@ -298,7 +298,7 @@ In this exercise, we will enable continuous build and release of PHP application
 
     <img src="images/Update.png"> 
 
-3. Save the build defination.
+3. Save the build definition.
 
     <img src="images/Save.png">
 
