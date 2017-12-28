@@ -86,12 +86,12 @@ We will create an **Azure Container Registry** to store the images generated dur
 
 5. Go back to your resource group. Click on container registry and note down the **Login server** name. We need these details later in Excercise 2.
 
-   <img src="images/acrloginserver.png">
+   <img src="images/getacrserver.png">
    
 
 ## Setting up the Project
 
-1. Use <a href="https://vstsdemogenerator.azurewebsites.net/?name=Docker&templateid=77364" target="_blank">VSTS Demo Data Generator</a> to provision a project on your VSTS account 
+1. Use <a href="https://vstsdemogenerator.azurewebsites.net/?name=Docker&templateid=77363" target="_blank">VSTS Demo Data Generator</a> to provision a project on your VSTS account 
 
     <img src="images/vstsdemogen.png"> 
 
@@ -99,7 +99,7 @@ We will create an **Azure Container Registry** to store the images generated dur
 
    <img src="images/vstsdemogen2.png">
 
-3. Once the project is provisioned, click the **URL** to navigate to the project created.
+3. Once the project is provisioned, click the **URL** to navigate to the project.
 
    <img src="images/vstsdemogen3.png">
 
@@ -108,26 +108,24 @@ We will create an **Azure Container Registry** to store the images generated dur
 
 Since the connections are not established during project provisioning, we will manually create the Azure endpoint. 
 
-1. In VSTS, navigate to **Services** by clicking on the gear icon, and click on **+ New Service Endpoint**. Select **Azure Resource Manager**. Specify **Connection name**, select your **Subscription** from the dropdown and click **OK**. We use this endpoint to connect **VSTS** and **Azure**.
+1. In VSTS, navigate to **Services** by clicking on the gear icon <img src="images/gearicon.png">, and click on **+ New Service Endpoint**. Select **Azure Resource Manager**. Specify **Connection name**, select your **Subscription** from the dropdown and click **OK**. We use this endpoint to connect **VSTS** and **Azure**.
 
    <img src="images/armendpoint.png">
 
-   You will be prompted to authorize this connection with Azure credentials. 
-
-   >Note: Disable pop-up blocker in your browser if you see a blank screen after clicking **OK**, and retry the step. 
+   You will be prompted to authorize this connection with Azure credentials. Disable pop-up blocker in your browser if you see a blank screen after clicking OK, and retry the step. 
 
 
 ## Exercise 2: Configure CI-CD
 
  Now that the connection is established, we will manually map the Azure endpoint and Azure Container Registry to build and release definitions. We will also deploy the dacpac to mhcdb database so that the schema is set for the backend.
 
- >Note : You will encounter an error - ***TFS.WebApi.Exception: Page not found*** for Azure tasks in the build/ release definition. This is due to a recent change in the VSTS Release Management API. While we are working on updating VSTS Demo Generator to resolve this issue, you can fix this by typing a random text in the Azure Subscription field and click the Refresh icon next to it. Once the field is refreshed, you can select the endpoint from the drop down.
+ >Note : You will encounter an error - ***TFS.WebApi.Exception: Page not found*** for Azure tasks in the build/ release definition. This is due to a recent change in the VSTS Release Management API. While we are working on updating VSTS Demo Generator to resolve this issue, you can fix this by typing a random text in the Azure Subscription field and click the **Refresh** icon next to it. Once the field is refreshed, you can select the endpoint from the drop down.
 
 1. Go to **Builds** under **Build and Release** tab, **Edit** the build definition **Docker**.
 
    <img src="images/build.png">
 
-2. Click on **Process** section, select appropriate contents from dropdown under **Azure subscription** and **Azure Container Registry**. 
+2. Click on **Process** section, select appropriate contents from dropdown under **Azure subscription** and **Azure Container Registry**. (use up down arrow to choose Azure Container Registry for the first time)
 
    <img src="images/updateprocessbd.png">
 
@@ -181,7 +179,7 @@ Since the connections are not established during project provisioning, we will m
 
     <img src="images/update_dbtask.png">
 
-    >Note: **Database Name** is set to **mhcdb**. **Server Admin Login** is **sqladmin** and **Password** is **P2ssw0rd1234**.
+    >Note: **Database Name** is set to **mhcdb**, **Server Admin Login** is **sqladmin** and **Password** is **P2ssw0rd1234**.
 
 6. Click on **Builds** tab and then click on build definition **Docker**. 
 
@@ -250,7 +248,7 @@ In this excercise, we will enable the continuous integration trigger to create a
 
    <img src="images/build.png">
 
-2. Right click on each task **Run Services**, **Build Services**, **Push Services** and **Lock Services** one by one. Click on **Enable Selected Task(s)** to enable all of these tasks. Disable **Copy Files** and **Publish Artifact** tasks by selecting **Disable Selected Task(s)** after right clicking on each of them.
+2. Right click on each task **Run Services**, **Build Services**, **Push Services** and **Lock Services** one by one (or use Ctrl+Click to select multiple tasks, and then right click). Select **Enable Selected Task(s)** to enable all of these tasks. Disable **Copy Files** and **Publish Artifact** tasks by selecting **Disable Selected Task(s)** after right clicking on each of them.
 
     <img src="images/enabletasks_bd.png">
 
