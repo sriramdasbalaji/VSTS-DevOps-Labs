@@ -176,7 +176,7 @@
                         "properties": {
                             "priority": 1000,
                             "sourceAddressPrefix": "*",
-                            "protocol": "Tcp",
+                            "protocol": "TCP",
                             "destinationPortRange": "22",
                             "access": "Allow",
                             "direction": "Inbound",
@@ -216,7 +216,7 @@
                 "autoUpgradeMinorVersion": true,
             "settings": {
                 "fileUris": [
-                    "[concat('https://raw.githubusercontent.com/SrivatsaMarichi/Eclipse/', parameters('branch'), '/vm.sh')]"
+                    "[concat('https://raw.githubusercontent.com/bayernmunich/Eclipse/', parameters('branch'), '/env/vm.sh')]"
                 ],
                 "commandToExecute": "[concat('bash vm.sh ', parameters('adminUsername'), ' ', resourceGroup().location, ' ', parameters('branch'))]"
             }
