@@ -56,97 +56,18 @@ Since the connections are not established during project provisioning, we will m
 
    <img src="images/add_deploymentgroup.png"> 
 
-2. Provide a name for **Deployment group name**, Description (optional) and click create. You will see a script generated.
+2. Provide  **Deployment group name**, and click create. We will see the registration script generated.
 
    <img src="images/name_dg.png"> 
 
 
    <img src="images/script_dg.png"> 
-
-## Exercise 3: Associating target VMs to Deployment Group
-
-In this exercise, we will associate all 7 machines which have been provisioned earlier. We will run the VSTS agent registration script on each machine to associate with the deployment group.
-
-1. Login to the **web server** using [RDP](https://support.microsoft.com/en-in/help/17463/windows-7-connect-to-another-computer-remote-desktop-connection) with the following details.
-   
-   - Use Public IP and port number of the VM to login. For example,  **public ip:50001**
-   
-   - Use the credentials which were provided during the environment set up.
-
-   >Note: Public IP is obtained from Azure Portal. Go to the resource group where you have the resources, click on **cust1webSrv0** VM and copy the Public IP. The port number is **50001** because we have a load balancer setup. The port number for other VMs are already set while being provisioned and are listed in the below table.
-
-   <table width ="75%">
-   <th>Machine Name (Web Servers)</th>
-   <th>Port Number</th>
-   <tr>
-      <td>cust1webSrv0</td>
-      <td>50001</td>
-   <tr>
-      <td>cust1webSrv1</td>
-      <td>50002</td>
-   <tr>
-      <td>cust1webSrv2</td>
-      <td>50003</td>
-   <tr>
-      <td>cust1webSrv3</td>
-      <td>50004</td>
-   <tr>
-      <td>cust1webSrv4</td>
-      <td>50005</td>
-   <tr>
-      <td>cust1webSrv5</td>
-      <td>50006</td>
-    </table>
-    <br>
-   <img src="images/rdp.png"> 
-
-2. Copy the generated registration script. Open **Powershell** in **administrator** mode, paste and **execute** the script.
-
-   <img src="images/powershell.png"> 
-
-3. When **Enter deployment group tags for agent?(Y/N)** message is prompted in the powershell window, type **Y** and hit **enter**.
-
-   <img src="images/powershell_agent.png">
-
-4. Tag VM 1 (**cust1webSrv0**) by entering the tag as **web**.
-   
-    <img src="images/powershell_web.png"> 
-
-5. The next prompt in the window is the **User Account** to be used to run the deployment agent as a service. We will use the default service account. Press **enter** key without any input.
-
-    >Note: For all web servers, the user account used is **NT AUTHORITY\SYSTEM**.
-
-6. You will see the deployment agent is configured successfully.
-
-    <img src="images/powershell_complete.png"> 
-  
-7. Repeat steps from 1 to 5 to tag other **web** servers.
-
-8. Login to the SQL **DB** server VM using the Public IP.
-
-   >Note: Obtain the Public IP from your Azure Portal by going to the resource with the name **cust1SqlPip** and copy the IP address.
-
-   <img src="images/sqlpip.png">
-
-9. In this case, follow only the 2nd and 3rd steps of Exercise 3.
-
-10. Tag DB server (**cust1sqlSrv14**) by entering the tag as **db**.
-  
-    <img src="images/powershell_db.png"> 
-       
-11. Enter the **User Account** to configure the deployment agent.
-
-    >Note: In this example, provide the credentials of the user account **vmadmin**. 
-
-    <img src="images/powershell_user.png"> 
-    
-
-12. 
-## Exercise 4: Configure Release
+ 
+## Exercise 3: Configure Release
 
 We have target machines available in the deployment group to deploy the application. The release definition uses **Phases** to deploy to target servers.
 
-A phase is a logical grouping of tasks that defines the runtime target on which the tasks will execute. A deployment group phase executes tasks on the machines defined in a deployment group.
+A [Phase](https://docs.microsoft.com/en-us/vsts/build-release/concepts/process/phases) is a logical grouping of tasks that defines the runtime target on which the tasks will execute. A deployment group phase executes tasks on the machines defined in a deployment group.
 
 1. Go to Releases under **Build & Release** tab. Edit the release definition **Deployment group** and select **Tasks**.
 
@@ -156,7 +77,7 @@ A phase is a logical grouping of tasks that defines the runtime target on which 
      
     <img src="images/task.png"> 
  
-2. You will see tasks grouped under **Database deploy phase** and **IIS Deployment phase**.
+2. You will see tasks grouped under **Agent phase**, **Database deploy phase** and **IIS Deployment phase**.
 
    <img src="images/phases.png"> 
 
@@ -195,7 +116,7 @@ A phase is a logical grouping of tasks that defines the runtime target on which 
 
    - **Resource Group**: Name of the Resource Group which was created while provisioning the environment
 
-   - **Load Balancer Name**: Select the name **cust1webSrvlb** from the dropdown
+   - **Load Balancer Name**: Select the name from the dropdown
 
    - **Action**: Set the action to **Disconnect Primary Network Interface**
 
@@ -207,7 +128,7 @@ A phase is a logical grouping of tasks that defines the runtime target on which 
 
     - **Resource Group**: Name of the Resource Group which was created while provisioning the environment
 
-    - **Load Balancer Name**: Select the name **cust1webSrvlb** from the dropdown
+    - **Load Balancer Name**: Select the name from the dropdown
 
     - **Action**: Set the action to **Connect Primary Network Interface**
 
