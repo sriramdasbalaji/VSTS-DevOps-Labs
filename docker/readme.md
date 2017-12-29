@@ -42,7 +42,7 @@ We will create an **Azure Container Registry** to store the images generated dur
 
    <img src="images/acrdeploymentsucceeded.png">
 
-3. Below components are created post deployment. Click on **Azure Container Registry**.
+3. Below components are created post deployment.
      
     <table width="100%">
      <thead>
