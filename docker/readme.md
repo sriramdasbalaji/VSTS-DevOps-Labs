@@ -36,6 +36,8 @@ We will create an **Azure Container Registry** to store the images generated dur
    <br/>
    <img src="images/createazurecomponents.png">
 
+   Click  <a href="https://azure.microsoft.com/en-in/regions/services/"> here </a> to to see Azure products available by region.
+
 2. It takes approximately **3 to 4 minutes** to provision the environment. Click on **Go To resource group**.
 
    <img src="images/acrdeploymentsucceeded.png">
