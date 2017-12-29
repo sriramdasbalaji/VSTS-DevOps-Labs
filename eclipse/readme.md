@@ -2,10 +2,7 @@
 
 VSTS helps teams modernize their application development lifecycle and go from idea to deployment with continuous integration, testing, and deployment for any app targeting any platform. VSTS works with (m)any development tool including Visual Studio, Eclipse, IntelliJ, Android Studio, XCode, etc., to make it easy for developers to use VSTS.
 
-In this exercise, you are going to see a typical end-to-end workflow for a Java developer using VSTS and working with Eclipse. We will explore Team Explorer Everywhere for Eclipse,a plug-in that provides you with access to features related to Visual Studio Team Services/ Team Foundation Server from within the Eclipse
-IDE. You will notice that many of the experiences in working with
-VSTS/TFS in Eclipse are similar to working inside Visual Studio, such as
-source control, work item tracking, or build automation.
+In this exercise, you are going to see a typical end-to-end workflow for a Java developer using VSTS and working with Eclipse. We will install and explore how **Team Explorer Everywhere** helps teams using Eclipse-based IDE to collobarate across teams with Visual Studio Team Services / Team Foundation Server. 
 
 You should have completed the labs that set up automated build and release (this is a CI/CD pipeline). In this scenario, you will open the running MyShuttle application and discover a bug. You will then use the [Exploratory Testing extension](https://marketplace.visualstudio.com/items?itemName=ms.vss-exploratorytesting-web) to create a Bug work item in VSTS. You will then branch the code for fixing the bug. Once the bug is fixed on the branch, you will merge the code in via a Pull Request and code review. This will then automatically queue the build/release pipeline and your fix will be deployed.
 
@@ -43,8 +40,32 @@ Once the machine is provisioned, you can RDP to it.
 
 ## Connecting to VSTS from Eclipse
 
-1.  Open Eclipse from the Launcher by clicking on the **Eclipse** icon.
+1.  Open Eclipse from the Launcher by clicking on the **Eclipse** icon from the panel below
 
+1. Click **OK** to select the default folder for the workspace
+
+1. We wil install **Team Explorer Everywhere (TEE)**. TEE is the official plug-in for Eclipse from Microsoft to connect VSTS/TFS with Eclipse-based IDE on any platform. It is supported on Linux, Mac OS X, and Windows and is compatible with IDEs that are based on Eclipse 4.2 to 4.6. 
+
+With Team Explorer Everywhere, you can:
+* Browse and clone Git repositories
+* Full access to TFS Version Control (TFVC), including check-in, check-out, sync, branch, merge, diff, etc.
+* Full access to TFS agile tools, work items, and issue tracking capabilities allowing you to add, edit and query work items
+* Full access to TFS Build functionality including the ability to create Ant, Maven, or Gradle based builds in TFS, publish JUnit test results into TFS or Visual Studio Team Services, monitor progress and handle results. This is fully compatible with all Team Foundation Build types including Gated Check-in and Continuous Integration Builds.
+
+The plugin can be acquired and installed in the following ways"
+
+1. Eclipse MarketPlace:  The plug-in is freely available on the Eclipse Marketplace -https://marketplace.eclipse.org/content/team-explorer-everywhere. To install it from the marketplace, you can drag the **install** button to a running Eclipse or install it using the Help /|Eclipse Marketplace option
+
+1. Eclipse download site:   
+   1. Choose **Help** menu /| **Install New Software**
+   1. Select **Add**
+   1. In the **Add Repository** dialog, enter **Team Explorer Everywhere** for the name and specify **http://dl.microsoft.com/eclipse/** for the location
+   1. Click **OK**
+   1. This should populate the list of features in the install dialog box.  Select the check box that corresponds to the **Team Explorer Everywhere**
+   1. Choose the **Next** button two times 
+   1. The last page of the wizard shows you the **Microsoft Software License Terms**. Select the **Finish** button to accept if you agree with the terms
+
+1. GitHub Repository:
 
 Install the Exploratory Testing Extension for Chrome
 ----------------------------------------------------
