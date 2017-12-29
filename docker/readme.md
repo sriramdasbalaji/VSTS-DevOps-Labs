@@ -175,17 +175,21 @@ Since the connections are not established during project provisioning, we will m
    <br/>
    <img src="images/release_tasks.png">
 
-5. Update the **Azure Connection Type**, **Azure Subscription** and SQL DB Details such as **Azure SQL Server Name**. Click **Save**. 
+5. Update **Azure Subscription** from the dropdown. 
 
     <img src="images/update_dbtask.png">
 
+6. Click on **Variables** section, update **ACR** and **SQLserver** with the details noted earlier while setting up the environment. Click **Save**. 
+
+    <img src="images/update_rdvariables.png">
+
     >Note: **Database Name** is set to **mhcdb**, **Server Admin Login** is **sqladmin** and **Password** is **P2ssw0rd1234**.
 
-6. Click on **Builds** tab and then click on build definition **Docker**. 
+7. Click on **Builds** tab and then click on build definition **Docker**. 
 
     <img src="images/selectbd.png">
 
-7. Queue a build by clicking **Queue new build**. Click on **Queue** in the pop-up window.
+8. Queue a build by clicking **Queue new build**. Click on **Queue** in the pop-up window.
 
     <img src="images/queuebuild.png">
 
@@ -193,19 +197,19 @@ Since the connections are not established during project provisioning, we will m
 
     <img src="images/dacpac_deployment.png">
 
-8. Navigate to release definition **Docker** under **Releases** tab, and click on **Edit**. Click on **Tasks** and select **Phase1**. Under **Agent queue** select **Hosted Linux Preview** .
+9. Navigate to release definition **Docker** under **Releases** tab, and click on **Edit**. Click on **Tasks** and select **Phase1**. Under **Agent queue** select **Hosted Linux Preview** .
 
     <img src="images/selectagent1.png">
 
 
-9. Right click on task **Execute Azure SQL : DacpacTask**, and select **Disable Selected Task(s)**. After this, right click on **Deploy Azure App Service** task, and select **Enable Selected Task(s)**.
+10. Right click on task **Execute Azure SQL : DacpacTask**, and select **Disable Selected Task(s)**. After this, right click on **Deploy Azure App Service** task, and select **Enable Selected Task(s)**.
 
     <img src="images/disabletasks_rd.png">
     <br/>
     <br/>
     <img src="images/enabletasks_rd.png">
 
-10. Under **Deploy Azure App Service** task, update **Azure subscription** and **Azure Service name** with the endpoint components from the dropdown. In the **Registry or Namespace** field, enter **Azure Container Registry Login Server** from Azure portal. Let the image name be **myhealth.web**. Click **Save**.
+11. Under **Deploy Azure App Service** task, update **Azure subscription** and **Azure Service name** with the endpoint components from the dropdown. Click **Save**.
 
     <img src="images/updatedrd.png">
 
@@ -219,11 +223,11 @@ Now that the database schema is set, we will push some data into the tables and 
 
     <img src="images/copysql.png">   
 
-2. Switch to **Azure Portal**, and navigate to **mhcdb** SQL database which you created at the beginning of this lab. Click on **Data Explorer**. Under authorization type **SQL server authentication** provide database **Login: sqladmin** and **Password: P2ssw0rd1234**. Click **OK**.
+2. Switch to **Azure Portal**, and navigate to **mhcdb** SQL database which you created at the beginning of this lab. Click on **Data Explorer** and **Login**. Under authorization type **SQL server authentication** provide database **Login: sqladmin** and **Password: P2ssw0rd1234**. Click **OK**.
 
     <img src="images/dblogin.png">   
 
-3. Under **Query** section, paste the content copied from **healthclinic.sql** file as shown, and click on **Run**. This will now push required data into the database, so that our sample application MyHealthClinic could interact with it. Verify that message **Query succeeded** is displayed at the bottom.
+3. Under **Query** section, paste the content copied from **healthclinic.sql** file as shown, and click on **Run**. This will now push required data into the database, so that our sample application MyHealthClinic could interact with it. Verify that message **Query succeeded** is displayed at the bottom. 
 
     <img src="images/pastesql.png"> 
 
@@ -240,7 +244,7 @@ Now that the database schema is set, we will push some data into the tables and 
    <img src="images/paste_connectionstring.png">
 
 
-## Exercise 4: Code Update
+## Exercise 4: Enable CI and Update Code
 
 In this excercise, we will enable the continuous integration trigger to create a new build for each commit to the master branch, and update the code to trigger CI-CD. 
 
@@ -252,7 +256,7 @@ In this excercise, we will enable the continuous integration trigger to create a
 
     <img src="images/enabletasks_bd.png">
 
-3. Under **Tasks**, click on **Triggers** section. Check the option to **Enable continuous integration**. Click **Save**.
+3. Click on **Triggers** section. Check the option to **Enable continuous integration**. Click **Save**.
 
     <img src="images/enable_CI.png">
 
