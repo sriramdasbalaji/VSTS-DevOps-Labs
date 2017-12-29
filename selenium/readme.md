@@ -21,6 +21,9 @@ If you are not familiar with UI Automation using Selenium tests, [click here](ht
 
    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoft%2FVSTS-DevOps-Labs%2Fselenium%2Fselenium%2Farm%2520template%2Fazure.deploy.json"><img src="http://azuredeploy.net/deploybutton.png"></a>
 
+2. It will take approximately 20-25 minutes to provision the resources. Once the deployment is successfull you will see the resources as shown. 
+
+   <img src="images/azure_resources.png">
 
 ## Setting up the VSTS project
 
@@ -54,7 +57,7 @@ Select the **Use a personal access token in the script for authentication** chec
 
 In this exercise, we will execute the **registration script** on the VM to associate with the deployment group.
 
-1. Login to the VM using RDP with the following credentials
+1. Login to the VM using [RDP](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/connect-logon) with the following credentials
 
    - **Username**: vmadmin
    - **Password**: P2ssw0rd@123
@@ -74,7 +77,7 @@ In this exercise, we will execute the **registration script** on the VM to assoc
 
 5. When prompt -**Enter User account to use for the service (press enter for NT AUTHORITY\SYSTEM) >** is displayed, hit **Enter** to configure the service to run under **NT AUTHORITY\SYSTEM** account.
 
-  <img src="images/userserviceaccount-dg.png">
+   <img src="images/userserviceaccount-dg.png">
 
 6. Refresh your VSTS Deployment Groups page, click the created Deployment Group and you will notice the online status, health status and the associated tags of the VM.
 
