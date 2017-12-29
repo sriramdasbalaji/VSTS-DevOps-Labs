@@ -1,4 +1,4 @@
-## Docker Deployment using VSTS and Azure for ASP.NETCORE
+## Docker Deployment using VSTS and Azure for ASP.NETCORE application
 
 ## Overview
 
