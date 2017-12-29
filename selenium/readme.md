@@ -24,7 +24,7 @@ If you are not familiar with UI Automation using Selenium tests, [click here](ht
 
 ## Setting up the VSTS project
 
- 1. Use <a href="http://vstsdemobuildertest.azurewebsites.net/" target="_blank">VSTS Demo Data Generator</a> to provision the project on your VSTS account.
+ 1. Use <a href="https://vstsdemogenerator.azurewebsites.net/?name=Selenium&templateid=77367" target="_blank">VSTS Demo Data Generator</a> to provision the project on your VSTS account.
 
     <img src="images/VSTSDemogenerator.png">
 
