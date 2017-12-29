@@ -2,7 +2,11 @@
 
 ## Overview
 
- To be added
+ Earlier with VSTS Release Management, if you had to deploy an application to multiple servers, you had to manually enable Windows PowerShell remoting on each of the server, open the required ports and install the deployment agent. Also, for a roll-out deployment, the pipelines had to be managed manually. 
+
+With the introduction of [Deployment Groups](https://docs.microsoft.com/en-us/vsts/build-release/concepts/definitions/release/deployment-groups/), the above challenges are overcome.
+
+Deployment Group installs a deployment agent on each of the target servers within a group and instructs the Release Management to gradually deploy to all machines belonging to that Deployment Group. Multiple pipelines can be created for roll-out deployments so that the latest version of the application can be provided gradually to multiple user groups for validating the new features.
 
 ## Pre-requisites
 
