@@ -38,13 +38,10 @@ Click on **Deploy to Azure** to provision a Ubuntu VM pre-installed with Eclipse
 
 Once the machine is provisioned, you can RDP to it. 
 
-## Connecting to VSTS from Eclipse
+## Installing Team Explorer Everywhere
 
-1.  Open Eclipse from the Launcher by clicking on the **Eclipse** icon from the panel below
 
-1. Click **OK** to select the default folder for the workspace
-
-1. We wil install **Team Explorer Everywhere (TEE)**. TEE is the official plug-in for Eclipse from Microsoft to connect VSTS/TFS with Eclipse-based IDE on any platform. It is supported on Linux, Mac OS X, and Windows and is compatible with IDEs that are based on Eclipse 4.2 to 4.6. 
+We wil install **Team Explorer Everywhere (TEE)**, the official plug-in for Eclipse from Microsoft to connect VSTS/TFS with Eclipse-based IDE on any platform. It is supported on Linux, Mac OS X, and Windows and is compatible with IDEs that are based on Eclipse 4.2 to 4.6. 
 
 With Team Explorer Everywhere, you can:
 * Browse and clone Git repositories
@@ -52,6 +49,9 @@ With Team Explorer Everywhere, you can:
 * Full access to TFS agile tools, work items, and issue tracking capabilities allowing you to add, edit and query work items
 * Full access to TFS Build functionality including the ability to create Ant, Maven, or Gradle based builds in TFS, publish JUnit test results into TFS or Visual Studio Team Services, monitor progress and handle results. This is fully compatible with all Team Foundation Build types including Gated Check-in and Continuous Integration Builds.
 
+1.  Open Eclipse from the Launcher by clicking on the **Eclipse** icon from the panel below
+
+1. Click **OK** to select the default folder for the workspace
 The plugin can be acquired and installed in the following ways"
 
 1. Eclipse MarketPlace:  The plug-in is freely available on the Eclipse Marketplace -https://marketplace.eclipse.org/content/team-explorer-everywhere. To install it from the marketplace, you can drag the **install** button to a running Eclipse or install it using the Help /|Eclipse Marketplace option
@@ -65,7 +65,25 @@ The plugin can be acquired and installed in the following ways"
    1. Choose the **Next** button two times 
    1. The last page of the wizard shows you the **Microsoft Software License Terms**. Select the **Finish** button to accept if you agree with the terms
 
-1. GitHub Repository:
+1. GitHub Repository:You can also manually download and install the plug-in from the Releases section of this [GitHub](https://github.com/Microsoft/team-explorer-everywhere) repository.
+
+Restart Eclipse if required.
+
+## Connecting to Visual Studio Team Services
+
+The TEE plugin, when installed adds a new perspective **"Team Foundation Server Exploring"** and couple of views (windows) to access VSTS/TFS. 
+
+1. Select **Window/| Perspective /| Open Perspective /| Other...** and choose **"Team Foundation Server Exploring"**. If you do not want to change *perspective*, select **Window /| Show View /| Team Foundation Server /| Team Explorer** 
+
+1. On the **Team Explorer** window, select **Connect to Team Services or Team Foundation Server**
+
+ ![](images2/teamexplorer-default.png)
+
+ 1. Select the checkbox to accept the **End User License Agreement**
+
+ 1. On the **Server Selection** page, select the **Connect to a Team Foundation Server or Team Services account** option and enter the URL of the team services
+  ![](images2/serverselection.png)
+
 
 Install the Exploratory Testing Extension for Chrome
 ----------------------------------------------------
