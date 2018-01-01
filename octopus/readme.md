@@ -120,6 +120,48 @@ Octopus authenticates with Azure using the Management Certificate.
 
     <img src="images/Verification Success.png">
 
+## Exercise 2: Create Project in Octopus
+
+[Projects](https://octopus.com/docs/deploying-applications/deployment-process/projects) allow you to define all the details required to deploy an application.
+In this exercise, we will create a project to deploy the package to **Azure App Service**.
+
+1. Go to Octopus dashboard and click **Create a project**.
+
+   <img src="images/Project.png">
+
+2. Click on **ADD PROJECT**, provide the project name and click on **SAVE**
+
+   <img src="images/Add Project.png">
+
+   <br/>
+
+   <img src="images/PUProject.png">
+
+3. Once the project is created, click **Define your deployment process**. The [deployment process](https://octopus.com/docs/deploying-applications/deployment-process) is like a recipe for deploying your software.
+
+   <img src="images/Define Process.png">
+
+4. Click on **ADD STEP**.
+
+   <img src="images/Add Step.png">
+
+5. **Search** for **Azure Web App** template and **Add**.
+
+   <img src="images/AddWebAppStep.png">
+
+6. Provide below details and click **Save**.
+
+   - **Step Name**                   : Any name
+   - **Package ID**                  : PHP (if you are providing different package ID, update it in build definition)
+   - **Azure account** & **Web App** : Select from the dropdown
+
+
+   <img src="images/PkgID.png">
+
+   <br/>
+
+   <img src="images/Azure.png">
+
 ## Exercise 2: Link VSTS and Octopus Deploy Server
 
 In this exercise we will create an **API** key in Octopus. This key is required to link VSTS with Octopus.
@@ -151,7 +193,7 @@ In this exercise we will create an **API** key in Octopus. This key is required 
 
    <img src="images/EndpointSuccess.png">
 
-## Exercise 3: Push the Application Package to Octopus Server
+## Exercise 3: Triggering CI-CD
 
 In this exercise, we will package PHP application and push the package to Octopus Server.
 
@@ -163,11 +205,23 @@ In this exercise, we will package PHP application and push the package to Octopu
 
    <img src="images/EditBD.png">
 
-3. In **Push Packages to Octopus** task, update **Octopus Deploy Server** and click **Save and queue**.
+3. In **Push Packages to Octopus** task, update **Octopus Deploy Server**.
 
    > **Note** : You will encounter an error - **TFS.WebApi.Exception: Page not found** for Azure tasks in the release definition. This is due to a recent change in the VSTS Release Management API. While we are working on updating VSTS Demo Generator to resolve this issue, you can fix this by typing a random text in the **Azure Subscription** field and click the **Refresh** icon next to it. Once the field is refreshed, you can select the endpoint from the drop down.
 
    <img src="images/QBuild.png">
+
+2. Update **Octopus Deploy Server** and **Project** fields in Create Octopus Release.
+
+    <img src="images/Update1.png">
+
+3. Update **Octopus Deploy Server**, **Project** and **Deploy to Environments** fields in Deploy Octopus Release.
+
+    <img src="images/Update.png"> 
+
+3. Save the build definition.
+
+    <img src="images/Save.png">
 
   <table width="100%">
      <thead>
@@ -189,122 +243,20 @@ In this exercise, we will package PHP application and push the package to Octopu
         <td>The copied package will be pushed to Octopus server from VSTS artifacts directory</td>
      <tr>
       <td><img src="images/createoctopus.png"><b>Create Octopus Release</b></td>
-      <td>This task is used to automate the creation of release in Octopus server. We will enable this in <b>Exercise 6</b></td>
+      <td>This task is used to automate the creation of release in Octopus server</td>
      </tr>
      <tr>
       <td><img src="images/releaseoctopus.png"><b>Deploy Octopus Release</b></td>
-      <td>This task is used to automate the deployment of release in Octopus server. We will enable this in <b>Exercise 6</b></td>
+      <td>This task is used to automate the deployment of release in Octopus server</td>
      </tr>
 
   </table>
 <br/>
 
 
-4. Once the build completes, go to Octopus portal.
 
-   <img src="images/Build Complete.png">
 
-5. You will see the **green tick mark** which indicates application package is pushed successfully. 
 
-   <img src="images/Pkg Uploaded.png">
-
-   <br/>
-6. To see the uploaded package, go to **Library** and click **Packages**.
-
-   <img src="images/Pkg.png">
-
-## Exercise 4: Create Project in Octopus
-
-[Projects](https://octopus.com/docs/deploying-applications/deployment-process/projects) allow you to define all the details required to deploy an application.
-In this exercise, we will create a project to deploy the package to **Azure App Service**.
-
-1. Go to Octopus dashboard and click **Create a project**.
-
-   <img src="images/Project.png">
-
-2. Click on **ADD PROJECT**, provide the project name and click on **SAVE**
-
-   <img src="images/Add Project.png">
-
-   <br/>
-
-   <img src="images/PUProject.png">
-
-3. Once the project is created, click **Define your deployment process**. The [deployment process](https://octopus.com/docs/deploying-applications/deployment-process) is like a recipe for deploying your software.
-
-   <img src="images/Define Process.png">
-
-4. Click on **ADD STEP**.
-
-   <img src="images/Add Step.png">
-
-5. **Search** for **Azure Web App** template and **Add**.
-
-   <img src="images/AddWebAppStep.png">
-
-6. Provide **step name** and select **package ID, Azure account** & **Web App** from the dropdown, and click **Save**.
-
-   <img src="images/PkgID.png">
-
-   <br/>
-
-   <img src="images/Azure.png">
-
-## Exercise 5: Trigger Release in Octopus
-
-In this exercise we will trigger the release manually from Octopus project. Deployment will happen to Azure App Service.
-
-1. Click on **Create Release** and **Save** it.
-
-   <img src="images/Create New Release.png"> 
-
-   <br/>
-
-   <img src="images/SaveRelease.png"> 
-
-8. Trigger the deployment to Azure App Service by clicking on **DEPLOY TO DEV** and click **Deploy**. Wait untill the deployment steps are passed.  
-
-   <img src="images/Deploy2Dev.png">
-
-   <br/>
-
-   <img src="images/Deploy.png">
-
-   <br/>
-
-   <img src="images/DeploymentSuccessful.png">
-
-9. Once the deployment is successful, go to Azure Web App from your **[Azure Portal](https://portal.azure.com)** and click on **Browse**.
-
-   <img src="images/Browse.png"> 
-
-10. You will see the PHP application up and running 
-
-    <img src="images/PHPApp.png">
-
-## Exercise 6: Triggering CI-CD
-
-In this exercise, we will enable continuous integration and deployment of PHP application.
-
-1. Go to **Builds** under **Build & Release** tab, edit the build definition Octopus.
-
-    <img src="images/EditBD.png">
-
-2. Select **Create Octopus Release** and **Deploy Octopus Release** task and right click on it to **enable**. 
-
-   <img src="images/CD-Create.png">
-
-2. Update **Octopus Deploy Server** and **Project** fields in Create Octopus Release.
-
-    <img src="images/Update1.png">
-
-3. Update **Octopus Deploy Server**, **Project** and **Deploy to Environments** fields in Deploy Octopus Release.
-
-    <img src="images/Update.png"> 
-
-3. Save the build definition.
-
-    <img src="images/Save.png">
 
 4. Go to **Code** tab and edit the file **functions.php**
 
@@ -318,7 +270,7 @@ In this exercise, we will enable continuous integration and deployment of PHP ap
 
     <img src="images/BuildProgress.png">
 
-7. Quickly go to Octopus project dashboard to see the release triggered.
+7. Once the build completes, go to Octopus project dashboard. You will see the release completion in Octopus.
 
     <img src="images/CD-Octopus.png">
 
