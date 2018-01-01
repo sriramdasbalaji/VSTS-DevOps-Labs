@@ -36,7 +36,7 @@ This lab shows how you can integrate VSTS and Octopus to deploy PHP application 
 
 ## Setting up the VSTS project
 
-1. Use <a href="https://vstsdemobuildertest.azurewebsites.net/?TemplateId=77370&name=octopus" target="_blank">VSTS Demo Data Generator</a> to provision a project on your VSTS account. 
+1. Use <a href="https://vstsdemogenerator.azurewebsites.net/?TemplateId=77370&name=octopus" target="_blank">VSTS Demo Data Generator</a> to provision a project on your VSTS account. 
 
    ![](images/1.png)
 
