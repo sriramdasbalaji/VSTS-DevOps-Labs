@@ -29,7 +29,7 @@ This lab shows how you can integrate VSTS and Octopus to deploy PHP application 
 
     <img src="images/Resources.png">
 
-4. Click on the **octopus-vm** and note down the **DNS name**. We will need this to access Octopus server.
+4. Click on the **octopus-vm** and note down the **Subscription ID** and **DNS name**. We will need this in later exercises.
 
 
    <img src="images/A3.png">
@@ -162,7 +162,7 @@ In this exercise, we will create a project to deploy the package to **Azure App 
 
    <img src="images/Azure.png">
 
-## Exercise 2: Link VSTS and Octopus Deploy Server
+## Exercise 3: Link VSTS and Octopus Deploy Server
 
 In this exercise we will create an **API** key in Octopus. This key is required to link VSTS with Octopus.
 
@@ -193,7 +193,7 @@ In this exercise we will create an **API** key in Octopus. This key is required 
 
    <img src="images/EndpointSuccess.png">
 
-## Exercise 3: Triggering CI-CD
+## Exercise 4: Triggering CI-CD
 
 In this exercise, we will package PHP application and push the package to Octopus Server.
 
