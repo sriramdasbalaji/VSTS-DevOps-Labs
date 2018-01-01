@@ -110,7 +110,7 @@ We will create an **Azure Container Registry** to store the images generated dur
 
 Since the connections are not established during project provisioning, we will manually create the Azure endpoint. 
 
-1. In VSTS, navigate to **Services** by clicking on the gear icon <img src="images/gearicon.png">, and click on **+ New Service Endpoint**. Select **Azure Resource Manager**. Specify **Connection name**, select your **Subscription** from the dropdown and click **OK**. We use this endpoint to connect **VSTS** and **Azure**.
+1. In VSTS, navigate to **Services** by clicking on the gear icon <img src="images/gear.png">, and click on **+ New Service Endpoint**. Select **Azure Resource Manager**. Specify **Connection name**, select your **Subscription** from the dropdown and click **OK**. We use this endpoint to connect **VSTS** and **Azure**.
 
    <img src="images/armendpoint.png">
 
