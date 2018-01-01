@@ -274,9 +274,13 @@ In this exercise, we will package PHP application and push the package to Octopu
 
     <img src="images/CD-Octopus.png">
 
-8. Once the release is complete, refresh the browser. You will see the application deployed successfully with the changes.
+8. Go to Azure Web App from your **[Azure Portal](https://portal.azure.com)** and click on **Browse**.
 
-    <img src="images/Changes.png">
+   <img src="images/Browse.png">
+
+9. You will see the PHP application up and running.
+
+   <img src="images/Changes.png">
    
 ## Summary
 
