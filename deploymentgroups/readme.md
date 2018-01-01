@@ -30,7 +30,7 @@ Let us use ARM template to provision below resources on Azure:
    <img src="http://azuredeploy.net/deploybutton.png"/>
    </a>
 
-2. Once the deployment is successful, you will see all the resources in your Azure Portal.
+2. Once the deployment is successful, you will see the required resources in your Azure Portal.
    
    <img src="images/resources.png">
 
@@ -60,19 +60,19 @@ Since the connections are not established during project provisioning, we will m
 
    - **Personal Access Token**: Your VSTS Personal Access Token
  
-   We will use this endpoint later in the release because agent registration with deployment group requires access to your VSTS project.
+   Created endpoint is used in release definition in later exercise. We create this connection because  agent registration with deployment group requires access to your VSTS project.
 
    <img src="images/vsts.png"> 
 
 ## Exercise 2: Creating Deployment Group
 
-[Deployment Groups](https://docs.microsoft.com/en-us/vsts/build-release/concepts/definitions/release/deployment-groups/) in VSTS make it easier to organize the servers that you want to use to host your app. A deployment group is a collection of machines with a VSTS agent on each of them. Each machine interacts with VSTS to coordinate deployment of your app.
+[Deployment Groups](https://docs.microsoft.com/en-us/vsts/build-release/concepts/definitions/release/deployment-groups/) in VSTS makes it easier to organize the servers that you want to use to host your app. A deployment group is a collection of machines with a VSTS deployment agent on each of them. Each machine interacts with VSTS to coordinate deployment of your app.
 
 1. Go to **Deployment Groups** under **Build & Release** tab. Click **Add deployment group** .
 
    <img src="images/add_deploymentgroup.png"> 
 
-2. Provide  **Deployment group name**, and click create. We will see the registration script generated.
+2. Provide  **Deployment group name**, and click create. You will see the registration script generated.
 
    <img src="images/name_dg.png"> 
 
@@ -156,11 +156,19 @@ A [Phase](https://docs.microsoft.com/en-us/vsts/build-release/concepts/process/p
 
     <img src="images/connect_lb.png">
 
-6. Go to **Variables** tab and update the **DefaultConnectionString** value with **Your SQL_DNS name**.
+6. Go to **Resource group** in Azure portal and click on DB server VM
+
+   <img src="images/azure_resource.png">
+
+7. Copy DNS name 
+
+   <img src ="images/sql_dns.png">
+
+7. Go to **Variables** tab and update the **DefaultConnectionString** value with **Your SQL_DNS name**.
 
    <img src="images/release_variable.png">
 
-7. Click **Save** and **Create release**.
+8. Click **Save** and **Create release**.
 
 
    <img src="images/save.png">
@@ -170,14 +178,14 @@ A [Phase](https://docs.microsoft.com/en-us/vsts/build-release/concepts/process/p
    <img src="images/create_release.png">
 
 
-8. Once the release is complete, you will see the deployments are done to DB and Web Servers. Go to Logs to see the summary.
+9. Once the release is complete, you will see the deployments are done to DB and Web Servers. Go to Logs to see the summary.
 
    <img src="images/release_summary.png">
 
 
    >In one of your web servers, go to http://localhost:80/ to access the application. 
 
-9. The deployed web application is displayed.
+10. The deployed web application is displayed.
 
    <img src="images/application.png">
 
