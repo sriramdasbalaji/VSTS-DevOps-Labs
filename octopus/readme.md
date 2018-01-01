@@ -166,7 +166,11 @@ In this exercise, we will create a project to deploy the package to **Azure App 
 
 In this exercise we will create an **API** key in Octopus. This key is required to link VSTS with Octopus.
 
-1. Under user profile, go to **MY API Key** and click **New API Key** to create.
+1. In Octopus portal, top right corner click on the currently logged in user and click on **Profile**.
+
+   <img src="images/userprofile.png">
+
+2. In My Profile page click on **My API Keys** and click on **New API Key** to create a new key.
 
 
 
