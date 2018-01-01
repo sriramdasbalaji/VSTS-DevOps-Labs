@@ -71,7 +71,7 @@ Octopus authenticates with Azure using the Management Certificate.
 
    <img src="images/DevEnvironment.png">
 
-4. Once the environment is created, click on **Accounts** 
+4. Once the environment is created, click on **Accounts**. 
 
    <img src="images/Dev.png">
 
@@ -152,7 +152,7 @@ In this exercise, we will create a project to deploy the package to **Azure App 
 6. Provide below details and click **Save**.
 
    - **Step Name**                   : Any name
-   - **Package ID**                  : PHP (if you are providing different package ID, update it in build definition)
+   - **Package ID**                  : PHP (if you are providing different package ID, update it in **Package PHP** task of the build definition)
    - **Azure account** & **Web App** : Select from the dropdown
 
 
@@ -166,7 +166,7 @@ In this exercise, we will create a project to deploy the package to **Azure App 
 
 In this exercise we will create an **API** key in Octopus. This key is required to link VSTS with Octopus.
 
-1. In Octopus portal, top right corner click on the currently logged in user and click on **Profile**.
+1. On the top right corner of Octopus portal, click on the currently logged in user and click **Profile**.
 
    <img src="images/userprofile.png">
 
