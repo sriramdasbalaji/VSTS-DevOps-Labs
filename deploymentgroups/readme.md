@@ -164,11 +164,11 @@ A [Phase](https://docs.microsoft.com/en-us/vsts/build-release/concepts/process/p
 
    <img src ="images/sql_dns.png">
 
-7. Go to **Variables** tab and update the **DefaultConnectionString** value with **Your SQL_DNS name**.
+8. Go to **Variables** tab and update the **DefaultConnectionString** value with **Your SQL_DNS name**.
 
    <img src="images/release_variable.png">
 
-8. Click **Save** and **Create release**.
+9. Click **Save** and **Create release**.
 
 
    <img src="images/save.png">
@@ -178,14 +178,14 @@ A [Phase](https://docs.microsoft.com/en-us/vsts/build-release/concepts/process/p
    <img src="images/create_release.png">
 
 
-9. Once the release is complete, you will see the deployments are done to DB and Web Servers. Go to Logs to see the summary.
+10. Once the release is complete, you will see the deployments are done to DB and Web Servers. Go to Logs to see the summary.
 
    <img src="images/release_summary.png">
 
 
    >In one of your web servers, go to http://localhost:80/ to access the application. 
 
-10. The deployed web application is displayed.
+11. The deployed web application is displayed.
 
    <img src="images/application.png">
 
