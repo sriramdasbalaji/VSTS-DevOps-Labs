@@ -124,11 +124,11 @@ We will update the code to trigger CI-CD.
       <td>As part of the build process, we will run all the unit tests using the VisualStudio Test task to ensure the code quality. This project contains 16 unit tests.</td>
    </tr>
    <tr>
-      <td><img src="images/copy-files.png"> <b>Copy Files</b></td>
+      <td><img src="images/copyfiles.png"> <b>Copy Files</b></td>
       <td>We will copy the zipped file and the ARM template to a staging directory.</td>
    </tr>
    <tr>
-      <td><img src="images/publish-build-artifacts.png"> <b>Publish Build Artifacts</b></td>
+      <td><img src="images/buildartifacts.png"> <b>Publish Build Artifacts</b></td>
       <td>And finally, we will publish the files in the staging directory which were copied in the previous step. </td>
    </tr>
    </table>
