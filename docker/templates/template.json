@@ -84,8 +84,18 @@
             "properties": {
                 "name": "[parameters('siteName')]",
                 "serverFarmId": "[variables('hostingPlanName')]",
-                "hostingEnvironment": ""
+                "hostingEnvironment": "",
+				"siteConfig": {
+                    "connectionStrings": [
+                        {
+                            "name": "defaultConnection",
+                            "ConnectionString": "[concat('Data Source=tcp:',reference(concat('Microsoft.Sql/servers/', parameters('DBServerName'))).fullyQualifiedDomainName , ',1433;Initial Catalog=mhcdb;User Id=sqladmin;Password=P2ssw0rd1234;')]",
+                            "type": "SQLAzure"
+                        }
+                    ]
+                }
             },
+			
             "dependsOn": [
                 "[variables('hostingPlanName')]"
             ]
