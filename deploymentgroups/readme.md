@@ -87,7 +87,7 @@ We have target machines available in the deployment group to deploy the applicat
 
 A [Phase](https://docs.microsoft.com/en-us/vsts/build-release/concepts/process/phases) is a logical grouping of tasks that defines the runtime target on which the tasks will execute. A deployment group phase executes tasks on the machines defined in a deployment group.
 
-1. Go to Release under **Build & Release** tab. Edit the release definition **Deployment group** and select **Tasks**.
+1. Go to Release under **Build & Release** tab. Edit the release definition **Deployment Groups** and select **Tasks**.
 
     <img src="images/release_tab.png"> 
 
@@ -105,14 +105,14 @@ A [Phase](https://docs.microsoft.com/en-us/vsts/build-release/concepts/process/p
 
        <img src="images/agent_phase.png">
 
+    - This phase is linked to **db** tag.
+
+      <img src="images/db_tag.png">
+
    - **Database deploy phase**: In this phase, we use [**SQL Server Database Deploy**](https://github.com/Microsoft/vsts-tasks/blob/master/Tasks/SqlDacpacDeploymentOnMachineGroup/README.md) task to deploy [**dacpac**](https://docs.microsoft.com/en-us/sql/relational-databases/data-tier-applications/data-tier-applications) file to the DB server.
  
     
      <img src="images/dacpac.png">
-
-     This phase is linked to **db** tag.
-
-     <img src="images/db_tag.png">
 
    - **IIS Deployment phase**: In this phase, we deploy application to the web servers. We use following tasks- 
       
