@@ -29,7 +29,7 @@ This lab shows how to deploy **PHP** application to **Azure App** service using 
 ## Exercise 1: Endpoint Creation
 Since the connections are not established during project provisioning, we will manually create the endpoints.
 
-In VSTS, navigate to **Services** by clicking the gear icon, and click  **+ New Service Endpoint**. Select **Azure Resource Manager**. Specify connection name, select your subscription from the dropdown and click OK. We use this endpoint to connect VSTS with Azure.
+In VSTS, navigate to **Services** by clicking the gear icon <img src="images/gear.png"> , and click  **+ New Service Endpoint**. Select **Azure Resource Manager**. Specify connection name, select your subscription from the dropdown and click OK. We use this endpoint to connect VSTS with Azure.
 
    <img src="images/services_endpoint.png">
 
@@ -42,7 +42,7 @@ You will be prompted to authorize this connection with Azure credentials.
 
 We will use ARM template as **Infrastructure as a Code**  in the release definition to provisions a Web App and a Web App Service Plan under the specified resource group.
 
->Note : You will encounter an error - **TFS.WebApi.Exception: Page not found** for Azure tasks in the release definition. This is due to a recent change in the VSTS Release Management API. While we are working on updating VSTS Demo Generator to resolve this issue, you can fix this by typing a random text in the **Azure Subscription** field and click the **Refresh** icon next to it. Once the field is refreshed, you can select the endpoint from the drop down.
+>**Note** : You will encounter an error - **TFS.WebApi.Exception: Page not found** for Azure tasks in the release definition. This is due to a recent change in the VSTS Release Management API. While we are working on updating VSTS Demo Generator to resolve this issue, you can fix this by typing a random text in the **Azure Subscription** field and click the **Refresh** icon next to it. Once the field is refreshed, you can select the endpoint from the drop down.
  
 1. Go to **Releases** under **Build and Release** tab, Select release definition **PHP** and click **Edit**
 
