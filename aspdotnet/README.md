@@ -175,9 +175,9 @@ We will update the code to trigger CI-CD.
 
 5. Double click on the release to see the release summary.
 
-   <img src="images/release_summary1.png"> 
+   <img src="images/release_summary1.png">
 
-   <img src="images/release_summary.png"> 
+   <img src="images/release_summary.png">
 
 6. Login to [Azure Portal](https://portal.azure.com) and search a **Resource Group** with the name **ASPDOTNET**.
 
