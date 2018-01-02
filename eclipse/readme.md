@@ -54,10 +54,10 @@ With Team Explorer Everywhere, you can:
 1. Click **OK** to select the default folder for the workspace
 The plugin can be acquired and installed in the following ways"
 
-1. Eclipse MarketPlace:  The plug-in is freely available on the Eclipse Marketplace -https://marketplace.eclipse.org/content/team-explorer-everywhere. To install it from the marketplace, you can drag the **install** button to a running Eclipse or install it using the Help /|Eclipse Marketplace option
+1. Eclipse MarketPlace:  The plug-in is freely available on the Eclipse Marketplace -https://marketplace.eclipse.org/content/team-explorer-everywhere. To install it from the marketplace, you can drag the **install** button to a running Eclipse or install it using the Help |Eclipse Marketplace option
 
 1. Eclipse download site:   
-   1. Choose **Help** menu /| **Install New Software**
+   1. Choose **Help** menu | **Install New Software**
    1. Select **Add**
    1. In the **Add Repository** dialog, enter **Team Explorer Everywhere** for the name and specify **http://dl.microsoft.com/eclipse/** for the location
    1. Click **OK**
@@ -73,16 +73,155 @@ Restart Eclipse if required.
 
 The TEE plugin, when installed adds a new perspective **"Team Foundation Server Exploring"** and couple of views (windows) to access VSTS/TFS. 
 
-1. Select **Window/| Perspective /| Open Perspective /| Other...** and choose **"Team Foundation Server Exploring"**. If you do not want to change *perspective*, select **Window /| Show View /| Team Foundation Server /| Team Explorer** 
+1. Select **Window | Perspective | Open Perspective | Other...** and choose **"Team Foundation Server Exploring"**. If you do not want to change *perspective*, select **Window | Show View | Team Foundation Server | Team Explorer** 
 
 1. On the **Team Explorer** window, select **Connect to Team Services or Team Foundation Server**
 
  ![](images2/teamexplorer-default.png)
 
- 1. Select the checkbox to accept the **End User License Agreement**
+1. Select the checkbox to accept the **End User License Agreement**
 
- 1. On the **Server Selection** page, select the **Connect to a Team Foundation Server or Team Services account** option and enter the URL of the team services
-  ![](images2/serverselection.png)
+1. On the **Server Selection** page, select the **Connect to a Team Foundation Server or Team Services account** option and enter the URL of the team services. 
+  ![Server selection](images2/serverselection.png)
+
+1. Select **Next** and complete the login process
+
+ Eclipse can save the login information for future attempts. It uses secure storage to manage encrypted information such as passwords. You can provide a master password for the secure storage. You can also opt to provide hints for password recovery 
+
+1. Select the **Team Project** that you provisioned and select **Finish** to finish and connect to the VSTS project
+
+1. Upon successful connection, you will see Team Explorer window showing source control, work items, build and settings menu.
+
+## Working with Queries
+
+1. If you click the **Work Items** tile, you can access the Work Items hub - via **Queries**. Queries make it easy to find and work with sets of work items based on criteria you define. You can access exisiting queries or create a new one.
+
+1. Right-select **All Work Items** from the **Queries** menu and select **View Results**. The results of the query will open in the editor window.
+
+1. If you want to open a particular work item, you can select and double click on the work item. This will open the work item in a browser.
+
+1. You can also select a work item and associate it to the *pending changes* when you make a commit. We will see this later.
+
+1.  Click the **New Query** link.
+
+    <img src="./images/tee/image7.png" width="577" height="193" />
+
+    Queries make it easy to find and work with sets of work items based on criteria you define. The new query you’ve just created, when run, will
+    return all of the work items in the current Team Project (@Project is known as a macro and gets replaced automatically by the query engine),
+    regardless of type or state. So far you’ve worked with a few work item types: Features, Product Backlog Items, and Tasks.
+
+1.  Expand the combo-box next to work item type and scroll through the list.
+
+    <img src="./images/tee/image8.png" width="410" height="255" />
+
+    As you can see there are a number of different types. The list displayed varies based on the process template you choose when you create a Team Project. Remember for this project you used the Scrum template.
+
+1.  Collapse the combo-box leaving **\[Any\]** as the value. Click the **Run Query** button the toolbar to execute.
+
+    <img src="./images/tee/image9.png" width="515" height="217" />
+
+    A new tab opens showing the results of the query.
+
+    <img src="./images/tee/image10.png" width="600" height="194" />
+
+As you can see a number of different type of work items are returned.
+The columns shown can be controlled both on the query definition and in
+the results pane by using the **Column Options** dialog.
+
+1.  Click the **Column Options** button on the toolbar.
+
+    <img src="./images/tee/image11.png" width="557" height="77" />
+
+    The Column Options dialog opens up. There are two tabs. The first
+    controls what fields a query returns, the ordering of the columns (left
+    to right), and the default width of the column.
+
+    <img src="./images/tee/image12.png" width="492" height="325" />
+
+    The second controls the sort order of the data returned.
+
+    <img src="./images/tee/image13.png" width="492" height="325" />
+
+1.  Go ahead and click **Cancel** after you’re looked around.
+
+2.  Now close the query result and new query tabs. Click **No** when
+    prompted to save your new query.
+
+3.  Go back the **Team Explorer** window.
+
+4.  Expand the **Current Sprint** folder.
+
+    <img src="./images/tee/image14.png" width="206" height="177" />
+
+1.  You’ll note that there are a number of pre-created queries.
+
+2.  Double-click on the **Unfinished Work** query. This runs the query
+    and opens a results window.
+
+    <img src="./images/tee/image15.png" width="480" height="117" />
+
+1.  Double-click on **Add Master Branding** work item. This opens the
+    Task you created earlier. It uses the built-in web browser to
+    render the Task (you may be prompted to log in when you open your
+    first work item).
+
+    <img src="./images/tee/image16.png" width="405" height="383" />
+
+1.  In the Discussion section, add a note like **Working on site
+    changes**.
+
+    <img src="./images/tee/image17.png" width="390" height="81" />
+
+1.  Click the **Save** button to save your changes and then close the
+    tab for the Task.
+
+    You’re can create a Product Backlog Item and child tasks in
+    Eclipse too.
+
+2.  Back in the Team Explorer, click the **New Work Item** link and pick
+    **Product Backlog Item**.  
+    <img src="./images/tee/image18.png" width="215" height="374" />
+
+3.  Once the new PBI opens, in the **Title**, enter **Fare Information
+    Retrieval**.
+
+4.  Assign the work item to yourself.
+
+5.  Set the Iteration to **Sprint 1**
+
+6.  Add a description like **Configure results form to show formatted
+    data for fares.** Also feel free to add extra items like
+    Acceptance Criteria, Effort and Business Value if you’d like.
+
+    <img src="./images/tee/image19.png" width="468" height="330" />
+
+1.  Save the work item.
+
+2.  Then like before add the following child Task items, assigning each
+    to yourself:  
+    \* **Add formatting for fare data  
+    \* Test new site**
+
+    Save and close each task after you create it.
+
+3.  Change the PBI to **Committed** and save it.
+
+    <img src="./images/tee/image20.png" width="468" height="247" />
+
+1.  When done, close the PBI tab.
+
+2.  Next, refresh the **Unfinished Work** query.
+
+    <img src="./images/tee/image22.png" width="624" height="225" />
+
+1.  Close the **Unfinished Work** query tab.
+
+## Working with Source Control
+
+Visual Studio Team Services supports two different types of version control system a) **Team Foundation Version Control**, a *centralized* SCM and b)**Git**, a pouplar open-source *distributed* version control. If you want to know more on the differences between TFVC and Git, you can refer [this article](https://docs.microsoft.com/en-us/vsts/tfvc/comparison-git-tfvc)
+
+ Git is the recommended and default version control for new projects. 
+
 
 
 Install the Exploratory Testing Extension for Chrome
