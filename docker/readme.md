@@ -42,7 +42,7 @@ We will create an **Azure Container Registry** to store the images generated dur
 
 2. It takes approximately **3 to 4 minutes** to provision the environment. Click on **Go To resource group**.
 
-   <img src="images/acrdeploymentsucceeded.png">
+   <img src="images/deploymentsucceeded.png">
 
 3. Below components are created post deployment.
      
@@ -114,7 +114,7 @@ Since the connections are not established during project provisioning, we will m
 
 1. In VSTS, navigate to **Services** by clicking on the gear icon <img src="images/gear.png">, and click on **+ New Service Endpoint**. Select **Azure Resource Manager**. Specify **Connection name**, select your **Subscription** from the dropdown and click **OK**. We use this endpoint to connect **VSTS** and **Azure**.
 
-   <img src="images/armendpoint.png">
+   <img src="images/azureendpoint.png">
 
    You will be prompted to authorize this connection with Azure credentials. Disable pop-up blocker in your browser if you see a blank screen after clicking OK, and retry the step. 
 
@@ -122,8 +122,6 @@ Since the connections are not established during project provisioning, we will m
 ## Exercise 2: Configure CI-CD
 
  Now that the connection is established, we will manually map the Azure endpoint and Azure Container Registry to build and release definitions. We will also deploy the dacpac to mhcdb database so that the schema is set for the backend.
-
- >Note : You will encounter an error - ***TFS.WebApi.Exception: Page not found*** for Azure tasks in the build/ release definition. This is due to a recent change in the VSTS Release Management API. While we are working on updating VSTS Demo Generator to resolve this issue, you can fix this by typing a random text in the Azure Subscription field and click the **Refresh** icon next to it. Once the field is refreshed, you can select the endpoint from the drop down.
 
 1. Go to **Releases** under **Build & Release** tab, **Edit** the release definition **Docker** and select **Tasks**.
 
@@ -147,6 +145,8 @@ Since the connections are not established during project provisioning, we will m
    <img src="images/build.png">
 
 5. Click on **Process** section, select appropriate contents from dropdown under **Azure subscription** and **Azure Container Registry**. (use up down arrow to choose Azure Container Registry for the first time)
+
+     >Note : You will encounter an error - ***TFS.WebApi.Exception: Page not found*** for Azure tasks in the build definition. This is due to a recent change in the VSTS Release Management API. While we are working on updating VSTS Demo Generator to resolve this issue, you can fix this by typing a random text in the Azure Subscription field and click the **Refresh** icon next to it. Once the field is refreshed, you can select the endpoint from the drop down.
 
    <img src="images/updateprocessbd.png">
 
@@ -196,7 +196,7 @@ Since the connections are not established during project provisioning, we will m
 
     The build will copy the dacpac to artifacts folder, which will be used in release for deploying this dacpac to database you created earlier. 
     
-8. Go to **Releases** under **Build & Release** tab. Click on release definition **Docker** and double click on **Release-1**. After this release is complete, the database schema will be deployed to SQL Database **mhcdb**.
+8. Go to **Releases** under **Build & Release** tab. Click on release definition **Docker** and double click on **Release-1**. Click on **Logs**. After this release is complete, the database schema will be deployed to SQL Database **mhcdb**.
 
     <img src="images/dacpac_deployment.png">
 
@@ -222,7 +222,7 @@ Since the connections are not established during project provisioning, we will m
 
 Now that the database schema is set, we will push some data into the tables and update the connection string in MyHealthClinic .NetCore application.
 
-1. Click on **Code** tab, and navigate to **healthclinic.sql** file under **Docker** repository. Copy entire content of this file.
+1. Click on **Code** tab. Under **Files**, navigate to **healthclinic.sql** file in the **Docker** repository. Copy entire content of this file.
 
     <img src="images/copysql.png">   
 
@@ -255,15 +255,19 @@ In this excercise, we will enable the continuous integration trigger to create a
 
    <img src="images/build2.png">
 
-2. Right click on each task **Run Services**, **Build Services**, **Push Services** and **Lock Services** one by one (or use Ctrl+Click to select multiple tasks, and then right click). Select **Enable Selected Task(s)** to enable all of these tasks. Disable **Copy Files** and **Publish Artifact** tasks by selecting **Disable Selected Task(s)** after right clicking on each of them.
+2. Right click on each task **Run Services**, **Build Services**, **Push Services** and **Lock Services** one by one (or use Ctrl+Click to select multiple tasks, and then right click). Select **Enable Selected Task(s)** to enable all of these tasks. 
 
     <img src="images/enabletasks_bd.png">
+
+    Disable **Copy Files** and **Publish Artifact** tasks by selecting **Disable Selected Task(s)** after right clicking on each of them.
+
+    <img src="images/disabletasks_bd.png">
 
 3. Click on **Triggers** section. Check the option to **Enable continuous integration**. Click **Save**.
 
     <img src="images/enable_CI.png">
 
-4. Go to **Code** tab, and navigate to the below path to edit the file- 
+4. Go to **Code** tab, and navigate to the below path to **Edit** the file- 
 
    >Docker/src/MyHealth.Web/Views/Home/**Index.cshtml**
 
@@ -273,29 +277,34 @@ In this excercise, we will enable the continuous integration trigger to create a
 
     <img src="images/lineedit.png">
 
-6. Go to **Builds** tab to see the CI build in-progress.
+6. Click **Commit** in the pop-up window.
+    <img src="images/commit.png">
+
+7. Go to **Builds** tab to see the CI build in-progress. Click on the build number.
+
+    <img src="images/inprogressbuild.png">
 
     <img src="images/in_progress_build.png">
 
-7. The build will generate and push the image to ACR. After build completes, you will see the build summary. 
+8. The build will generate and push the image to ACR. After build completes, you will see the build summary. 
     
     <img src="images/build_summary.png">
 
-8. Go to <a href="https://portal.azure.com">Azure Portal</a>, navigate to the **App Service** which was created at the beginning of this lab. Select **Docker Container** section. Under **Image Source** highlight **Azure Container Registry**. Select your **Registry** from the dropdown. Under **image** dropdown select **myhealth.web** and under **Tag** dropdown select **latest**. This is required to map Azure Container Registry with the Web App. Click **Save**.
+9. Go to <a href="https://portal.azure.com">Azure Portal</a>, navigate to the **App Service** which was created at the beginning of this lab. Select **Docker Container** section. Under **Image Source** highlight **Azure Container Registry**. Select your **Registry** from the dropdown. Under **image** dropdown select **myhealth.web** and under **Tag** dropdown select **latest**. This is required to map Azure Container Registry with the Web App. Click **Save**.
 
     <img src="images/updatereg.png">
     <br/>
     <br/>
     <img src="images/updatereg2.png">
  
-9.  Go to **Releases** tab to see the release summary with logs. The release will deploy the image to App Service based on the **BuildID**, which is tagged with the image. 
+10. Go to **Releases** tab to see the release summary with logs. The release will deploy the image to App Service based on the **BuildID**, which is tagged with the image. 
 
     <img src="images/release_summary.png">
     <br/>
     <br/>
     <img src="images/release_logs.png">
 
-10. Switch back to <a href="https://portal.azure.com">Azure Portal</a>, navigate to the **Overview** section of your **App Service**. Click on the **URL** to see the changes in your app.
+11. Switch back to <a href="https://portal.azure.com">Azure Portal</a>, navigate to the **Overview** section of your **App Service**. Click on the **URL** to see the changes in your app.
 
     <img src="images/getwebappurl.png">
     <br/>
