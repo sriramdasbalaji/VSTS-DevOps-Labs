@@ -97,7 +97,7 @@ We will create an **Azure Container Registry** to store the images generated dur
 
 1. Use <a href="https://vstsdemogenerator.azurewebsites.net/?name=Docker&templateid=77363" target="_blank">VSTS Demo Data Generator</a> to provision a project on your VSTS account 
 
-    <img src="images/vstsdemogenerator.png">
+    <img src="images/VSTSDemogenerator.png">
 
 2. Select **Docker** for the template. Provide a Project Name, and click on Create Project.
 
