@@ -242,7 +242,7 @@ Now that the database schema is set, we will push some data into the tables and 
 
     >Docker/src/MyHealth.Web/appsettings.json
 
-    Go to line number **9**. Paste the connection string as shown and manually update the **User ID** to **sqladmin** and **Password** to **P2ssw0rd1234**. Click on **Commit**.
+    Go to line number **9**. Paste the connection string inside double quotes and manually update the **User ID** to **sqladmin** and **Password** to **P2ssw0rd1234**. Click on **Commit**.
 
    <img src="images/paste_connectionstring.png">
 
