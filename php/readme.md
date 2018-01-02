@@ -61,7 +61,6 @@ We will use ARM template as **Infrastructure as a Code**  in the release definit
 
    <img src="images/azure_app_service.png">
 
-
    <table width="100%">
    <thead>
       <tr>
