@@ -10,7 +10,7 @@ This lab shows how to deploy **PHP** application to **Azure App** service using 
 
 ## Pre-requisites
 
- 1. **Microsoft Azure Account:**  You need a valid and active azure account for the labs
+ 1. **Microsoft Azure Account:**  You need a valid and active azure account for this lab.
  
  2.  You need a **Visual Studio Team Services Account** and <a href="https://docs.microsoft.com/en-us/vsts/accounts/use-personal-access-tokens-to-authenticate">Personal Access Token</a>
 
@@ -40,28 +40,26 @@ You will be prompted to authorize this connection with Azure credentials.
 
 ## Excercise 2: Configure Release
 
-We will use ARM template as **Infrastructure as a Code**  in the release definition to provision the required resources (App Service) on Azure.
+We will use ARM template as **Infrastructure as a Code**  in the release definition to provisions a Web App and a Web App Service Plan under the specified resource group.
+
+>Note : You will encounter an error - **TFS.WebApi.Exception: Page not found** for Azure tasks in the release definition. This is due to a recent change in the VSTS Release Management API. While we are working on updating VSTS Demo Generator to resolve this issue, you can fix this by typing a random text in the **Azure Subscription** field and click the **Refresh** icon next to it. Once the field is refreshed, you can select the endpoint from the drop down.
  
 1. Go to **Releases** under **Build and Release** tab, Select release definition **PHP** and click **Edit**
 
-   <img src="images/release_def.png">
+   <img src="images/release_def.png"> 
  
 
-2. Go to **Tasks** and select **Azure Deployment** environment
+2. Go to **Tasks** and select **Azure Deployment** environment.
 
-   <img src="images/dev_release.png">
+   <img src="images/dev_release.png"> 
 
-3. Under **Azure Resource Group Deployment** task, update **Azure subscription** and **Location**
+3. Under **Azure Resource Group Deployment** task, update **Azure subscription** and **Location**.
 
-> **Note** : Since there is an issue with VSTS service endpoint API, selecting the created ARM endpoint in Azure Resource Group Deployment and Azure App Service Deploy task will throw an exception. Please follow this <a href= "https://github.com/Microsoft/VSTS-DevOps-Labs/tree/endpointworkaround/endpointworkaround">**workaround**</a> until the issue is fixed.
+   <img src="images/azure_sub.png"> 
 
-   <img src="images/azure_sub.png">
+4. Under **Azure App Service Deploy** task, update **Azure subscription** and click **Save**.
 
-4. Under **Azure App Service Deploy** task, update **Azure subscription** and click **Save**. 
-
-> **Note** : Since there is an issue with VSTS service endpoint API, selecting the created ARM endpoint in Azure Resource Group Deployment and Azure App Service Deploy task will throw an exception. Please follow this <a href= "https://github.com/Microsoft/VSTS-DevOps-Labs/tree/endpointworkaround/endpointworkaround">**workaround**</a> until the issue is fixed.
-
-   <img src="images/azure_app_service.png">
+   <img src="images/azure_app_service.png"> 
 
 
 
@@ -74,19 +72,19 @@ We will use ARM template as **Infrastructure as a Code**  in the release definit
    </thead>
    <tr>
       <td><img src="images/azure_resource.png"><b>Azure Resource Group Deployment</b></td>
-      <td>creates an resource group with App Service plan and App Service  </td>
+      <td>Uses the provided ARM template to create a resource group with App Service plan and App Service  </td>
    </tr>
    <tr>
       <td><img src="images/webapp.png"> <b>Azure App Service Deploy</b></td>
-      <td>deploys a PHP application to App service</td>
+      <td>deploys a PHP application to the created App service</td>
    </tr>
    <tr>
   </table>
 
-## Excercise 3: Trigger CI with code change
+## Excercise 3: Trigger CI and CD with code change
 
 **PHP** is an interpreted language, so we dont have to compile the code, instead let's archive the files to be used in the release task for deployment.
-We will update the code to trigger CI-CD using **Hosted build agent**
+We will update the code to trigger CI-CD using **Hosted build agent**.
 
 1. Go to **Code** tab and navigate to the below path to edit the file.
 
@@ -100,11 +98,11 @@ We will update the code to trigger CI-CD using **Hosted build agent**
 
 1. Go to **Builds** tab under **Build and Release** tab to see the particular CI build in-progress.
 
-   <img src="images/build.png">
+   <img src="images/build.png">  
 
    <br/>
 
-   <img src="images/in_progress_build.png">
+   <img src="images/in_progress_build.png">  
 
    Let's explore the build definition. The tasks used in the build definition are listed as shown. 
 
@@ -133,37 +131,37 @@ We will update the code to trigger CI-CD using **Hosted build agent**
 
 The build will generate artifact which is used to deploy. After build completes, you will see the build summary.
 
-  <img src="images/build_summary.png">
+  <img src="images/build_summary.png"> 
 
-## Continuous Deployment
+We will use the artifacts generated from the build to deploy to App Service on Azure.
 
-We will use the artifact generated from the build to deploy to App Service on azure.
+4. Once the build succeeds, navigate to **Releases** under **Build and Release** and notice that a release is in-progress.
 
-1. Once the build is complete, navigate to **Releases** under **Build and Release** and notice that a release is in-progress.
+   <img src="images/release_in_progress.png"> 
 
-   <img src="images/release_in_progress.png">
+5. Once the release is complete, you  will see the summary.
 
-2. Once the release is complete, you  will see the summary.
-
-   <img src="images/release_summary.png">
+   <img src="images/release_summary.png"> 
 
    <br/>
 
-3. Click **Logs** to see the complete logs of the release.
+6. Click **Logs** to see the complete logs of the release.
 
-   <img src="images/release_logs.png">
+   <img src="images/release_logs.png"> 
 
-4. Login to [Azure Portal](https://portal.azure.com) and go to  **Resource Group**. You will see a resource group with the name **PHP**. Which contains **App Service, App Services Plan** as shown.
+7. Login to [Azure Portal](https://portal.azure.com) and go to  **Resource Group**. You will see a resource group with the name **PHP**. Which contains **App Service, App Services Plan** as shown.
 
    <img src="images/azure.png">
 
-5. Go to **App Service** click on **Browse** you will see the application deployed with the changes as shown.
+8. Go to **App Service** click on **Browse** you will see the application deployed with the changes as shown.
 
    <img src="images/website_php.png">
 
 ## Summary
   
-In  this lab, we will setup a Continuous Build and Deployment to Azure App Service for a PHP project using Visual Studio Team Services 
+In  this lab, we will setup a Continuous Build and Deployment to Azure App Service for a PHP project using Visual Studio Team Services.
+
+# TBD
 
 ## Feedback 
 
