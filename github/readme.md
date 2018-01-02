@@ -156,7 +156,7 @@ Navigate to your forked GitHub repository. Let's make a simple change in the cod
   
 6. Go to **Releases** tab under Build and Release hub. Select the **GitHub** definition, you will see a release in-progress.
 
-   <img src="images/30.png">
+   <img src="images/30.png">  
 
 7. Let us explore the release definition. Click edit to see the release pipeline where the target environment is **Dev**.
 
@@ -179,9 +179,9 @@ Navigate to your forked GitHub repository. Let's make a simple change in the cod
 
 10. Once the release is complete, you will see the task-wise summary.
 
-    <img src="images/35.png"> 
+    <img src="images/35.png">  
 
-    <img src="images/36.png"> 
+    <img src="images/36.png">  
 
 11. Login to <a href="https://portal.azure.com/">Azure Portal</a> and search for **Github** resource group.
 
