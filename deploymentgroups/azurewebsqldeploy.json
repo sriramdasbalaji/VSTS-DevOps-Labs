@@ -7,7 +7,7 @@
             "metadata": {
                 "description": "Prefix for the environment (2-5 characters)"
             },
-            "defaultValue": "cust1",
+            "defaultValue": "",
             "minLength": 2,
             "maxLength": 5
         },

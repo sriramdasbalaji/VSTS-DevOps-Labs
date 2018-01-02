@@ -30,6 +30,8 @@ Let us use ARM template to provision below resources on Azure:
    <img src="http://azuredeploy.net/deploybutton.png"/>
    </a>
 
+   <img src="images/azure.png">
+
 2. Once the deployment is successful, you will see the required resources in your Azure Portal.
    
    <img src="images/resources.png">
@@ -85,7 +87,7 @@ We have target machines available in the deployment group to deploy the applicat
 
 A [Phase](https://docs.microsoft.com/en-us/vsts/build-release/concepts/process/phases) is a logical grouping of tasks that defines the runtime target on which the tasks will execute. A deployment group phase executes tasks on the machines defined in a deployment group.
 
-1. Go to Releases under **Build & Release** tab. Edit the release definition **Deployment group** and select **Tasks**.
+1. Go to Release under **Build & Release** tab. Edit the release definition **Deployment group** and select **Tasks**.
 
     <img src="images/release_tab.png"> 
 
