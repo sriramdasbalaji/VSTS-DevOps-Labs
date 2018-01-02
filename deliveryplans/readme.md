@@ -2,31 +2,35 @@
 
 ## Overview
 
+It takes several teams to develop large software projects. Very large projects require multiple autonomous teams that can manage their own backlog and priority while contributing to a unified direction for that project. Regular reviews of the project schedule with these teams help ensure that the teams are working toward common goals. Delivery Plans provide the needed multi-team view of your project schedule.
+
 **Delivery Plans** provide an easier way to see work across teams and projects. Available as an extension, Delivery plan makes it easy for you to review the schedule of stories or features your teams plan to deliver . You can see scheduled work items by sprint (iteration path) of selected teams against a calendar view.
 
 ## Pre-requisites
 
 1. You need a **Visual Studio Team Services Account** and <a href="http://bit.ly/2gBL4r4">Personal Access Token</a>
 
-2. You will have to install the <a href="http://bit.ly/2hmnYrR">**Delivery Plan**</a> extension to your VSTS account in order to continue this lab
+2. You need to install the <a href="http://bit.ly/2hmnYrR">**Delivery Plan**</a> extension to your VSTS account in order to continue this lab
 
-## Adding Delivery Plan Extension to the VSTS account
+## Exercise 1: Adding Delivery Plan extension to the VSTS account
 
 1. Go to <a href="https://marketplace.visualstudio.com">Visual Studio MarketPlace</a>
 
    <img src="images/15.png" />
 
-2. Search for **Delivery Plans** in the search box and click on **install**
+2. Search for **Delivery Plans** in the search box.
 
    <img src="images/16.png"/>
 
+3. Select the account to which you want to install the extension and click **Install** to proceed with the installation.
+
    <img src="images/17.png"/>
 
-3. Select the account to which you want to install the extension and select **Continue** to proceed with the installation.
+4. Once the installation is done successfully, proceed to the account.
 
-   <img src="images/18.png"/>
+   <img src="images/24.png">
 
-## Add a Plan
+## Exercise 2: Creating a Delivery Plan
 
 1. From your VSTS account, go to **Plans** page that appears under **work hub**
 
