@@ -157,11 +157,11 @@ In this exercise, we will trigger the **VSTS build** to compile the Selenium C# 
 
 2. This build will publish the test artifacts to VSTS, which will be used in release. 
 
-   <img src="images/buildqueue4.png">
+   <img src="images/buildqueue2.png">
 
 3. Once the build completes, the release will be triggered. Navigate to **Releases** tab to see the deployment in-progress.
 
-   <img src="images/releasequeue5.png">
+   <img src="images/releasequeue.png">
 
 4. When **Selenium test execution** phase starts, connect back to the VM provisioned earlier to see UI tests execution.
 
@@ -187,6 +187,7 @@ In this exercise, we will trigger the **VSTS build** to compile the Selenium C# 
 
 ## Summary
 
+# TBD
 With VSTS and Selenium, we can Continuously Build, Deploy and Test the web application.
 
 ## Feedback
