@@ -125,11 +125,28 @@ Since the connections are not established during project provisioning, we will m
 
  >Note : You will encounter an error - ***TFS.WebApi.Exception: Page not found*** for Azure tasks in the build/ release definition. This is due to a recent change in the VSTS Release Management API. While we are working on updating VSTS Demo Generator to resolve this issue, you can fix this by typing a random text in the Azure Subscription field and click the **Refresh** icon next to it. Once the field is refreshed, you can select the endpoint from the drop down.
 
-1. Go to **Builds** under **Build and Release** tab, **Edit** the build definition **Docker**.
+1. Go to **Releases** under **Build & Release** tab, **Edit** the release definition **Docker** and select **Tasks**.
+
+   <img src="images/release.png">
+   <br/>
+   <br/>
+   <img src="images/release_tasks.png">
+
+2. Update **Azure Subscription** from the dropdown. 
+
+    <img src="images/update_dbtask.png">
+
+3. Click on **Variables** section, update **ACR** and **SQLserver** with the details noted earlier while setting up the environment. Click **Save**. 
+
+    <img src="images/update_rdvariables.png">
+
+    >Note: **Database Name** is set to **mhcdb**, **Server Admin Login** is **sqladmin** and **Password** is **P2ssw0rd1234**.
+
+4. Go to **Builds** under **Build and Release** tab, **Edit** the build definition **Docker**.
 
    <img src="images/build.png">
 
-2. Click on **Process** section, select appropriate contents from dropdown under **Azure subscription** and **Azure Container Registry**. (use up down arrow to choose Azure Container Registry for the first time)
+5. Click on **Process** section, select appropriate contents from dropdown under **Azure subscription** and **Azure Container Registry**. (use up down arrow to choose Azure Container Registry for the first time)
 
    <img src="images/updateprocessbd.png">
 
@@ -168,36 +185,18 @@ Since the connections are not established during project provisioning, we will m
       <td> used to share the build artifacts </td>
    </tr>
    </table>
-3. Click **Save**.
 
-   <img src="images/savebd.png">
+6. Click **Save & queue**.
 
-4. Go to **Releases** under **Build & Release** tab, **Edit** the release definition **Docker** and select **Tasks**.
+   <img src="images/queuebd.png">
 
-   <img src="images/release.png">
-   <br/>
-   <br/>
-   <img src="images/release_tasks.png">
+7. Queue a build by clicking **Save & queue** in the pop-up window.
 
-5. Update **Azure Subscription** from the dropdown. 
+    <img src="images/queuebd2.png">
 
-    <img src="images/update_dbtask.png">
-
-6. Click on **Variables** section, update **ACR** and **SQLserver** with the details noted earlier while setting up the environment. Click **Save**. 
-
-    <img src="images/update_rdvariables.png">
-
-    >Note: **Database Name** is set to **mhcdb**, **Server Admin Login** is **sqladmin** and **Password** is **P2ssw0rd1234**.
-
-7. Click on **Builds** tab and then click on build definition **Docker**. 
-
-    <img src="images/selectbd.png">
-
-8. Queue a build by clicking **Queue new build**. Click on **Queue** in the pop-up window.
-
-    <img src="images/queuebuild.png">
-
-    The build will copy the dacpac to artifacts folder, which will be used in release for deploying this dacpac to database you created earlier. After this step is complete, the database schema will be deployed to SQL Database **mhcdb**.
+    The build will copy the dacpac to artifacts folder, which will be used in release for deploying this dacpac to database you created earlier. 
+    
+8. Go to **Releases** under **Build & Release** tab. Click on release definition **Docker** and double click on **Release-1**. After this release is complete, the database schema will be deployed to SQL Database **mhcdb**.
 
     <img src="images/dacpac_deployment.png">
 
@@ -254,7 +253,7 @@ In this excercise, we will enable the continuous integration trigger to create a
 
 1. Go to **Builds** under **Build and Release** tab, **Edit** the build definition **Docker**.
 
-   <img src="images/build.png">
+   <img src="images/build2.png">
 
 2. Right click on each task **Run Services**, **Build Services**, **Push Services** and **Lock Services** one by one (or use Ctrl+Click to select multiple tasks, and then right click). Select **Enable Selected Task(s)** to enable all of these tasks. Disable **Copy Files** and **Publish Artifact** tasks by selecting **Disable Selected Task(s)** after right clicking on each of them.
 
