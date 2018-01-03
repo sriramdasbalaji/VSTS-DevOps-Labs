@@ -121,30 +121,13 @@ Since the connections are not established during project provisioning, we will m
 
 ## Exercise 2: Configure CI-CD
 
- Now that the connection is established, we will manually map the Azure endpoint and Azure Container Registry to build and release definitions. We will also deploy the dacpac to mhcdb database so that the schema is set for the backend.
+ Now that the connection is established, we will manually map the Azure endpoint and Azure Container Registry to build and release definitions. We will also deploy the dacpac to mhcdb database so that the schema and data is set for the backend.
 
-1. Go to **Releases** under **Build & Release** tab, **Edit** the release definition **Docker** and select **Tasks**.
-
-   <img src="images/release.png">
-   <br/>
-   <br/>
-   <img src="images/release_tasks.png">
-
-2. Update **Azure Subscription** from the dropdown. 
-
-    <img src="images/update_dbtask.png">
-
-3. Click on **Variables** section, update **ACR** and **SQLserver** with the details noted earlier while setting up the environment. Click **Save**. 
-
-    <img src="images/update_rdvariables.png">
-
-    >Note: **Database Name** is set to **mhcdb**, **Server Admin Login** is **sqladmin** and **Password** is **P2ssw0rd1234**.
-
-4. Go to **Builds** under **Build and Release** tab, **Edit** the build definition **Docker**.
+1. Go to **Builds** under **Build and Release** tab, **Edit** the build definition **Docker**.
 
    <img src="images/build.png">
 
-5. Click on **Process** section, select appropriate contents from dropdown under **Azure subscription** and **Azure Container Registry**. (use up down arrow to choose Azure Container Registry for the first time)
+2. Click on **Process** section, select appropriate contents from dropdown under **Azure subscription** and **Azure Container Registry**. (use up down arrow to choose Azure Container Registry for the first time). Click **Save**.
 
      >Note : You will encounter an error - ***TFS.WebApi.Exception: Page not found*** for Azure tasks in the build definition. This is due to a recent change in the VSTS Release Management API. While we are working on updating VSTS Demo Generator to resolve this issue, you can fix this by typing a random text in the Azure Subscription field and click the **Refresh** icon next to it. Once the field is refreshed, you can select the endpoint from the drop down.
 
@@ -186,125 +169,83 @@ Since the connections are not established during project provisioning, we will m
    </tr>
    </table>
 
-6. Click **Save & queue**.
+3. Go to **Releases** under **Build & Release** tab, **Edit** the release definition **Docker** and select **Tasks**.
 
-   <img src="images/queuebd.png">
+   <img src="images/release.png">
+   <br/>
+   <br/>
+   <img src="images/release_tasks.png">
 
-7. Queue a build by clicking **Save & queue** in the pop-up window.
+4. Under **Execute Azure SQL:DacpacTask**, update **Azure Subscription** from the dropdown. 
 
-    <img src="images/queuebd2.png">
+    <img src="images/update_dbtask.png">
 
-    The build will copy the dacpac to artifacts folder, which will be used in release for deploying this dacpac to database you created earlier. 
-    
-8. Go to **Releases** under **Build & Release** tab. Click on release definition **Docker** and double click on **Release-1**. Click on **Logs**. After this release is complete, the database schema will be deployed to SQL Database **mhcdb**.
+    **Execute Azure SQL:DacpacTask** will deploy the dacpac to mhcdb database so that the schema and data is set for the backend.
 
-    <img src="images/dacpac_deployment.png">
-
-9. Navigate to release definition **Docker** under **Releases** tab, and click on **Edit**. Click on **Tasks** and select **Phase1**. Under **Agent queue** select **Hosted Linux Preview** .
-
-    <img src="images/selectagent1.png">
-
-
-10. Right click on task **Execute Azure SQL : DacpacTask**, and select **Disable Selected Task(s)**. After this, right click on **Deploy Azure App Service** task, and select **Enable Selected Task(s)**.
-
-    <img src="images/disabletasks_rd.png">
-    <br/>
-    <br/>
-    <img src="images/enabletasks_rd.png">
-
-11. Under **Deploy Azure App Service** task, update **Azure subscription** and **Azure Service name** with the endpoint components from the dropdown. Click **Save**.
+5. Under **Azure App Service Deploy** task, update **Azure subscription** and **Azure Service name** with the endpoint components from the dropdown. Click **Save**.
 
     <img src="images/updatedrd.png">
 
-    **Deploy Azure App Service** will pull the appropriate image corresponding to the BuildID from repository specified, and deploys the image to Linux App Service. 
+    **Deploy Azure App Service** will pull the appropriate image corresponding to the BuildID from repository specified, and deploys the image to Linux App Service. **Manual Intervention** step is required to manually map the Azure Container Registry with the Azure Web App.
 
-## Exercise 3: Update Connection String
+6. Click on **Variables** section, update **ACR** and **SQLserver** with the details noted earlier while setting up the environment. Click **Save**. 
 
-Now that the database schema is set, we will push some data into the tables and update the connection string in MyHealthClinic .NetCore application.
+    <img src="images/update_rdvariables.png">
 
-1. Click on **Code** tab. Under **Files**, navigate to **healthclinic.sql** file in the **Docker** repository. Copy entire content of this file.
-
-    <img src="images/copysql.png">   
-
-2. Switch to **Azure Portal**, and navigate to **mhcdb** SQL database which you created at the beginning of this lab. Click on **Data Explorer** and **Login**. Under authorization type **SQL server authentication** provide database **Login: sqladmin** and **Password: P2ssw0rd1234**. Click **OK**.
-
-    <img src="images/dblogin.png">   
-
-3. Under **Query** section, paste the content copied from **healthclinic.sql** file as shown, and click on **Run**. This will now push required data into the database, so that our sample application MyHealthClinic could interact with it. Verify that message **Query succeeded** is displayed at the bottom. 
-
-    <img src="images/pastesql.png"> 
-
-4.  Scroll down and select **Connection Strings** section. Copy the contents as shown.
-
-    <img src="images/copy_connectionstring.png"> 
-
-5. Switch to your VSTS account. Go to **Code** tab, and navigate to the below path to **edit** the file **appsettings.json** 
-
-    >Docker/src/MyHealth.Web/appsettings.json
-
-    Go to line number **9**. Paste the connection string inside double quotes and manually update the **User ID** to **sqladmin** and **Password** to **P2ssw0rd1234**. Click on **Commit**.
-
-   <img src="images/paste_connectionstring.png">
+    >Note: **Database Name** is set to **mhcdb**, **Server Admin Login** is **sqladmin** and **Password** is **P2ssw0rd1234**.
 
 
-## Exercise 4: Enable CI and Update Code
+## Exercise 3: Code Update
 
-In this excercise, we will enable the continuous integration trigger to create a new build for each commit to the master branch, and update the code to trigger CI-CD. 
+In this excercise, we will update the code to trigger CI-CD. 
 
-1. Go to **Builds** under **Build and Release** tab, **Edit** the build definition **Docker**.
-
-   <img src="images/build2.png">
-
-2. Right click on each task **Run Services**, **Build Services**, **Push Services** and **Lock Services** one by one (or use Ctrl+Click to select multiple tasks, and then right click). Select **Enable Selected Task(s)** to enable all of these tasks. 
-
-    <img src="images/enabletasks_bd.png">
-
-    Disable **Copy Files** and **Publish Artifact** tasks by selecting **Disable Selected Task(s)** after right clicking on each of them.
-
-    <img src="images/disabletasks_bd.png">
-
-3. Click on **Triggers** section. Check the option to **Enable continuous integration**. Click **Save**.
-
-    <img src="images/enable_CI.png">
-
-4. Go to **Code** tab, and navigate to the below path to **Edit** the file- 
+1. Go to **Code** tab, and navigate to the below path to **Edit** the file- 
 
    >Docker/src/MyHealth.Web/Views/Home/**Index.cshtml**
 
    <img src="images/editcode.png">
 
-5. Go to line number **28**, update **JOIN US** to **JOIN US TODAY**, and click **Commit**.
+2. Go to line number **28**, update **JOIN US** to **JOIN US TODAY**, and click **Commit**.
 
     <img src="images/lineedit.png">
 
-6. Click **Commit** in the pop-up window.
+3. Click **Commit** in the pop-up window.
     <img src="images/commit.png">
 
-7. Go to **Builds** tab to see the CI build in-progress. Click on the build number.
+4. Go to **Builds** tab to see the CI build in-progress. Click on the build number to see the build in progress.
 
-    <img src="images/inprogressbuild.png">
+    <img src="images/build3.png">
 
-    <img src="images/in_progress_build.png">
-
-8. The build will generate and push the image to ACR. After build completes, you will see the build summary. 
+5. The build will generate and push the image to Azure Container Registry. After build completes, you will see the build summary. 
     
-    <img src="images/build_summary.png">
+    <img src="images/build4.png">
 
-9. Go to <a href="https://portal.azure.com">Azure Portal</a>, navigate to the **App Service** which was created at the beginning of this lab. Select **Docker Container** section. Under **Image Source** highlight **Azure Container Registry**. Select your **Registry** from the dropdown. Under **image** dropdown select **myhealth.web** and under **Tag** dropdown select **latest**. This is required to map Azure Container Registry with the Web App. Click **Save**.
+6. Go to **Releases**, and double click on recent Release. Navigate to **Logs** section to see the release in progress. It takes upto 3 to 4 minutes for dacpac deployment task to complete. In the meantime go to next step.
+
+    <img src="images/rel3.png">
+
+7. Go to <a href="https://portal.azure.com">Azure Portal</a>, navigate to the **App Service** which was created at the beginning of this lab. Select **Docker Container** section. Under **Image Source** highlight **Azure Container Registry**. Select your **Registry** from the dropdown. Under **image** dropdown select **myhealth.web** and under **Tag** dropdown select **latest**. This is required to map Azure Container Registry with the Web App. Click **Save**.
 
     <img src="images/updatereg.png">
     <br/>
     <br/>
     <img src="images/updatereg2.png">
  
-10. Go to **Releases** tab to see the release summary with logs. The release will deploy the image to App Service based on the **BuildID**, which is tagged with the image. 
+8. Switch back to **Releases** in VSTS. After the dacpac deployment task is complete, click on **Resume or Reject**.
 
-    <img src="images/release_summary.png">
-    <br/>
-    <br/>
-    <img src="images/release_logs.png">
+    <img src="images/rel5.png">
 
-11. Switch back to <a href="https://portal.azure.com">Azure Portal</a>, navigate to the **Overview** section of your **App Service**. Click on the **URL** to see the changes in your app.
+9. If you have already mapped the Azure Container Registry with the Azure Web App, give some comment and Click **Resume**. If not, go back to step 7 and then come back to this step.
+
+    <img src="images/rel6.png">
+
+    The release will deploy the image to App Service based on the **BuildID**, which is tagged with the image.
+    
+    <img src="images/rel7.png">
+    <br/>
+    <img src="images/rel8.png">
+
+10. Switch back to <a href="https://portal.azure.com">Azure Portal</a>, navigate to the **Overview** section of your **App Service**. Click on the **URL** to see the changes in your app.
 
     <img src="images/getwebappurl.png">
     <br/>
