@@ -52,7 +52,9 @@ Since the connections are not established during project provisioning, we will m
 
 1. In VSTS, navigate to **Services** by clicking on the gear icon, and click on **+ New Service Endpoint**. Select **Azure Resource Manager**. Specify **Connection name**, select your **Subscription** from the dropdown and click **OK**. We use this endpoint to connect **VSTS** and **Azure**.
 
-   <img src="images/endpoint.png"> 
+   <img src="images/service_endpoint.png"> 
+
+   <img src ="images/connection_name.png">
 
 2. Create an endpoint of type **Team Foundation Server/Team Services**. Select **Token based authentication** and specify the following details-
 
@@ -119,7 +121,7 @@ A [Phase](https://docs.microsoft.com/en-us/vsts/build-release/concepts/process/p
       - **Azure Network Load Balancer**: As the target machines are connected to NLB, this task will disconnect machines from NLB before the deployment and re-connects to NLB after the deployment.
 
       - **IIS Web App Manage**: The task runs on the deployment target machine(s) registered with the Deployment Group configured for the task/phase. It creates a webapp and application pool locally with the name **PartsUnlimited** running under the port 
-      **80**  -  http://localhost:80
+      **80**  
 
       - **IIS Web App Deploy**: The task runs on the deployment target machine(s) registered with the Deployment Group configured for the task/phase. It deploys the application to the IIS server using **Web Deploy**.
 
@@ -182,12 +184,17 @@ A [Phase](https://docs.microsoft.com/en-us/vsts/build-release/concepts/process/p
 
 10. Once the release is complete, you will see the deployments are done to DB and Web Servers. Go to Logs to see the summary.
 
-   <img src="images/release_summary.png">
+    <img src="images/release_summary.png">
 
 
-   >In one of your web servers, go to http://localhost:80/ to access the application. 
+11. In one of your web servers, go to **DNS** to access the application. 
 
-11. The deployed web application is displayed.
+    <img src="images/web_server.png">
+
+     <img src="images/web_dns.png">
+
+
+12. The deployed web application is displayed.
 
    <img src="images/application.png">
 
