@@ -86,9 +86,6 @@ We will update the code to trigger CI-CD using **Hosted build agent**.
 
 1. Go to **Code** tab and navigate to the below path to edit the file.
 
-
-1. Go to **Code** tab and navigate to the below path to edit the file.
-
    >php/config.php
 
    <img src="images/code1.png">
