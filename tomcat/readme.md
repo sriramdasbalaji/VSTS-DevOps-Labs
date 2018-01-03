@@ -80,6 +80,22 @@ If you are following this lab from "Working with Jenkins, VSTS and Azure, you ca
 
 >This should create the database, tables and populate records for us.
 
+## Updating the App Settings for the Web App
+
+We have created the database that we need the app. Now, we need to update the connection strings for the web app to connect to the database correctly. There are multiple ways you can do this - but for the purpose of this lab, we will take a simple approach. We will update it directly on the Azure portal.
+
+1. From the Azure portal, Select the Web app you provisioned. Select **Application Settings**. Scroll down to the **App Settings** section.    
+
+1. Enter the following keys and values
+
+|Key|Value|
+|DB_USERNAME|Enter the MySQL server admin name|
+|DB_Password|Enter the MySQL server admin password|
+|DB_URL|the MySQL server address|
+`
+1. Click **Save**
+
+
 ## Deploying to App Service from VSTS 
 
 1. Navigate to the VSTS project that you provisioned
