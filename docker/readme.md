@@ -210,6 +210,7 @@ In this excercise, we will update the code to trigger CI-CD.
     <img src="images/lineedit.png">
 
 3. Click **Commit** in the pop-up window.
+
     <img src="images/commit.png">
 
 4. Go to **Builds** tab to see the CI build in-progress. Click on the build number to see the build in progress.
@@ -240,7 +241,7 @@ In this excercise, we will update the code to trigger CI-CD.
     <img src="images/rel6.png">
 
     The release will deploy the image to App Service based on the **BuildID**, which is tagged with the image.
-    
+
     <img src="images/rel7.png">
     <br/>
     <img src="images/rel8.png">
