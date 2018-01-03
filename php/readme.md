@@ -38,7 +38,7 @@ You will be prompted to authorize this connection with Azure credentials.
 
 **Note**: Disable pop-up blocker in your browser if you see a blank screen after clicking OK, and retry the step.
 
-## Excercise 2: Configure Release
+## Exercise 2: Configure Release
 
 We will use ARM template as **Infrastructure as a Code**  in the release definition to provisions a Web App and a Web App Service Plan under the specified resource group.
 
@@ -79,10 +79,13 @@ We will use ARM template as **Infrastructure as a Code**  in the release definit
    <tr>
   </table>
 
-## Excercise 3: Trigger CI and CD with code change
+## Exercise 3: Trigger CI and CD with code change
 
 **PHP** is an interpreted language, so we dont have to compile the code, instead let's archive the files to be used in the release task for deployment.
 We will update the code to trigger CI-CD using **Hosted build agent**.
+
+1. Go to **Code** tab and navigate to the below path to edit the file.
+
 
 1. Go to **Code** tab and navigate to the below path to edit the file.
 
