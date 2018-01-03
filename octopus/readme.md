@@ -16,31 +16,31 @@ This lab shows how you can integrate VSTS and Octopus to deploy PHP application 
 
    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMicrosoft%2FVSTS-DevOps-Labs%2Foctopus%2Foctopus%2Farm%2520template%2Ftemplate.json"><img src="http://azuredeploy.net/deploybutton.png"></a> 
 
-2. Provide **Resource group** and **Octopus DNS Name**, check the **terms and conditions** and click **Purchase**.
+2. Provide **Resource group** and **Octopus DNS Name**, check the **Terms and Conditions** checkbox and click **Purchase**.
 
     <img src="images/DeployOctopus.png">
 
-3. It takes approximately 15 minutes to deploy. Once the deployment is successful, the following resources will be provisioned in Azure:
+3. It takes approximately 15 minutes for the deployment to complete. Once the deployment is successful, the following resources are provisioned in Azure along with other resources -
 
-    - Windows server 2012 VM with **Octopus Deploy server**
+    - Windows Server 2012 VM with **Octopus Deploy server**
     - **Azure App Service** to deploy PHP application
 
     <br/>
 
     <img src="images/Resources.png">
 
-4. Click on the **octopus-vm** and note down the **Subscription ID** and **DNS name**. We will need this in later exercises.
+4. Click on the **octopus-vm** and note down the **Subscription ID** and **DNS name**. We will need these values in later exercises of this lab.
 
 
    <img src="images/A3.png">
 
 ## Setting up the VSTS project
 
-1. Use <a href="https://vstsdemogenerator.azurewebsites.net/?TemplateId=77370&name=octopus" target="_blank">VSTS Demo Data Generator</a> to provision a project on your VSTS account. 
+1. Use <a href="https://vstsdemogenerator.azurewebsites.net/?TemplateId=77370&name=octopus" target="_blank">VSTS Demo Data Generator</a> to provision the project on your VSTS account. 
 
    ![](images/1.png)
 
-2. Once the project is provisioned, select the URL to navigate to the project.
+2. Once the project is provisioned, click the URL to navigate to the project.
 
    ![](images/DemoGen.png)
 
@@ -164,7 +164,7 @@ In this exercise, we will create a project to deploy the package to **Azure App 
 
 ## Exercise 3: Link VSTS and Octopus Deploy Server
 
-In this exercise we will create an **API** key in Octopus. This key is required to link VSTS with Octopus.
+In this exercise, we will create an **API** key in Octopus. This key is required to link VSTS with Octopus.
 
 1. On the top right corner of Octopus portal, click on the currently logged in user and click **Profile**.
 
